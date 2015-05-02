@@ -1,0 +1,32 @@
+<template name="layout">
+    <div class="container">
+        {{> header}}
+        <div id="main row">
+            {{> yield}}
+        </div>
+    </div>
+</template>
+
+<template name="homePage">
+    <div class="col-xs-2">
+        {{> sidebar}}
+    </div>
+        <div class="col-xs-4">
+        {{> chat}}
+    </div>
+        <div class="col-xs-6">
+        {{> postsList}}
+    </div>
+</template>
+
+<template name="profileView">
+    <div class="col-xs-2">
+        {{> sidebar}}
+    </div>
+        <div class="col-xs-4">
+        {{> chat}}
+    </div>
+        <div class="col-xs-6">
+        {{> profilePage}}
+    </div>
+</template>

@@ -1,0 +1,11 @@
+<template name="imagePreview">
+	<div class="">
+		{{#each images}}
+		  {{#unless this.isUploaded}}
+			  {{> FS.UploadProgressBar bootstrap=true class='progress-bar-success progress-bar-striped active' showPercent=true}}
+		  {{/unless}}
+		  {{#FS.DeleteButton class="fa fa-times pull-right"}}{{/FS.DeleteButton}}
+		   <img src="{{url}}" class="img-responsive">
+		{{/each}}
+	</div>
+</template>

@@ -1,0 +1,33 @@
+<template name="chat">
+    <!-- <div class="col-xs-4">     -->
+        <div class="well">
+            {{> messages}}
+        </div>
+        {{#if currentUser}}
+        <div class="well">
+            {{> input}}
+        </div>
+        {{/if}}
+    <!-- </div> -->
+</template>
+
+<template name="input">
+    <textarea placeholder="Your message goes here" id="msg" class="form-control"></textarea>
+</template>
+
+<template name="messages">
+    <h4>{{roomname}}</h4>
+    <div id="messages" style="min-height: 200px; overflow: y-scroll">
+        {{#each messages}}
+            {{> message}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="message">
+    <strong>{{username}}</strong>
+    <p>{{msg}}</p>
+    <p style="font-size: 0.7em; color: darkgray; border-bottom: 1px solid #DDD">{{timestamp}}</p>
+</template>
+
+

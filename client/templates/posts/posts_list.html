@@ -1,0 +1,11 @@
+<template name="postsList">
+    <!-- <div class="col-xs-6"> -->
+        <div class="posts">
+            {{> postSubmit}}
+            <!-- {{> imagePreview}} -->
+            {{#each posts}}
+            <a href="{{pathFor 'postPage'}}">{{> postItem}}</a>
+            {{/each}}
+        </div>
+    <!-- </div> -->
+</template>

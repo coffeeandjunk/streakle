@@ -1,0 +1,16 @@
+<template name="sidebar">
+    <!-- <div class="col-xs-2"> -->
+        {{> rooms}}
+    <!-- </div> -->
+</template>
+
+<template name="rooms">
+    <h4>Channels</h4>
+    <ul class="list-unstyled">
+        {{#each rooms}} {{> room}} {{/each}}
+    </ul>
+</template>
+
+<template name="room">
+    <li style="cursor: pointer; {{roomstyle}}">{{roomname}}</li>
+</template>
