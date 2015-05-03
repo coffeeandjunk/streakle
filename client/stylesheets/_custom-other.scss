@@ -1,0 +1,378 @@
+//==Mixins
+@mixin button-sizing($height, $width) {
+    height: $height;
+    width: $width;
+}
+
+@mixin border-radius($radius) {
+    border-radius: $radius;
+}
+
+//==Global elements
+hr {
+    margin: 5px 0;
+}
+
+.btn-primary {
+    background-image: linear-gradient($btn-primary-bg1, $btn-primary-bg2);
+     @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    // border: 1px solid #AB1B20;
+}
+
+.btn-primary:hover {
+    background-image: linear-gradient($btn-primary-hover-bg1, $btn-primary-hover-bg2);
+     @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    // border: 1px solid #AB1B20;
+}
+
+a#img-upload:hover {
+    text-decoration: none;
+    color: lighten($link-color, 10%);
+}
+
+.img-rounded {
+    border-radius: 4px;
+}
+
+textarea {
+    resize: none;
+}
+
+.well {
+    background-color: $default-bg;
+    padding: 10px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+}
+
+.panel-body {
+    padding: 10px;
+}
+
+// .container {
+//     width: 1170px !important;
+// }
+.user-pic {
+    max-width: 42px;
+}
+
+//==Navbar
+.navbar {
+    height: 55px;
+    background-color: $navbar-default-bg;
+    color: $navbar-default-color;
+    // box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+}
+
+// .navbar-form {
+//     @extend .navbar-left;
+// }
+// .navbar-form-group {
+//     @extend .form-group;
+//     @extend .has-feedback;
+// }
+// .navbar-search {
+//     @extend .form-control;
+//     min-width: 400px;
+//     border-radius: 18px;
+// }
+// .navbar-search-icon {
+//     @extend .glyphicon;
+//     @extend .glyphicon-search;
+//     @extend .text-muted;
+//     @extend .form-control-feedback;
+// }
+.navbar-user-pic {
+    // max-width: 19px;
+    max-height: 19px;
+    margin-right: 10px;
+}
+
+//==Body Elements
+.content-wrapper {
+    margin-top: 80px;
+}
+
+//Newsfeed
+.newsfeed-container {
+    @extend .col-xs-6;
+}
+
+.newsfeed-img {
+    @extend .img-responsive;
+}
+
+//Post
+%user-info-margin {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.user-comment-container,
+.user-info-container {
+    .user-name {
+        @extend strong;
+        margin: 0;
+    }
+    .user-school-info {
+        @extend .text-muted;
+        margin: 0;
+        margin-left: 15px;
+        a {
+            color: #666;
+        }
+    }
+}
+
+.post-user-info {
+    @extend %user-info-margin;
+    .user-pic {
+        max-width: 40px;
+    }
+    .user-info-container {
+        .bookmark-icon {
+            @extend .text-muted;
+            @extend .pull-right;
+        }
+        .post-time {
+            @extend .text-muted;
+            margin-top: 2px;
+        }
+    }
+}
+
+.embedded-video {
+    @extend .embed-responsive;
+    @extend .embed-responsive-16by9;
+}
+
+.post-footer {
+    @extend .panel-footer;
+    .comments-number {
+        @extend .text-muted;
+    }
+    .comment-user-info {
+        margin-top: 5px;
+        .comment-content {
+            @extend .form-group;
+            @extend .has-feedback;
+            .comment-textarea {
+                @extend .form-control;
+            }
+            .camera-icon {
+                @extend .text-muted;
+                @extend .pull-right;
+                @extend .form-control-feedback;
+            }
+        }
+    }
+    .post-previous-comments {
+        @extend .comment-user-info;
+    }
+}
+
+//Group Chat
+%chat-content {
+    padding: 10px;
+    border-radius: 15px;
+    margin-left: -15px;
+    margin-bottom: 5px;
+    border: 1px solid;
+}
+
+.groupchat {
+    @extend .col-xs-4;
+    .chat-panel {
+        width: 380px;
+        .chat-panel-heading {
+            @extend .panel-heading;
+            @extend .panel-title;
+            padding: 5px 10px 0;
+            border-color: #DDD;
+            .chat-title {
+                @extend h4;
+                .search-icon {
+                    @extend .text-muted;
+                    @extend .pull-right;
+                }
+            }
+            .chat-search-container {
+                @extend .form-group;
+                @extend .has-feedback;
+                @extend .pull-right;
+                .chat-container {
+                    @extend .form-control;
+                    @extend .input-sm;
+                }
+            }
+        }
+        .chat-panel-body {
+            max-height: 500px;
+            overflow-y: scroll;
+            padding: 0 10px;
+            .chat-user-name {
+                @extend header;
+                @extend .text-muted;
+                .chat-time {
+                    @extend .pull-right;
+                    @extend .text-muted;
+                }
+            }
+            .chat-single-body {
+                @extend .row;
+                margin-bottom: 10px;
+                .chat-user-pic-container {
+                    @extend .col-xs-2;
+                    .chat-user-pic {
+                        @extend .img-rounded;
+                        @extend .pull-left;
+                        max-width: 34px;
+                    }
+                }
+                .chat-text-container {
+                    @extend .col-xs-10;
+                    .chat-content {
+                        @extend %chat-content;
+                        border-top-left-radius: 4px;
+                        background-color: $chat-content-bg;
+                        border-color: darken($chat-content-bg, 10%);
+                    }
+                }
+                .my-chat-text-container {
+                    @extend .col-xs-11;
+                    @extend .col-xs-offset-1;
+                    .my-chat-content {
+                        @extend .pull-right;
+                        @extend .text-right;
+                        @extend %chat-content;
+                        border-top-right-radius: 4px;
+                        background-color: $my-chat-content-bg;
+                        border-color: darken($my-chat-content-bg, 10%);
+                    }
+                }
+                .chat-img {
+                    @extend .img-rounded;
+                    @extend .img-responsive;
+                    margin: 5px 0;
+                }
+            }
+        }
+        .chat-panel-footer {
+            @extend .panel-footer;
+            .chat-textarea-container {
+                @extend .form-group;
+                @extend .has-feedback;
+                .chat-textarea {
+                    @extend .form-control;
+                }
+                .camera-icon {
+                    @extend .pull-right;
+                    @extend .form-control-feedback;
+                    @extend .text-muted;
+                }
+            }
+        }
+    }
+}
+
+//==Infotabs
+.infotabs {
+    @extend .col-xs-2;
+    @extend .hidden-md;
+    .infotabs-panel {
+        width: 195px;
+        .infotabs-panel-body {
+            padding: 0 10px;
+            .infotabs-container {
+                margin-bottom: 15px;
+                border-bottom: 1px solid #DDD;
+                .infotabs-title {
+                    @extend h6;
+                    @extend .text-muted;
+                    @extend .text-uppercase;
+                }
+                .infotabs-list {
+                    @extend .list-unstyled;
+                    li {
+                        line-height: 22px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//==Background Color
+.dark-bg {
+    background-color: $gray-dark;
+}
+
+.light-bg {
+    background-color: $gray-lighter;
+}
+
+//==Others
+%logo {
+    @extend .center-block;
+    @extend .img-responsive;
+    width: 410px;
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.signup-logo {
+    @extend %logo;
+    margin-top: 45px;
+}
+
+.login-logo {
+    @extend %logo;
+    margin-top: 150px;
+}
+
+.backtunnel-logo {
+    @extend %logo;
+    max-width: 145px;
+}
+
+%light-text {
+    color: $light-gray;
+    font-size: $font-size-large;
+    font-weight: normal;
+}
+
+.secondary-text {
+    @extend %light-text;
+    @extend .text-center;
+    margin-top: 18px;
+}
+
+.title-text {
+    @extend %light-text;
+    @extend .text-muted;
+}
+
+%signup-box {
+    margin: 30px 0 45px 0;
+}
+
+.signup-form {
+    @extend %signup-box;
+    padding: 10px 30px 10px 0;
+    border-right: 1px solid #ddd;
+}
+
+.tag-cloud {
+    @extend %signup-box;
+    padding-left: 30px;
+}
+
+.hr {
+    @extend hr;
+    height: 0;
+    margin: 0 250px;
+    margin-top: 15px;
+    opacity: 0.1;
+}

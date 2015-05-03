@@ -1,16 +1,23 @@
 <template name="postSubmit">
     {{#if currentUser}}
-    <form class="main form">
-        <!-- {{> imagePreview}} -->
-        <div class="form-group">
-            <div class="controls">
-                <textarea name="postContent" id="postContent" placeholder="Share WIP" type="text" class="form-control"></textarea>
+    <div class="well">
+        <div class="row">
+            <div class="col-xs-1">
+                <img src="{{[profilePic]}}" alt="profile pic" class="img-responsive img-rounded pull-left user-pic">
             </div>
+            <form class="main form col-xs-11">
+                <!-- {{> imagePreview}} -->
+                <div class="form-group">
+                    <div class="controls">
+                        <textarea name="postContent" id="postContent" placeholder="Share WIP" type="text" class="form-control"></textarea>
+                    </div>
+                </div>
+                <a href="" id="img-upload" class="fa fa-camera fa-2x"></a>
+                <input type="file" id="file-upload" />
+                <input type="submit" value="Share" class="btn btn-primary pull-right" />
+                <div class="clearfix"></div>
+            </form>
         </div>
-        <a href="" id="img-upload" class="fa fa-camera fa-2x"></a>
-        <input type="file" id="file-upload" />
-        <input type="submit" value="Share" class="btn btn-primary pull-right" />
-        <div class="clearfix"></div>
-    </form>
+    </div>
     {{/if}}
 </template>

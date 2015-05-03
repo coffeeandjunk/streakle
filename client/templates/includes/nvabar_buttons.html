@@ -1,0 +1,24 @@
+<template name="navbarButtons">
+    <div class="collapse navbar-collapse" id="navigation">
+        <ul class="nav navbar-nav navbar-right">
+            {{# if currentUser}}
+            <div class="btn-group navbar-right">
+                <a href="{{profilePage}}" role="button" class="btn navbar-btn btn-default"><img src="{{profilePic}}" alt="profile pic" class="img-circle pull-left navbar-user-pic img-responsive">{{firstName}}</a>
+                <button type="button" class="btn navbar-btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/sign-out">Signout</a></li>
+                </ul>
+            </div>
+            {{else}}
+            <div class="btn-group navbar-right" role="group" aria-label="...">
+                <a href="/sign-up" role="button" class="btn navbar-btn btn-default">Sign up</a>
+                <a href="/sign-in" role="button" class="btn navbar-btn  btn-default">Sign in</a>
+            </div>
+            {{/if}}
+            <!-- {{> accountButtons}} -->
+            <!-- {{> loginButtons}} -->
+        </ul>
+    </div>
+</template>

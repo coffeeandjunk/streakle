@@ -4,33 +4,30 @@ Template.imagePreview.helpers({
     },
 });
 
-// Template.postSubmit.helpers({
-//     images: function() {
-//         return postImages.find();
-//     },
+Template.postSubmit.helpers({
+    profilePic: function () {
+        var userProfile = Meteor.user().profile;
+        return userProfile.image;
+    }
 
-// });
+});
+
+_messagePost = function() {
+    var el = document.getElementById("postContent");
+    Messages.insert({
+        username: Meteor.user().profile.name,
+        msg: el.value,
+        ts: new Date(),
+        room: Session.get("roomname")
+    });
+    el.value = "";
+    el.focus();
+};
 
 Template.postSubmit.events({
     'click #img-upload': function(e) {
         document.getElementById('file-upload').click();
     },
-
-    // 'change #file-upload': function(event, template) {
-    //     FS.Utility.eachFile(event, function(file) {
-    //         var result = postImages.insert(file, function(err, fileObj) {
-    //             if (err) {
-    //                 console.log(err);
-    //             } else {
-    //                 image = {
-    //                     imageID: fileObj._id
-    //                 };
-
-    //             }
-
-    //         });
-    //     });
-    // },
 
     'change #file-upload': FS.EventHandlers.insertFiles(postImages, {
         metadata: function(fileObj) {
@@ -72,16 +69,3 @@ Template.postSubmit.events({
     }
 
 });
-
-
-_messagePost = function() {
-    var el = document.getElementById("postContent");
-    Messages.insert({
-        username: Meteor.user().profile.name,
-        msg: el.value,
-        ts: new Date(),
-        room: Session.get("roomname")
-    });
-    el.value = "";
-    el.focus();
-};

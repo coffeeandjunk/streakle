@@ -5,11 +5,3 @@
 //         // Router.go('profileView', Meteor.userId());
 //     }
 // });
-
-
-// Template.header.helpers({
-//     firstName: function() {
-//         var userProfile = Meteor.user().services.facebook;
-//         return userProfile.first_name;
-//     }
-// });

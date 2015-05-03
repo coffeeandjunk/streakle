@@ -1,0 +1,68 @@
+// Variables
+// --------------------------------------------------
+// $icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/fonts/", "../fonts/");
+$default-bg:			#FFF;
+
+
+//==Predefined variables
+$gray-base:              #000 !default;
+$gray-light:			lighten($gray-base, 46.7%) !default; // #777
+
+//==Grid
+$grid-gutter-width:         10px;
+
+//== Colors
+
+$brand-primary:         		#FF5A5F;
+$brand-secondary:				#267B8C;
+$btn-tag-bg:					#FFFFFF;
+$light-gray:					#999;
+$body-bg: 						#354458;
+//** Global textual link color.
+// $link-color:            		#3395FF;
+
+//== Buttons
+
+$btn-primary-color:             #FFF;
+$btn-primary-bg:                #DB2E34;
+$btn-primary-bg1:				#FF5A5F;
+$btn-primary-bg2:				#DB2E34;
+$btn-primary-hover-bg1:			lighten($btn-primary-bg1, 5%);
+$btn-primary-hover-bg2:			lighten($btn-primary-bg2, 5%);
+$btn-primary-border:            #AB1B20;
+
+$btn-secondary-color:           #FFF;
+$btn-secondary-bg:              $brand-secondary;
+$btn-secondary-border:          darken($btn-secondary-bg, 5%);
+
+$btn-gray-color:              	#333;
+$btn-gray-bg:                 	#E9E9E9;
+$btn-gray-border:             	darken($btn-gray-bg, 5%);
+
+$btn-tag-color:              	$gray-light;
+$btn-tag-bg:                 	#FFF;
+$btn-tag-active-bg:             #69B1FF;
+$btn-tag-border:             	darken($btn-tag-bg, 15%);
+
+//==Navbar
+// Basics of a navbar
+$grid-float-breakpoint:			0;
+$screen-xs-max:					0;
+
+$navbar-height:                 55px;
+$navbar-default-color:          #FFF;
+$navbar-default-bg:             #354458;
+$navbar-bg:                		#FFF;
+$navbar-default-border:         lighten(#000, 55%);
+
+// Navbar links
+$navbar-default-link-color:         #FFF;
+$navbar-default-link-hover-color:   darken($navbar-default-link-color, 6.5%);
+
+// Navbar brand label
+$navbar-default-brand-color:        #FFF;
+$navbar-default-brand-hover-color:  darken($navbar-default-brand-color, 25%);
+
+// Group chat
+$chat-content-bg:					#DCFFD6;
+$my-chat-content-bg:				#FFFDD6;
