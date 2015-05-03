@@ -10,7 +10,7 @@
 .comments li,
 .comment-form {
     background: #fff;
-    border-radius: 3px;
+    border-radius: $default-border-radius;
     padding: 10px;
     margin-bottom: 10px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
@@ -106,9 +106,9 @@
     color: #aaaaaa;
 }
 
-.post .post-content p {
-    margin: 0;
-}
+// .post .post-content p {
+//     margin: 10px 0;
+// }
 
 .post .discuss {
     display: block;

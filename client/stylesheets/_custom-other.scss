@@ -10,24 +10,30 @@
 
 //==Global elements
 hr {
-    margin: 5px 0;
+    margin: 7px 0px;
+    border-color: #ddd;
 }
 
 .btn-primary {
     background-image: linear-gradient($btn-primary-bg1, $btn-primary-bg2);
-     @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
     // border: 1px solid #AB1B20;
+    &:hover {
+        background-image: linear-gradient($btn-primary-hover-bg1, $btn-primary-hover-bg2);
+        @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+        // border: 1px solid #AB1B20;
+    }
 }
 
-.btn-primary:hover {
-    background-image: linear-gradient($btn-primary-hover-bg1, $btn-primary-hover-bg2);
-     @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
-    // border: 1px solid #AB1B20;
+a#img-upload {
+    &:hover, &:active, &:focus {
+        text-decoration: none;
+        color: lighten($link-color, 10%);
+    }
 }
 
-a#img-upload:hover {
-    text-decoration: none;
-    color: lighten($link-color, 10%);
+.posts a {
+    color: #666;
 }
 
 .img-rounded {
@@ -56,6 +62,16 @@ textarea {
 .user-pic {
     max-width: 42px;
 }
+
+.post-user-pic {
+    max-width: 60px;
+}
+
+.post-user-info {
+    margin-left: -20px;
+}
+
+.post .content {margin-top: 10px;}
 
 //==Navbar
 .navbar {
@@ -121,23 +137,6 @@ textarea {
         margin-left: 15px;
         a {
             color: #666;
-        }
-    }
-}
-
-.post-user-info {
-    @extend %user-info-margin;
-    .user-pic {
-        max-width: 40px;
-    }
-    .user-info-container {
-        .bookmark-icon {
-            @extend .text-muted;
-            @extend .pull-right;
-        }
-        .post-time {
-            @extend .text-muted;
-            margin-top: 2px;
         }
     }
 }
@@ -367,12 +366,4 @@ textarea {
 .tag-cloud {
     @extend %signup-box;
     padding-left: 30px;
-}
-
-.hr {
-    @extend hr;
-    height: 0;
-    margin: 0 250px;
-    margin-top: 15px;
-    opacity: 0.1;
 }

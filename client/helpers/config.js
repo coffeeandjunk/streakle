@@ -27,8 +27,8 @@ AccountsEntry.config({
         type: "text", 
         required: true 
     },{
-        field: "School", 
-        School: "IIT Bombay", 
+        field: "school", 
+        school: "IIT Bombay", 
         label: "Institute", 
         placeholder: "College Name", 
         type: "text",
