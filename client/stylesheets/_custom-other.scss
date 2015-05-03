@@ -20,7 +20,7 @@ hr {
     // border: 1px solid #AB1B20;
     &:hover {
         background-image: linear-gradient($btn-primary-hover-bg1, $btn-primary-hover-bg2);
-        @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+        // @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
         // border: 1px solid #AB1B20;
     }
 }
@@ -42,14 +42,6 @@ a#img-upload {
 
 textarea {
     resize: none;
-}
-
-.well {
-    background-color: $default-bg;
-    padding: 10px;
-    border: 1px solid #999;
-    border-radius: 6px;
-    @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
 }
 
 .panel-body {

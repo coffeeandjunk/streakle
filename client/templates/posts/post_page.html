@@ -1,5 +1,11 @@
 <template name="postPage">
-  <div class="post-page col-xs-8 col-xs-offset-2">
-    {{> postItem}}
-  </div>
+    <div class="post-page col-xs-8 col-xs-offset-2">
+        {{> postItem}}
+        <ul class="comments">
+            {{#each comments}} {{> commentItem}} {{/each}}
+        </ul>
+        {{#if currentUser}} {{> commentSubmit}} {{else}}
+        <p>Please log in to leave a comment.</p>
+        {{/if}}
+    </div>
 </template>

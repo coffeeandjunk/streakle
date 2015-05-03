@@ -6,16 +6,16 @@
 //Alredy defined CSS
 
 .grid-block,
+.well,
 .post,
 .comments li,
 .comment-form {
-    background: #fff;
+    background: $default-bg;
     border-radius: $default-border-radius;
     padding: 10px;
-    margin-bottom: 10px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    border: 1px solid #999;
+    margin-bottom: 15px;
+    @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
 }
 
 #main {

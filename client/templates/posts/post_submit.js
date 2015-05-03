@@ -54,7 +54,8 @@ Template.postSubmit.events({
             author: user.profile.firstName + " " + user.profile.lastName,
             authorImage: user.profile.image,
             authorSchool: user.profile.school,
-            submitted: new Date()
+            submitted: new Date(),
+            commentsCount: 0
         };
 
         // Meteor.call('postInsert', post, function(error, result) {
