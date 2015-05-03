@@ -26,6 +26,8 @@
 
 <template name="message">
     <strong>{{username}}</strong>
+    <a href="{{pathFor 'postPage'}}">
+    <img src="{{imageUrl}}" class="img-responsive"></a>
     <p>{{msg}}</p>
     <p style="font-size: 0.7em; color: darkgray; border-bottom: 1px solid #DDD">{{timestamp}}</p>
 </template>

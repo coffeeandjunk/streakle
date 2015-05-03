@@ -1,26 +1,31 @@
 <template name="profilePage">
     <!-- <div class="col-xs-6"> -->
-        <!-- <div class="row"> -->
-            <div class="col-xs-6">
-                {{> profilePic}}
-            </div>
-            <div class="col-xs-6">
-                <h4>{{name}}</h4>
-                <!-- <p>{{username}}<span>{{school}}</span></p> -->
-                <!-- <p>{{about}}</p> -->
-                <div type="button" class="btn btn-default">Message {{firstName}}</div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row"> -->
-            <div class="col-xs-12">
-                <div class="post">
-                    <h5>POSTS</h5>
-                    <h5>{{postsCount}}</h5>
-                </div>
-                {{#each posts}}
-                    <a href="{{pathFor 'postPage'}}">{{> postItem}}</a>
-                {{/each}}
-            </div>
-        <!-- </div> -->
+    <!-- <div class="row"> -->
+    <div class="col-xs-6">
+        {{> profilePic}}
+    </div>
+    <div class="col-xs-6">
+        <h4>{{firstName}} {{lastName}}</h4>
+        <p>@{{username}} #{{school}}</p>
+        <p>{{about}}</p>
+        <div type="button" class="btn btn-default btn-block">Message {{firstname}}</div>
+    </div>
     <!-- </div> -->
+    <!-- <div class="row"> -->
+    <div class="col-xs-12">
+        <div class="post">
+            <h5>POSTS</h5>
+            <h5>{{postsCount}}</h5>
+        </div>
+        {{#each posts}}
+        <a href="{{pathFor 'postPage'}}">{{> postItem}}</a> {{/each}}
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+</template>
+
+<template name="profilePic">
+    <a href="" id="img-upload" class="fa fa-camera fa-3x"></a>
+    <input type="file" id="file-upload" />
+    <img src="{{profilePic}}" alt="{{username}}" class="img-responsive">
 </template>

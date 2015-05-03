@@ -1,15 +1,15 @@
 Template.imagePreview.helpers({
-    images: function() {
-        return postImages.find();
-    }
-});
-
-Template.postSubmit.helpers({
-    images: function() {
+    previewImages: function() {
         return postImages.find();
     },
-
 });
+
+// Template.postSubmit.helpers({
+//     images: function() {
+//         return postImages.find();
+//     },
+
+// });
 
 Template.postSubmit.events({
     'click #img-upload': function(e) {
@@ -41,9 +41,9 @@ Template.postSubmit.events({
         },
         after: function(error, fileObj) {
             console.log("Inserted", fileObj.name);
+            imageId: fileObj._id;
             image = {
-                imageName: fileObj.name,
-                imageID: fileObj._id
+                imageUrl: "/cfs/files/images/" + fileObj._id
             };
         }
     }),
@@ -57,7 +57,31 @@ Template.postSubmit.events({
         Posts.update(post._id, {
             $set: image
         });
+        message = {
+            username: Meteor.user().profile.name,
+            msg: $(e.target).find('[name=postContent]').val(),
+            ts: new Date(),
+            room: Session.get("roomname")
+        };
+        messages._id = Messages.insert(message);
+        Messages.update(messages._id, {
+            $set: image
+        });
         $('[name=postContent]').val("");
+        // postImages.remove({_id:fileObj._id});
     }
 
 });
+
+
+_messagePost = function() {
+    var el = document.getElementById("postContent");
+    Messages.insert({
+        username: Meteor.user().profile.name,
+        msg: el.value,
+        ts: new Date(),
+        room: Session.get("roomname")
+    });
+    el.value = "";
+    el.focus();
+};

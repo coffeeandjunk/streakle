@@ -11,18 +11,25 @@
     </div>
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="nav navbar-nav navbar-right">
-       <a href="{{pathFor 'profileView'}}">{{> profilePic}}</a>{{> loginButtons}}
+       <!-- <a href="{{pathFor 'profileView'}}">{{> profilePic}}</a> -->
+<!--       {{# if currentUser}}
+        <a role="button" href="{{pathFor 'profileView'}}" class="btn btn-default">{{> profilePic}}{{firstName}}</a>
+      {{else}}
+        <a role="button" class="btn btn-default" href="/sign-in">Sign in</a>
+      {{/if}} -->
+      {{> accountButtons}}
+       <!-- {{> loginButtons}} -->
       </ul>
     </div>
   </nav>
 </template>
 
-<template name="profilePic">
+<!-- <template name="profilePic">
     {{#if currentUser}}
       <img src="{{userPic}}" class='img-responsive'>
     {{/if}}
-</template>
+</template> -->
 
-<template name="_loginButtonsAdditionalLoggedInDropdownActions">
-  <a role="button" class="btn btn-default btn-block" href="{{pathFor 'profileView'}}">View Profile</a>
-</template>
+<!-- <template name="_loginButtonsAdditionalLoggedInDropdownActions">
+  <a role="button" class="btn btn-default btn-block" href="{{viewProfile}}">View Profile</a>
+</template> -->

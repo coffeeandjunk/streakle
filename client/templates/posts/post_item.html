@@ -1,11 +1,8 @@
 <template name="postItem">
     <div class="post">
         <div class="post-content">
-        {{#with FS.GetFile "images" imageID}}
-        	<img src="{{url}}" alt="uploaded image" class="img-responsive">
-		{{/with}}
+            <img src="{{imageUrl}}" alt="uploaded image" class="img-responsive">
             <p>{{content}}</p>
         </div>
     </div>
 </template>
-

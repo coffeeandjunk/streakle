@@ -1,6 +1,6 @@
 <template name="imagePreview">
 	<div class="">
-		{{#each images}}
+		{{#each previewImages}}
 		  {{#unless this.isUploaded}}
 			  {{> FS.UploadProgressBar bootstrap=true class='progress-bar-success progress-bar-striped active' showPercent=true}}
 		  {{/unless}}
