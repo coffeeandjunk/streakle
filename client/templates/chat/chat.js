@@ -1,9 +1,13 @@
 _sendMessage = function() {
     var el = document.getElementById("msg");
+    var user = Meteor.user();
     Messages.insert({
-        username: Meteor.user().profile.name,
+        userId: user._id,
+        author: user.profile.firstName + " " + user.profile.lastName,
+        authorImage: user.profile.image,
+        authorSchool: user.profile.school,
+        submitted: new Date(),
         msg: el.value,
-        ts: new Date(),
         room: Session.get("roomname")
     });
     el.value = "";
@@ -17,6 +21,12 @@ Template.input.events({
     'keyup #msg': function(e) {
         if (e.type == "keyup" && e.which == 13) {
             _sendMessage();
+            var chatHeight = document.getElementById(".chat-body");
+            chatHeight.scrollTop = chatHeight.scrollHeight;
+            // $('.chat-body').slideToggle();
+        //     $('html, body').animate({
+        //         scrollBottom: 100000
+        //     }, 2000);
         }
     }
 });
@@ -37,8 +47,12 @@ Template.messages.helpers({
 });
 
 Template.message.helpers({
+    authorProfile: function() {
+        return "/profile/" + this.userId;
+    },
+
     timestamp: function() {
-        return this.ts.toLocaleTimeString();
+        return this.submitted.toLocaleTimeString();
     }
 });
 

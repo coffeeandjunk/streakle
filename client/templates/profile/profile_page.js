@@ -10,32 +10,33 @@
 Template.profilePage.helpers({
 
     username: function() {
-        return Meteor.user().username;
+        return this.username;
     },
 
     firstName: function() {
-        var userProfile = Meteor.user().profile;
+        var userProfile = this.profile;
         return userProfile.firstName;
     },
 
     lastName: function() {
-        var userProfile = Meteor.user().profile;
+        var userProfile = this.profile;
         return userProfile.lastName;
     },
 
     about: function() {
-        var userProfile = Meteor.user().profile;
+        var userProfile = this.profile;
         return userProfile.about;
     },
 
     school: function() {
-        var userProfile = Meteor.user().profile;
-        return userProfile.School;
+        var userProfile = this.profile;
+        return userProfile.school;
     },
 
-
     posts: function() {
-        return Posts.find({}, {
+        return Posts.find({
+            userId: this._id
+        },{
             sort: {
                 submitted: -1
             }
@@ -43,7 +44,9 @@ Template.profilePage.helpers({
     },
 
     postsCount: function() {
-        return Posts.find().count();
+        return Posts.find({
+            userId: this._id
+        }).count();
     }
 });
 
@@ -76,7 +79,7 @@ Template.profilePic.events({
 
 Template.profilePic.helpers({
     profilePic: function() {
-        var userProfile = Meteor.user().profile;
+        var userProfile = this.profile;
         return userProfile.image;
     }
 })

@@ -14,10 +14,14 @@ Template.postSubmit.helpers({
 
 _messagePost = function() {
     var el = document.getElementById("postContent");
+    var user = Meteor.user();
     Messages.insert({
-        username: Meteor.user().profile.name,
+        userId: user._id,
+        author: user.profile.firstName + " " + user.profile.lastName,
+        authorImage: user.profile.image,
+        authorSchool: user.profile.school,
+        submitted: new Date(),
         msg: el.value,
-        ts: new Date(),
         room: Session.get("roomname")
     });
     el.value = "";
@@ -74,10 +78,19 @@ Template.postSubmit.events({
         Posts.update(post._id, {
             $set: image
         });
+        var user = Meteor.user();
         message = {
-            username: Meteor.user().profile.name,
+            userId: user._id,
+            author: user.profile.firstName + " " + user.profile.lastName,
+            authorImage: user.profile.image,
+            authorSchool: user.profile.school,
+            submitted: new Date(),
+            // msg: el.value,
+            // room: Session.get("roomname")
+
+            // username: Meteor.user().profile.name,
             msg: $(e.target).find('[name=postContent]').val(),
-            ts: new Date(),
+            // ts: new Date(),
             room: Session.get("roomname")
         };
         messages._id = Messages.insert(message);
@@ -86,6 +99,29 @@ Template.postSubmit.events({
         });
         $('[name=postContent]').val("");
         // postImages.remove({_id:fileObj._id});
-    }
+    },
+
+    // settings: function() {
+    //     return {
+    //         position: "top",
+    //         limit: 5,
+    //         rules: [{
+    //             token: '@',
+    //             collection: Meteor.users,
+    //             field: "username",
+    //             template: Template.userPill
+    //         }, {
+    //             token: '#',
+    //             collection: Rooms,
+    //             field: "_id",
+    //             options: '',
+    //             matchAll: true,
+    //             filter: {
+    //                 type: "autocomplete"
+    //             },
+    //             template: Template.dataPiece
+    //         }]
+    //     };
+    // }
 
 });

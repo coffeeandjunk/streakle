@@ -11,5 +11,5 @@ Template.navbarButtons.helpers({
     firstName: function () {
         var userProfile = Meteor.user().profile;
         return userProfile.firstName;
-    },
+    }
 });

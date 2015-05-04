@@ -2,21 +2,20 @@
     <div class="post">
         <div class="post-content">
             <a href="{{pathFor 'postPage'}}">
-            <img src="{{imageUrl}}" alt="uploaded image" class="img-responsive">
+                <img src="{{imageUrl}}" alt="uploaded image" class="img-responsive">
             </a>
             <p class="content">{{#autolink}}{{content}}{{/autolink}}</p>
-            <p><i class="fa fa-comments text-muted"></i> {{commentsCount}}</p>
             <hr>
             <div class="row">
-            	<div class="col-xs-2">
-            		<img src="{{authorImage}}" alt="{{author}}" class="img-responsive post-user-pic img-rounded">
-            	</div>
-            	<div class="col-xs-10 post-user-info">
-            		<strong><a href="{{authorProfile}}">{{author}}</a></strong>
-            		<p>{{authorSchool}}</p>
-            	</div>
+                <div class="col-xs-2">
+                    <img src="{{authorImage}}" alt="{{author}}" class="img-responsive post-user-pic img-rounded">
+                </div>
+                <div class="col-xs-10 post-user-info">
+                    <strong><a href="{{authorProfile}}">{{author}}</a></strong>
+                    <p>{{authorSchool}}</p>
+                    <p><i class="fa fa-comments text-muted"></i> {{commentsCount}}</p>
+                </div>
             </div>
-            
         </div>
     </div>
 </template>

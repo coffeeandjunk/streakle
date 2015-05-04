@@ -1,14 +1,34 @@
 <template name="sidebar">
-        {{> rooms}}
+<div data-spy="affix">
+	<div class="sidebar panel">
+		{{> rooms}}
+	</div>
+</div>
 </template>
 
 <template name="rooms">
-    <h4>Channels</h4>
-    <ul class="list-unstyled">
-        {{#each rooms}} {{> room}} {{/each}}
-    </ul>
+<div class="panel-body">
+	<h6 class="text-muted text-uppercase">Channels</h6>
+	<hr>
+	<ul class="list-unstyled">
+		{{#each rooms}} {{> room}} {{/each}}
+	</ul>
+</div>
 </template>
 
 <template name="room">
-    <li style="cursor: pointer; {{roomstyle}}">{{roomname}}</li>
+<li style="{{roomstyle}}">{{roomname}}</li>
 </template>
+
+<!-- <template name="users">
+<div class="panel-body">
+	<h4>Message</h4>
+	<ul style="line-height: 24px" class="list-unstyled">
+		{{#each users}} {{> user}} {{/each}}
+	</ul>
+</div>
+</template>
+
+<template name="room">
+<li style="cursor: pointer; {{roomstyle}}">{{username}}</li>
+</template> -->

@@ -1,33 +1,40 @@
 <template name="chat">
-        <div class="well">
-            {{> messages}}
-        </div>
-        {{#if currentUser}}
-        <div class="well">
-            {{> input}}
-        </div>
-        {{/if}}
-</template>
-
-<template name="input">
-    <textarea placeholder="Your message goes here" id="msg" class="form-control"></textarea>
+<div data-spy="affix">
+  <div class="chat panel">
+    {{> messages}} {{#if currentUser}}
+    <div class="panel-footer">
+      {{> input}}
+    </div>
+    {{/if}}
+  </div>
+</div>
 </template>
 
 <template name="messages">
-    <h4>{{roomname}}</h4>
-    <div id="messages" style="min-height: 200px; overflow: y-scroll">
-        {{#each messages}}
-            {{> message}}
-        {{/each}}
-    </div>
+<div class="panel-title">
+  <h4>{{roomname}}</h4>
+</div>
+<hr>
+<div class="chat-body panel-body" id="messages">
+    {{#each messages}} {{> message}} {{/each}}
+</div>
 </template>
 
 <template name="message">
-    <strong>{{username}}</strong>
-    <a href="{{pathFor 'postPage'}}">
-    <img src="{{imageUrl}}" class="img-responsive"></a>
-    <p>{{#autolink}}{{msg}}{{/autolink}}</p>
-    <p style="font-size: 0.7em; color: darkgray; border-bottom: 1px solid #DDD">{{timestamp}}</p>
+<div class="message-author">
+<strong class="text-muted"><a href="{{authorProfile}}">{{author}}</a></strong>
+</div>
+<div class="message">
+  <a href="{{pathFor 'postPage'}}">
+  <img src="{{imageUrl}}" class="img-responsive"></a>
+  <div class="text-content">
+    <p>{{#autolink}}{{msg}}{{/autolink}}
+    <span class="pull-right timestamp text-muted">{{timestamp}}</span></p>
+  </div>
+</div>
+<hr>
 </template>
 
-
+<template name="input">
+<textarea placeholder="Your message goes here..." id="msg" class="form-control"></textarea>
+</template>
