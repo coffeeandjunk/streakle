@@ -1,0 +1,40 @@
+<template name="chat">
+<div data-spy="affix">
+  <div class="chat panel">
+    {{> messages}} {{#if currentUser}}
+    <div class="panel-footer">
+      {{> input}}
+    </div>
+    {{/if}}
+  </div>
+</div>
+</template>
+
+<template name="messages">
+<div class="panel-title">
+  <h4>{{roomname}}</h4>
+</div>
+<hr>
+<div class="chat-body panel-body" id="messages">
+    {{#each messages}} {{> message}} {{/each}}
+</div>
+</template>
+
+<template name="message">
+<div class="message-author">
+<strong class="text-muted"><a href="{{authorProfile}}">{{author}}</a></strong>
+</div>
+<div class="message">
+  <a href="{{pathFor 'postPage'}}">
+  <img src="{{imageUrl}}" class="img-responsive"></a>
+  <div class="text-content">
+    <p>{{#autolink}}{{msg}}{{/autolink}}
+    <span class="pull-right timestamp text-muted">{{timestamp}}</span></p>
+  </div>
+</div>
+<hr>
+</template>
+
+<template name="input">
+<textarea placeholder="Your message goes here..." id="msg" class="form-control"></textarea>
+</template>

@@ -1,0 +1,24 @@
+<template name="header">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{pathFor 'homePage'}}"><img src="/images/scranvas.png" alt="Scranvas" class="img-responsive identity"></a>
+            </div>
+            {{> navbarButtons}}
+        </div>
+    </nav>
+</template>
+<!-- <template name="profilePic">
+    {{#if currentUser}}
+      <img src="{{userPic}}" class='img-responsive'>
+    {{/if}}
+</template> -->
+<!-- <template name="_loginButtonsAdditionalLoggedInDropdownActions">
+  <a role="button" class="btn btn-default btn-block" href="{{viewProfile}}">View Profile</a>
+</template> -->

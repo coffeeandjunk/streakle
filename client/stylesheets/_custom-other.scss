@@ -1,0 +1,179 @@
+hr {
+    margin: 7px 0px;
+    border-color: #ddd;
+}
+
+textarea {
+    resize: none;
+}
+
+.identity {
+    max-width: 145px;
+    margin-top: -13px;
+}
+
+.btn-primary {
+    background-image: linear-gradient($btn-primary-bg1, $btn-primary-bg2);
+    @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    border-color: #AB1B20;
+    &:hover {
+        background-image: linear-gradient($btn-primary-hover-bg1, $btn-primary-hover-bg2);
+    }
+    &:active {
+        border-color: #AB1B20;
+    }
+}
+
+.btn-default {
+    background-image: linear-gradient($btn-default-bg1, $btn-default-bg2);
+    @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    border-color: #CCC;
+    &:hover {
+        background-image: linear-gradient($btn-default-hover-bg1, $btn-default-hover-bg2);
+    }
+    &:focus {
+        border-color: #CCC;
+    }
+}
+
+//==Navbar
+.navbar {
+    height: 55px;
+    background-color: $navbar-default-bg;
+    color: $navbar-default-color;
+}
+
+.navbar-user-pic {
+    max-height: 19px;
+    margin-right: 10px;
+}
+
+.content-wrapper {
+    margin-top: 80px;
+}
+
+a#img-upload {
+    &:hover, &:active, &:focus {
+        text-decoration: none;
+        color: lighten($link-color, 10%);
+    }
+}
+
+.chat a,
+.posts a,
+.post a {
+    color: #666;
+}
+
+.img-rounded {
+    border-radius: 4px;
+}
+
+.panel-body {
+    padding: 5px;
+}
+
+.user-pic {
+    max-width: 42px;
+}
+
+.post-user-pic {
+    max-width: 60px;
+}
+
+.post-user-info {
+    margin-left: -20px;
+    p {
+        margin: 0;
+    }
+}
+
+.comment-user-pic {
+    margin-left: 10px;
+}
+
+.post .content {
+    margin-top: 10px;
+}
+
+.sidebar {
+    position: fixed;
+    width: 180px;
+    ul {
+        line-height: 26px;
+        li {
+            color: $sidebar-link-color;
+            cursor: pointer;
+            &:hover {
+                color: lighten($sidebar-link-color, 10%);
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.chat {
+    bottom: 0;
+    position: fixed;
+    width: 373px;
+    .panel-body {
+        background-color: #E9E9E9;
+        min-height: 400px;
+        max-height: 440px;
+        overflow-y: scroll;
+    }
+}
+
+.message-author {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.message {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #DDD;
+    background: $default-bg;
+    border-radius: $default-border-radius;
+    @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    img {
+        border-radius: 6px 6px 0 0;
+    }
+    .text-content {
+        padding: 10px;
+        .timestamp {
+            font-size: 10px;
+        }
+    }
+}
+
+.profile-pic-container {
+    position: relative;
+    border-radius: $default-border-radius;
+    border: 5px solid #fff;
+    background-color: #999;
+    z-index: 1;
+    min-height: 272px;
+    min-width: 272px;
+    max-height: 272px;
+    overflow: hidden;
+    .img-upload {
+        position: absolute;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: #fff;
+        opacity: 0.7;
+    }
+    a:hover {
+        color: #333 !important;
+    }
+}
+
+.user-profile-info {
+    margin-top: 50px;
+    color: #FFF;
+}
+
+.post-details {
+    margin-top: -40px;
+}
