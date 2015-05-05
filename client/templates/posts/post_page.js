@@ -6,5 +6,3 @@ Template.postPage.helpers({
     }
 });
 
-
-

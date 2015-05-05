@@ -4,6 +4,7 @@ Template.postItem.helpers({
     }
 
 });
+<<<<<<< HEAD
 
 
 Template.postItem.onRendered(function () {
@@ -12,3 +13,5 @@ Template.postItem.onRendered(function () {
   // anno.makeAnnotatable(img);
 });
 
+=======
+>>>>>>> 0395d4a4b7bf9c567d68eb01623292f2af976137
