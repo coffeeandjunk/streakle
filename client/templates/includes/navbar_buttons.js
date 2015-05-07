@@ -5,7 +5,7 @@ Template.navbarButtons.helpers({
         try{
         if(Meteor.user().services.facebook){
             // this is the line of interest
-            return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
+            return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=small";
         }else if(Meteor.user().profile){
             return $.trim(Meteor.user().profile.avatar);
         }else{
@@ -23,7 +23,11 @@ Template.navbarButtons.helpers({
     },
 
     firstName: function () {
-        var userProfile = Meteor.user().profile;
-        return userProfile.firstName;
+        if(Meteor.user().services.facebook){
+            return Meteor.user().services.facebook.first_name;
+        }else{
+            return Meteor.user().profile.firstName;
+        }
+        
     }
 });
