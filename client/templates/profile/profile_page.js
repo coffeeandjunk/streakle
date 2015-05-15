@@ -90,9 +90,8 @@ Template.profilePic.helpers({
     if(isUserFacebookAunthenticated()){
         // this is the line of interest
         return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
-      }else if(Meteor.user().profile){
-        return $.trim(Meteor.user().profile.avatar);
       }else{
+        console.log('inside else')
         return Meteor.user().profile.image;
       }
     }catch(err){

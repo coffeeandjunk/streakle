@@ -6,8 +6,6 @@ Template.navbarButtons.helpers({
         if(Meteor.user().services.facebook){
             // this is the line of interest
             return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=small";
-        }else if(Meteor.user().profile){
-            return $.trim(Meteor.user().profile.avatar);
         }else{
             return Meteor.user().profile.image;
         }
@@ -23,11 +21,15 @@ Template.navbarButtons.helpers({
     },
 
     firstName: function () {
+        try{
         if(Meteor.user().services.facebook){
             return Meteor.user().services.facebook.first_name;
         }else{
             return Meteor.user().profile.firstName;
         }
+        }catch(err){
+            console.log(err);
+        }   
         
     }
 });
