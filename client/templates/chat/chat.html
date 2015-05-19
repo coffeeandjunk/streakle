@@ -12,12 +12,24 @@
 
 <template name="messages">
 <div class="panel-title">
-  <h4>{{roomname}}</h4>
+<div class="sidebar dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+    {{roomname}}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+{{#each rooms}} {{> room}} {{/each}}
+  </ul>
 </div>
 <hr>
 <div class="chat-body panel-body" id="messages">
     {{#each messages}} {{> message}} {{/each}}
 </div>
+</div>
+</template>
+
+<template name="room">
+<li style="{{roomstyle}}">{{roomname}}</li>
 </template>
 
 <template name="message">

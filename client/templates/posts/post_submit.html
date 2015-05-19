@@ -1,24 +1,22 @@
 <template name="postSubmit">
     {{#if currentUser}}
     <div class="well">
-        <div class="row">
-            <div class="col-xs-1">
+            <!--             <div class="col-xs-1">
                 <img src="{{[profilePic]}}" alt="profile pic" class="img-responsive img-rounded pull-left user-pic">
-            </div>
-            <form class="main form col-xs-11">
+            </div> -->
+            <form class="main form">
                 <!-- {{> imagePreview}} -->
                 <div class="form-group">
-                    <div class="controls">
-                        <textarea name="postContent" id="postContent" placeholder="What are you working on?" type="text" class="form-control"></textarea>
-<!--                         {{#textareaAutocomplete name="postContent" id="postContent" placeholder="What are you working on?" type="text" class="form-control"}} {{myStartingText}} {{/textareaAutocomplete}} -->
+                    <div class="controls post-submit">
+                        <a href="" id="post-img-upload" class="fa fa-camera fa-2x"></a>
+                        <textarea name="postContent" id="postContent" placeholder="What are you working on today?" type="text" class="form-control" style="padding-right: 50px;"></textarea>
+                        <!--                         {{#textareaAutocomplete name="postContent" id="postContent" placeholder="What are you working on?" type="text" class="form-control"}} {{myStartingText}} {{/textareaAutocomplete}} -->
                     </div>
                 </div>
-                <a href="" id="img-upload" class="fa fa-camera fa-2x"></a>
-                <input type="file" id="file-upload" />
-                <input type="submit" value="Share" class="btn btn-primary pull-right" />
+                <input type="file" id="post-file-upload" />
+                <input type="submit" value="Share" class="btn btn-primary btn-post pull-right" />
                 <div class="clearfix"></div>
             </form>
-        </div>
     </div>
     {{/if}}
 </template>

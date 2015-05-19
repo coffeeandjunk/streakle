@@ -1,3 +1,23 @@
+Session.setDefault("roomname", "#General");
+
+Template.messages.events({
+    'click li': function(e) {
+        Session.set("roomname", e.target.innerText);
+    }
+});
+
+Template.messages.helpers({
+    rooms: function() {
+        return Rooms.find();
+    }
+});
+
+Template.room.helpers({
+    roomstyle: function() {
+        return Session.equals("roomname", this.roomname) ? "font-weight: bold" : "";
+    }
+});
+
 _sendMessage = function() {
     var el = document.getElementById("msg");
     var user = Meteor.user();

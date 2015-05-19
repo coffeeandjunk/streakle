@@ -1,34 +1,24 @@
 <template name="sidebar">
-<div data-spy="affix">
-	<div class="sidebar panel">
-		{{> rooms}}
-	</div>
+<!-- <div class="col-xs-6"> -->
+<!-- <div class="row"> -->
+<!-- <div class="col-xs-6"> -->
+    <!-- {{> profilePic}} -->
+<!-- </div> -->
+<div class="col-xs-6">
+    <div class="user-profile-info">
+        <h3>{{firstName}} {{lastName}}</h3>
+        <p>@{{username}} {{school}}</p>
+        <p>{{about}}</p>
+    </div>
+    <!-- <div type="button" class="btn btn-default btn-block btn-lg">Message {{firstname}}</div> -->
 </div>
 </template>
 
-<template name="rooms">
-<div class="panel-body">
-	<h6 class="text-muted text-uppercase">Channels</h6>
-	<hr>
-	<ul class="list-unstyled">
-		{{#each rooms}} {{> room}} {{/each}}
-	</ul>
-</div>
-</template>
 
-<template name="room">
-<li style="{{roomstyle}}">{{roomname}}</li>
+<template name="profilePic">
+    <input type="file" id="profile-pic-upload" />
+    <div class="profile-pic-container">
+        <a href="" id="profile-pic-upload" class="fa fa-camera fa-3x img-upload"></a>
+        <img src="{{profilePic}}" alt="{{username}}" class="profile-pic img-responsive">
+    </div>
 </template>
-
-<!-- <template name="users">
-<div class="panel-body">
-	<h4>Message</h4>
-	<ul style="line-height: 24px" class="list-unstyled">
-		{{#each users}} {{> user}} {{/each}}
-	</ul>
-</div>
-</template>
-
-<template name="room">
-<li style="cursor: pointer; {{roomstyle}}">{{username}}</li>
-</template> -->

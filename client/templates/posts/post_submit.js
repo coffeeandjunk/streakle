@@ -29,11 +29,11 @@ _messagePost = function() {
 };
 
 Template.postSubmit.events({
-    'click #img-upload': function(e) {
-        document.getElementById('file-upload').click();
+    'click #post-img-upload': function(e) {
+        document.getElementById('post-file-upload').click();
     },
 
-    'change #file-upload': FS.EventHandlers.insertFiles(postImages, {
+    'change #post-file-upload': FS.EventHandlers.insertFiles(postImages, {
         metadata: function(fileObj) {
             return {
                 owner: Meteor.userId(),
