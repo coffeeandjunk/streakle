@@ -9,8 +9,11 @@ Template.postSubmit.helpers({
         var userProfile = Meteor.user().profile;
         return userProfile.image;
     }
-
 });
+
+Template.postSubmit.rendered = function() {
+    $('textarea').autosize();
+};
 
 _messagePost = function() {
     var el = document.getElementById("postContent");
