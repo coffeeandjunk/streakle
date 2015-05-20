@@ -61,10 +61,12 @@ textarea {
     margin-top: 70px;
 }
 
-a#post-img-upload {
+#post-img-upload {
     position: absolute;
     right: 10px;
     top: 14px;
+    color: $link-color;
+    cursor: pointer;
     &:hover, &:active, &:focus {
         text-decoration: none;
         color: lighten($link-color, 10%);
@@ -383,8 +385,22 @@ a#post-img-upload {
     margin-top: 7px;
 }
 
-#post-file-upload, #profile-file-upload {
+#profile-file-upload {
     display: none;
+}
+
+#post-file-upload{
+    display: block !important;
+    bottom: 0px;
+    cursor: inherit;
+    font-size: 1000px !important;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    opacity: 0;
+    padding: 0px;
+    position: absolute;
+    right: 0px;
 }
 
 .comments {

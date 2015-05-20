@@ -62,7 +62,7 @@ _clearPreview = function(){
 }
 
 _resetImageUploader = function(){
-    $("#img-uploader").val('');
+    $("#post-img-upload").val('');
 }
 
 _toggleClosePreviw = function(className){
@@ -98,7 +98,7 @@ _readURL = function(input) {
 
 _isFormEmpty = function(form){
     var content = $('#postContent').val();
-    if(!content && $('#img-uploader').val() === '' ){
+    if(!content && $('#post-img-upload').val() === '' ){
         return true;
     }
 }
@@ -188,12 +188,12 @@ var _postMessage = function(){
 
 Template.postSubmit.events({
 
-    'click #img-upload': function(e) {
-        $('#img-uploader').trigger('change');
+    'click #post-img-upload': function(e) {
+        $('#post-img-upload').trigger('change');
     },
-    'change #img-uploader': function(e){
+    'change #post-img-upload': function(e){
         if(!submit){
-            _readURL(document.getElementById('img-uploader'));     
+            _readURL(document.getElementById('post-img-upload'));     
         }else{
             console.log('inside else');
             _insertFile(e, this);
@@ -210,12 +210,12 @@ Template.postSubmit.events({
         if(_isFormEmpty(e)){
             _showFormerror(e);
             return false;
-        }else if(!$('#img-uploader').val()){
+        }else if(!$('#post-img-upload').val()){
             image = {};
             _postMessage();
         }else{
             submit=true;
-            $('#img-uploader').trigger('change');
+            $('#post-img-upload').trigger('change');
         }
         _resetSubmitForm();
         // postImages.remove({_id:fileObj._id});
