@@ -200,3 +200,19 @@ a#img-upload {
     position: absolute;
     right: 0px;
 }
+
+#preview-container{
+    position:relative;
+    width: 200px;
+    float: left;
+    button.close{
+        position:absolute;
+        top: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+    }
+}
+
+
+

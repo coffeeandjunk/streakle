@@ -19,12 +19,20 @@ Template.postItem.helpers({
             _id: this.userId
         });
         return user.profile.image;
+    },
+    absoluteImageUrl: function () {
+        var post = Posts.findOne({
+            userId: this.userId
+        });
+        console.log('post.imageUrl::',post)
+        return window.location.host + post.imageUrl;
     }
 });
 
 
 Template.postItem.onRendered(function() {
     var img = document.getElementById('post-image');
-    console.log('postitem rendered');
+    console.log('postitem rendered', Template.instance().imageUrl);
     // anno.makeAnnotatable(img);
 });
+

@@ -74,6 +74,7 @@ _toggleClosePreviw = function(className){
 }
 
 _readURL = function(input) {
+    console.log('readurl called');
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         
@@ -98,7 +99,7 @@ _readURL = function(input) {
 
 _isFormEmpty = function(form){
     var content = $('#postContent').val();
-    if(!content && $('#post-img-upload').val() === '' ){
+    if(!content && $('#post-file-upload').val() === '' ){
         return true;
     }
 }
@@ -189,11 +190,12 @@ var _postMessage = function(){
 Template.postSubmit.events({
 
     'click #post-img-upload': function(e) {
-        $('#post-img-upload').trigger('change');
+        // $('#post-img-upload').trigger('change');
     },
     'change #post-img-upload': function(e){
+        console.log('change triggered');
         if(!submit){
-            _readURL(document.getElementById('post-img-upload'));     
+            _readURL(document.getElementById('post-file-upload'));     
         }else{
             console.log('inside else');
             _insertFile(e, this);
@@ -210,12 +212,12 @@ Template.postSubmit.events({
         if(_isFormEmpty(e)){
             _showFormerror(e);
             return false;
-        }else if(!$('#post-img-upload').val()){
+        }else if(!$('#post-file-upload').val()){
             image = {};
             _postMessage();
         }else{
             submit=true;
-            $('#post-img-upload').trigger('change');
+            $('#post-file-upload').trigger('change');
         }
         _resetSubmitForm();
         // postImages.remove({_id:fileObj._id});
