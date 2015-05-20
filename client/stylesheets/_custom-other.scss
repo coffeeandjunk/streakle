@@ -158,7 +158,6 @@ a#img-upload {
     overflow: hidden;
     .img-upload {
         position: absolute;
-        position: absolute;
         bottom: 10px;
         right: 10px;
         color: #fff;
@@ -180,4 +179,22 @@ a#img-upload {
 
 .post-details {
     margin-top: -40px;
+}
+
+#img-upload{
+    position: relative;
+    color:#B71F25;
+    cursor: pointer;
+    #img-uploader{
+        bottom: 0px;
+        cursor: inherit;
+        font-size: 1000px !important;
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        opacity: 0;
+        padding: 0px;
+        position: absolute;
+        right: 0px;
+    }
 }
