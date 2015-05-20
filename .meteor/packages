@@ -27,3 +27,4 @@ mizzao:autocomplete
 service-configuration
 copleykj:jquery-autosize
 johnantoni:meteor-scrollto
+momentjs:moment

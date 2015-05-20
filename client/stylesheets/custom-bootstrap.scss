@@ -89,8 +89,11 @@ a#post-img-upload {
 
 .post-user-info {
     margin-left: 5px;
-    a {color: #666;}
-    p, i {
+    a {
+        color: #666;
+    }
+    p,
+    i {
         // margin: 0;
         color: #CCC;
     }
@@ -122,13 +125,19 @@ a#post-img-upload {
 }
 
 .sidebar {
+    a {
+        color: #666;
+        text-decoration: none;
+        cursor: pointer;
+    }
     ul {
         line-height: 26px;
+        padding: 10px;
         li {
-            color: $sidebar-link-color;
+            color: #666;
             cursor: pointer;
             &:hover {
-                color: lighten($sidebar-link-color, 10%);
+                color: #333;
                 text-decoration: underline;
             }
         }
@@ -136,13 +145,18 @@ a#post-img-upload {
 }
 
 .chat {
-    // bottom: 0;
     padding: 2px !important;
     position: fixed;
     width: 325px; //373px;
     @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
+    p {
+        font-size: 13px;
+        color: #666;
+    }
     .panel-body {
-        // background-color: #E9E9E9;
+        border-top: 1px solid #ccc;
+        box-shadow: inset -5px 1px 10px 0px rgba(0, 0, 0, 0.2);
+        background-color: #F0F0F0;
         min-height: 400px;
         max-height: 440px;
         overflow-y: scroll;
@@ -153,14 +167,18 @@ a#post-img-upload {
     border-radius: 0;
     padding: 5px;
     border: none;
-    background: #d9d9d9;
     max-height: 80px;
 }
 
 .message-author {
     margin-top: 15px;
-    margin-bottom: 5px;
-    a {color: #666;}
+    margin-bottom: -5px;
+    h6 span {
+        margin-left: 20px;
+    }
+    a {
+        color: #999;
+    }
 }
 
 .message {
@@ -168,14 +186,26 @@ a#post-img-upload {
     border-bottom: 1px solid #DDD;
     background: $default-bg;
     border-radius: $default-border-radius;
-    @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    // @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    p {
+        color: #666;
+        font-size: 13px;
+    }
+    a {
+        text-decoration: underline;
+    }
     img {
-        border-radius: 6px 6px 0 0;
+        border-radius: 3px 3px 0 0;
     }
     .text-content {
         padding: 10px;
+        position: relative;
         .timestamp {
             font-size: 10px;
+            color: #CCC;
+            position: absolute;
+            bottom: 5px;
+            right: 15px;
         }
     }
 }
@@ -186,6 +216,7 @@ a#post-img-upload {
 
 .panel-footer {
     padding: 0;
+    border-top: 1px solid #ccc;
 }
 
 .profile-pic-container {
@@ -239,6 +270,13 @@ a#post-img-upload {
     border-radius: $default-border-radius;
     padding: 10px;
     margin-bottom: 15px;
+}
+
+.grid-block,
+.well,
+.post,
+.comments li,
+.comment-form {
     @include box-shadow(0 1px 1px 0 rgba(0, 0, 0, 0.2));
 }
 

@@ -5708,7 +5708,8 @@ a#post-img-upload {
   margin-left: 5px; }
   .post-user-info a {
     color: #666; }
-  .post-user-info p, .post-user-info i {
+  .post-user-info p,
+  .post-user-info i {
     color: #CCC; }
 
 .comment-user-pic {
@@ -5729,13 +5730,18 @@ a#post-img-upload {
       color: #FF5A5F;
       text-decoration: underline; }
 
+.sidebar a {
+  color: #666;
+  text-decoration: none;
+  cursor: pointer; }
 .sidebar ul {
-  line-height: 26px; }
+  line-height: 26px;
+  padding: 10px; }
   .sidebar ul li {
-    color: #354458;
+    color: #666;
     cursor: pointer; }
     .sidebar ul li:hover {
-      color: #485d78;
+      color: #333;
       text-decoration: underline; }
 
 .chat {
@@ -5744,7 +5750,12 @@ a#post-img-upload {
   width: 325px;
   -webkit-box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.5); }
+  .chat p {
+    font-size: 13px;
+    color: #666; }
   .chat .panel-body {
+    box-shadow: inset -5px 1px 10px 0px rgba(0, 0, 0, 0.2);
+    background-color: #F0F0F0;
     min-height: 400px;
     max-height: 440px;
     overflow-y: scroll; }
@@ -5753,28 +5764,37 @@ a#post-img-upload {
   border-radius: 0;
   padding: 5px;
   border: none;
-  background: #d9d9d9;
   max-height: 80px; }
 
 .message-author {
   margin-top: 15px;
-  margin-bottom: 5px; }
+  margin-bottom: -5px; }
+  .message-author h6 span {
+    margin-left: 20px; }
   .message-author a {
-    color: #666; }
+    color: #999; }
 
 .message {
   margin-bottom: 10px;
   border-bottom: 1px solid #DDD;
   background: #FFF;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22); }
+  border-radius: 3px; }
+  .message p {
+    color: #666;
+    font-size: 13px; }
+  .message a {
+    text-decoration: underline; }
   .message img {
-    border-radius: 6px 6px 0 0; }
+    border-radius: 3px 3px 0 0; }
   .message .text-content {
-    padding: 10px; }
+    padding: 10px;
+    position: relative; }
     .message .text-content .timestamp {
-      font-size: 10px; }
+      font-size: 10px;
+      color: #CCC;
+      position: absolute;
+      bottom: 5px;
+      right: 15px; }
 
 .panel-title {
   padding: 0 5px; }
@@ -5823,7 +5843,13 @@ a#post-img-upload {
   background: #FFF;
   border-radius: 3px;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 15px; }
+
+.grid-block,
+.well,
+.post,
+.comments li,
+.comment-form {
   -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2); }
 

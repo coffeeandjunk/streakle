@@ -13,7 +13,8 @@ Template.messages.helpers({
 });
 
 Template.messages.rendered = function() {
-    $('#messages').scrollTo('max',80);
+    $('#messages').scrollTop( $('#messages').prop("scrollHeight") );
+    // $('#messages').scrollTo('max',80);
 };
 
 Template.room.helpers({
@@ -68,6 +69,10 @@ Template.messages.helpers({
 Template.message.helpers({
     authorProfile: function() {
         return "/profile/" + this.userId;
+    },
+
+    postLink: function() {
+        return "/posts/" + this.postId;
     },
 
     timestamp: function() {

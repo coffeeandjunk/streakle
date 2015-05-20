@@ -15,21 +15,21 @@ Template.postSubmit.rendered = function() {
     $('textarea').autosize();
 };
 
-_messagePost = function() {
-    var el = document.getElementById("postContent");
-    var user = Meteor.user();
-    Messages.insert({
-        userId: user._id,
-        author: user.profile.firstName + " " + user.profile.lastName,
-        authorImage: user.profile.image,
-        authorSchool: user.profile.school,
-        submitted: new Date(),
-        msg: el.value,
-        room: Session.get("roomname")
-    });
-    el.value = "";
-    el.focus();
-};
+// _messagePost = function() {
+//     var el = document.getElementById("postContent");
+//     var user = Meteor.user();
+//     Messages.insert({
+//         userId: user._id,
+//         author: user.profile.firstName + " " + user.profile.lastName,
+//         authorImage: user.profile.image,
+//         authorSchool: user.profile.school,
+//         submitted: new Date(),
+//         msg: el.value,
+//         room: Session.get("roomname")
+//     });
+//     el.value = "";
+//     el.focus();
+// };
 
 Template.postSubmit.events({
     'click #post-img-upload': function(e) {
@@ -84,6 +84,7 @@ Template.postSubmit.events({
         var user = Meteor.user();
         message = {
             userId: user._id,
+            postId: post._id,
             author: user.profile.firstName + " " + user.profile.lastName,
             authorImage: user.profile.image,
             authorSchool: user.profile.school,

@@ -13,18 +13,16 @@
 <template name="messages">
     <div class="panel-title">
         <div class="sidebar dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                {{roomname}}
-                <span class="caret"></span>
-            </button>
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <h4 class="text-muted">{{roomname}} <i class="fa fa-chevron-down text-muted"></i></h4>
+            </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 {{#each rooms}} {{> room}} {{/each}}
             </ul>
         </div>
-        <hr>
-        <div class="chat-body panel-body" id="messages">
-            {{#each messages}} {{> message}} {{/each}}
-        </div>
+    </div>
+    <div class="chat-body panel-body" id="messages">
+        {{#each messages}} {{> message}} {{/each}}
     </div>
 </template>
 
@@ -34,16 +32,15 @@
 
 <template name="message">
     <div class="message-block">
-        <hr>
         <div class="message-author">
-            <strong class="text-muted"><a href="{{authorProfile}}">{{author}}</a></strong>
+            <h6><a href="{{authorProfile}}">{{author}}</a><span class="text-muted">{{authorSchool}}</span></h6>
         </div>
         <div class="message">
-            <a href="{{pathFor 'postPage'}}">
+            <a href="{{postLink}}">
                 <img src="{{imageUrl}}" class="img-responsive"></a>
             <div class="text-content">
-                <p>{{#autolink}}{{msg}}{{/autolink}}
-                    <span class="pull-right timestamp text-muted">{{timestamp}}</span></p>
+                <p>{{#autolink}}{{msg}}{{/autolink}}</p>
+                <span class="timestamp">{{timestamp}}</span>
             </div>
         </div>
     </div>
