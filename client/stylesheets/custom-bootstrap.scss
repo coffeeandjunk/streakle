@@ -2,7 +2,7 @@
 @import '../../.meteor/local/build/programs/server/assets/packages/reywood_bootstrap3-sass/bootstrap';
 hr {
     margin: 7px 0px;
-    border-color: #ddd;
+    border-color: #ccc;
 }
 
 textarea {
@@ -71,12 +71,6 @@ a#post-img-upload {
     }
 }
 
-.chat a,
-.posts a,
-.post a {
-    color: #666;
-}
-
 .img-rounded {
     border-radius: 3px;
 }
@@ -95,6 +89,7 @@ a#post-img-upload {
 
 .post-user-info {
     margin-left: 5px;
+    a {color: #666;}
     p, i {
         // margin: 0;
         color: #CCC;
@@ -165,6 +160,7 @@ a#post-img-upload {
 .message-author {
     margin-top: 15px;
     margin-bottom: 5px;
+    a {color: #666;}
 }
 
 .message {
@@ -217,8 +213,11 @@ a#post-img-upload {
 }
 
 .user-profile-info {
-    margin-top: 50px;
-    color: #FFF;
+    color: #666;
+    a {
+        color: #666;
+        cursor: pointer;
+    }
 }
 
 .post-details {

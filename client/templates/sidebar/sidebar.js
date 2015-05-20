@@ -1,61 +1,38 @@
-// // Template.profilePic.helpers({
-// //     userPic: function() {
-// //         var userProfile = Meteor.user().profile;
-// //         if (userProfile) {
-// //             return userProfile.picture;
-// //         }
-// //     }
-// // });
+Template.sidebar.helpers({
+	userProfle: function() {
+        return "/profile/" + Meteor.user().userId;
+	},
 
-// Template.sidebar.helpers({
+    firstName: function() {
+        if (isUserFacebookAunthenticated()) {
+            return Meteor.user().services.facebook.first_name;
+        }
+        return Meteor.user().profile.firstName;
+    },
 
-//   username: function() {
-//     if(isUserFacebookAunthenticated()){
-//       return Meteor.user().services.facebook.name;
-//     }
-//     return this.username;
-//   },
+    lastName: function() {
+        if (isUserFacebookAunthenticated()) {
+            return Meteor.user().services.facebook.last_name;
+        }
+        return Meteor.user().profile.lastName;
+    },
 
-//   firstName: function() {
-//     if(isUserFacebookAunthenticated()){
-//       return Meteor.user().services.facebook.first_name;
-//     }
-//     return this.profile.firstName;
-//   },
+    // posts: function() {
+    //     return Posts.find({
+    //         userId: this._id
+    //     }, {
+    //         sort: {
+    //             submitted: -1
+    //         }
+    //     });
+    // },
 
-//   lastName: function() {
-//     if(isUserFacebookAunthenticated()){
-//       return Meteor.user().services.facebook.last_name;
-//     }
-//     return this.profile.lastName;
-//   },
-
-//   about: function() {
-//     var userProfile = this.profile;
-//     return userProfile.about;
-//   },
-
-//   school: function() {
-//     var userProfile = this.profile;
-//     return userProfile.school;
-//   },
-
-//   posts: function() {
-//     return Posts.find({
-//       userId: this._id
-//     },{
-//       sort: {
-//         submitted: -1
-//       }
-//     });
-//   },
-
-//   postsCount: function() {
-//     return Posts.find({
-//       userId: this._id
-//     }).count();
-//   }
-// });
+    postsCount: function() {
+        return Posts.find({
+            userId: Meteor.user()._id
+        }).count();
+    }
+});
 
 // Template.profilePic.events({
 //   'click #profile-pic-upload': function(e) {
@@ -84,24 +61,30 @@
 // });
 
 
-// Template.profilePic.helpers({
-//   profilePic: function() {
-//    try{
-//     if(isUserFacebookAunthenticated()){
-//         // this is the line of interest
-//         return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
-//       }else{
-//         console.log('inside else')
-//         return Meteor.user().profile.image;
-//       }
-//     }catch(err){
-//       console.log(err);
-//     }
-//   }
-// })
+Template.myProfilePic.helpers({
+    profilePic: function() {
+        try {
+            if (isUserFacebookAunthenticated()) {
+                // this is the line of interest
+                return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
+            } else {
+                console.log('inside else')
+                return Meteor.user().profile.image;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    username: function() {
+        if (isUserFacebookAunthenticated()) {
+            return Meteor.user().services.facebook.name;
+        }
+        return Meteor.user().username;
+    }
+})
 
 
 
-// var isUserFacebookAunthenticated = function(){ return !!Meteor.user().services.facebook; }
-
-
+var isUserFacebookAunthenticated = function() {
+    return !!Meteor.user().services.facebook;
+}

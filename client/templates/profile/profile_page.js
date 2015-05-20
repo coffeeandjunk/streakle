@@ -1,107 +1,107 @@
-// Template.profilePic.helpers({
-//     userPic: function() {
-//         var userProfile = Meteor.user().profile;
-//         if (userProfile) {
-//             return userProfile.picture;
-//         }
+// // Template.profilePic.helpers({
+// //     userPic: function() {
+// //         var userProfile = Meteor.user().profile;
+// //         if (userProfile) {
+// //             return userProfile.picture;
+// //         }
+// //     }
+// // });
+
+// Template.profilePage.helpers({
+
+//   username: function() {
+//     if(isUserFacebookAunthenticated()){
+//       return Meteor.user().services.facebook.name;
 //     }
+//     return this.username;
+//   },
+
+//   firstName: function() {
+//     if(isUserFacebookAunthenticated()){
+//       return Meteor.user().services.facebook.first_name;
+//     }
+//     return this.profile.firstName;
+//   },
+
+//   lastName: function() {
+//     if(isUserFacebookAunthenticated()){
+//       return Meteor.user().services.facebook.last_name;
+//     }
+//     return this.profile.lastName;
+//   },
+
+//   about: function() {
+//     var userProfile = this.profile;
+//     return userProfile.about;
+//   },
+
+//   school: function() {
+//     var userProfile = this.profile;
+//     return userProfile.school;
+//   },
+
+//   posts: function() {
+//     return Posts.find({
+//       userId: this._id
+//     },{
+//       sort: {
+//         submitted: -1
+//       }
+//     });
+//   },
+
+//   postsCount: function() {
+//     return Posts.find({
+//       userId: this._id
+//     }).count();
+//   }
 // });
 
-Template.profilePage.helpers({
+// Template.profilePic.events({
+//   'click #img-upload': function(e) {
+//     document.getElementById('file-upload').click();
+//   },
 
-  username: function() {
-    if(isUserFacebookAunthenticated()){
-      return Meteor.user().services.facebook.name;
-    }
-    return this.username;
-  },
+//   'change #file-upload': FS.EventHandlers.insertFiles(postImages, {
+//     metadata: function(fileObj) {
+//       return {
+//         owner: Meteor.userId(),
+//         submitted: new Date()
+//       };
+//     },
+//     after: function(error, fileObj) {
+//       console.log("Inserted", fileObj.name);
+//       var userId = Meteor.userId();
+//       imageUrl = {
+//         "profile.image": "/cfs/files/images/" + fileObj._id
+//       };
+//       Meteor.users.update(userId, {
+//         $set: imageUrl
+//       });
+//     }
+//   })
 
-  firstName: function() {
-    if(isUserFacebookAunthenticated()){
-      return Meteor.user().services.facebook.first_name;
-    }
-    return this.profile.firstName;
-  },
-
-  lastName: function() {
-    if(isUserFacebookAunthenticated()){
-      return Meteor.user().services.facebook.last_name;
-    }
-    return this.profile.lastName;
-  },
-
-  about: function() {
-    var userProfile = this.profile;
-    return userProfile.about;
-  },
-
-  school: function() {
-    var userProfile = this.profile;
-    return userProfile.school;
-  },
-
-  posts: function() {
-    return Posts.find({
-      userId: this._id
-    },{
-      sort: {
-        submitted: -1
-      }
-    });
-  },
-
-  postsCount: function() {
-    return Posts.find({
-      userId: this._id
-    }).count();
-  }
-});
-
-Template.profilePic.events({
-  'click #img-upload': function(e) {
-    document.getElementById('file-upload').click();
-  },
-
-  'change #file-upload': FS.EventHandlers.insertFiles(postImages, {
-    metadata: function(fileObj) {
-      return {
-        owner: Meteor.userId(),
-        submitted: new Date()
-      };
-    },
-    after: function(error, fileObj) {
-      console.log("Inserted", fileObj.name);
-      var userId = Meteor.userId();
-      imageUrl = {
-        "profile.image": "/cfs/files/images/" + fileObj._id
-      };
-      Meteor.users.update(userId, {
-        $set: imageUrl
-      });
-    }
-  })
-
-});
+// });
 
 
-Template.profilePic.helpers({
-  profilePic: function() {
-   try{
-    if(isUserFacebookAunthenticated()){
-        // this is the line of interest
-        return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
-      }else{
-        console.log('inside else')
-        return Meteor.user().profile.image;
-      }
-    }catch(err){
-      console.log(err);
-    }
-  }
-})
+// Template.profilePic.helpers({
+//   profilePic: function() {
+//    try{
+//     if(isUserFacebookAunthenticated()){
+//         // this is the line of interest
+//         return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
+//       }else{
+//         console.log('inside else')
+//         return Meteor.user().profile.image;
+//       }
+//     }catch(err){
+//       console.log(err);
+//     }
+//   }
+// })
 
 
 
-var isUserFacebookAunthenticated = function(){ return !!Meteor.user().services.facebook; }
+// var isUserFacebookAunthenticated = function(){ return !!Meteor.user().services.facebook; }
 
 

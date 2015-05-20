@@ -5637,7 +5637,7 @@ button.close {
     display: none !important; } }
 hr {
   margin: 7px 0px;
-  border-color: #ddd; }
+  border-color: #ccc; }
 
 textarea {
   resize: none; }
@@ -5692,11 +5692,6 @@ a#post-img-upload {
     text-decoration: none;
     color: #ff8d90; }
 
-.chat a,
-.posts a,
-.post a {
-  color: #666; }
-
 .img-rounded {
   border-radius: 3px; }
 
@@ -5711,6 +5706,8 @@ a#post-img-upload {
 
 .post-user-info {
   margin-left: 5px; }
+  .post-user-info a {
+    color: #666; }
   .post-user-info p, .post-user-info i {
     color: #CCC; }
 
@@ -5762,6 +5759,8 @@ a#post-img-upload {
 .message-author {
   margin-top: 15px;
   margin-bottom: 5px; }
+  .message-author a {
+    color: #666; }
 
 .message {
   margin-bottom: 10px;
@@ -5804,8 +5803,10 @@ a#post-img-upload {
     width: 100%; }
 
 .user-profile-info {
-  margin-top: 50px;
-  color: #FFF; }
+  color: #666; }
+  .user-profile-info a {
+    color: #666;
+    cursor: pointer; }
 
 .post-details {
   margin-top: -40px; }

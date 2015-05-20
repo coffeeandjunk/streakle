@@ -1,24 +1,18 @@
 <template name="sidebar">
-<!-- <div class="col-xs-6"> -->
-<!-- <div class="row"> -->
-<!-- <div class="col-xs-6"> -->
-    <!-- {{> profilePic}} -->
-<!-- </div> -->
-<div class="col-xs-6">
+    {{#if currentUser}}
+    {{> myProfilePic}}
     <div class="user-profile-info">
-        <h3>{{firstName}} {{lastName}}</h3>
-        <p>@{{username}} {{school}}</p>
-        <p>{{about}}</p>
+        <h4><a href="{{Userprofile}}">{{firstName}} {{lastName}}</a></h4>
+        <h5>{{postsCount}} Streaks</h5>
     </div>
     <!-- <div type="button" class="btn btn-default btn-block btn-lg">Message {{firstname}}</div> -->
-</div>
+    {{/if}}
 </template>
 
-
-<template name="profilePic">
-    <input type="file" id="profile-pic-upload" />
+<template name="myProfilePic">
+    <!-- <input type="file" id="profile-pic-upload" /> -->
     <div class="profile-pic-container">
-        <a href="" id="profile-pic-upload" class="fa fa-camera fa-3x img-upload"></a>
+        <!-- <a href="" id="new-pic-upload" class="fa fa-camera fa-3x img-upload"></a> -->
         <img src="{{profilePic}}" alt="{{username}}" class="profile-pic img-responsive">
     </div>
 </template>
