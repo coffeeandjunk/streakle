@@ -1,7 +1,7 @@
 Template.sidebar.helpers({
-	userProfle: function() {
-        return "/profile/" + Meteor.user().userId;
-	},
+    userProfile: function() {
+        return "/profile/" + Meteor.user()._id;
+    },
 
     firstName: function() {
         if (isUserFacebookAunthenticated()) {
@@ -80,6 +80,9 @@ Template.myProfilePic.helpers({
             return Meteor.user().services.facebook.name;
         }
         return Meteor.user().username;
+    },
+    userProfile: function() {
+        return "/profile/" + Meteor.user()._id;
     }
 })
 

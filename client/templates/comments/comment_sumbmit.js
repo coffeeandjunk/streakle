@@ -11,6 +11,10 @@ Template.commentSubmit.helpers({
     }
 });
 
+Template.commentSubmit.rendered = function() {
+    $('textarea').autosize();
+};
+
 Template.commentSubmit.events({
     'submit form': function(e, template) {
         e.preventDefault();
@@ -21,9 +25,6 @@ Template.commentSubmit.events({
             body: $body.val(),
             postId: template.data._id,
             userId: user._id,
-            author: user.profile.firstName + " " + user.profile.lastName,
-            authorImage: user.profile.image,
-            authorSchool: user.profile.school,
             submitted: new Date()
         };
 

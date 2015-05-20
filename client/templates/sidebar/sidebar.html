@@ -2,7 +2,7 @@
     {{#if currentUser}}
     {{> myProfilePic}}
     <div class="user-profile-info">
-        <h4><a href="{{Userprofile}}">{{firstName}} {{lastName}}</a></h4>
+        <h4><a href="{{userProfile}}">{{firstName}} {{lastName}}</a></h4>
         <h5>{{postsCount}} Streaks</h5>
     </div>
     <!-- <div type="button" class="btn btn-default btn-block btn-lg">Message {{firstname}}</div> -->
@@ -10,9 +10,7 @@
 </template>
 
 <template name="myProfilePic">
-    <!-- <input type="file" id="profile-pic-upload" /> -->
     <div class="profile-pic-container">
-        <!-- <a href="" id="new-pic-upload" class="fa fa-camera fa-3x img-upload"></a> -->
-        <img src="{{profilePic}}" alt="{{username}}" class="profile-pic img-responsive">
+        <a href="{{userProfile}}"><img src="{{profilePic}}" alt="{{username}}" class="profile-pic img-responsive"></a>
     </div>
 </template>

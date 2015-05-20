@@ -40,7 +40,7 @@ Accounts.onCreateUser(function(options, user) {
 
 Accounts.onLogin(function(options, user) {
     // Router.go('/signupForm');
-    console.log('onlogin called');
+    // console.log('onlogin called');
     if (options.profile) {
         options.profile.picture = getFbPicture(user.services.facebook.accessToken);
         user.profile = options.profile;

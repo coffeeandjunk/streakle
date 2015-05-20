@@ -13,8 +13,9 @@ Template.messages.helpers({
 });
 
 Template.messages.rendered = function() {
-    $('#messages').scrollTop( $('#messages').prop("scrollHeight") );
+    $('#messages').scrollTop($('#messages').prop("scrollHeight"));
     // $('#messages').scrollTo('max',80);
+    AnimatedEach.attachHooks(this.find(".message-block"));
 };
 
 Template.room.helpers({
@@ -46,7 +47,7 @@ Template.input.events({
     'keyup #msg': function(e) {
         if (e.type == "keyup" && e.which == 13) {
             _sendMessage();
-            $('#messages').scrollTo('max',80);
+            $('#messages').scrollTo('max', 80);
         }
     }
 });
@@ -77,6 +78,18 @@ Template.message.helpers({
 
     timestamp: function() {
         return this.submitted.toLocaleTimeString();
+    },
+    authorSchool: function() {
+        user = Meteor.users.findOne({
+            _id: this.userId
+        });
+        return user.profile.school;
+    },
+    author: function() {
+        user = Meteor.users.findOne({
+            _id: this.userId
+        });
+        return user.profile.firstName + " " + user.profile.lastName;
     }
 });
 

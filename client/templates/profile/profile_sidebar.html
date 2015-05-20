@@ -1,0 +1,22 @@
+<template name="profileSidebar">
+    {{> profilePic}}
+    <div class="user-profile-info">
+        <h4><a href="{{Userprofile}}">{{firstName}} {{lastName}}</a></h4>
+        <h5>@{{username}}</h5>
+        <h5>{{postsCount}} Streaks</h5>
+        <hr>    
+        <h5>{{school}}</h5>
+        <hr>
+        <p>{{about}}</p>
+
+    </div>
+    <!-- <div type="button" class="btn btn-default btn-block btn-lg">Message {{firstname}}</div> -->
+</template>
+
+<template name="profilePic">
+    <input type="file" id="profile-file-upload" />
+    <div class="profile-pic-container">
+        <a href="" id="profile-img-upload" class="fa fa-camera fa-2x img-upload"></a>
+        <img src="{{profilePic}}" alt="{{username}}" class="profile-pic img-responsive">
+    </div>
+</template>
