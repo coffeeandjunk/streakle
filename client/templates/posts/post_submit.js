@@ -31,104 +31,196 @@ Template.postSubmit.rendered = function() {
 //     el.focus();
 // };
 
-Template.postSubmit.events({
-    'click #post-img-upload': function(e) {
-        document.getElementById('post-file-upload').click();
-    },
 
-    'change #post-file-upload': FS.EventHandlers.insertFiles(postImages, {
+var image = {};
+_messagePost = function() {
+    var el = document.getElementById("postContent");
+    var user = Meteor.user();
+    Messages.insert({
+        userId: user._id,
+        author: user.profile.firstName + " " + user.profile.lastName,
+        authorImage: user.profile.image,
+        authorSchool: user.profile.school,
+        submitted: new Date(),
+        msg: el.value,
+        room: Session.get("roomname")
+    });
+    el.value = "";
+    el.focus();
+};
+
+_resetSubmitForm = function(){
+    $('#postContent').val("");
+    _resetImageUploader();
+    _clearPreview();
+    _toggleClosePreviw('hide');
+    submit = false;
+};
+
+_clearPreview = function(){
+    $('#preview-container img').remove();
+}
+
+_resetImageUploader = function(){
+    $("#img-uploader").val('');
+}
+
+_toggleClosePreviw = function(className){
+    if(className === 'hide'){
+        $('form').find('button.close').addClass('hide');
+    }else{
+        $('form').find('button.close').removeClass('hide');
+    }
+}
+
+_readURL = function(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            var img = $('<img />', {
+                'class': 'upload-preview img-thumbnail',
+                'src': ''
+            });
+
+            img.attr('src', e.target.result);
+            var previewContainer = $('#preview-container');
+            if(previewContainer.find('img').length < 1){
+                img.appendTo(previewContainer);
+                _toggleClosePreviw('show');
+            }
+            
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+_isFormEmpty = function(form){
+    var content = $('#postContent').val();
+    if(!content && $('#img-uploader').val() === '' ){
+        return true;
+    }
+}
+
+_showFormerror = function(form){
+    $(form.target).parent('.post-form-container').addClass('has-error');
+}
+
+
+
+var _insertFile = FS.EventHandlers.insertFiles(postImages, {
         metadata: function(fileObj) {
+            fileObject = fileObj;
+            console.log('change is trigggered, fileobj: ', fileObj)
             return {
                 owner: Meteor.userId(),
                 submitted: new Date()
             };
-        },
-        after: function(error, fileObj) {
+        },after: function(error, fileObj) {
+            console.log('after is called');
             console.log("Inserted", fileObj.name);
             imageId: fileObj._id;
-            image = {
-                imageUrl: "/cfs/files/images/" + fileObj._id
+            if (fileObj._id) {
+                image = {
+                    imageUrl: "/cfs/files/images/" + fileObj._id,
+                    imageId: fileObj._id
+                };
+            _postMessage();
+                // _toggleClosePreviw('show');
             };
+           
         }
-    }),
+    });
 
-    'submit form': function(e) {
-        e.preventDefault();
-        var user = Meteor.user();
-        post = {
-            content: $(e.target).find('[name=postContent]').val(),
-            userId: user._id,
-            // author: user.profile.firstName + " " + user.profile.lastName,
-            // authorImage: user.profile.image,
-            // authorSchool: user.profile.school,
-            submitted: new Date(),
-            commentsCount: 0
-        };
 
-        // Meteor.call('postInsert', post, function(error, result) {
-        //     // display the error to the user and abort
-        //     if (error)
-        //         return alert(error.reason);
-        //     // show this result but route anyway
-        //     if (result.postExists)
-        //         alert('This link has already been posted');
-        //     Router.go('postPage', {
-        //         _id: result._id
-        //     });
-        // });
+var submit = false;
 
-        post._id = Posts.insert(post);
+var _postMessage = function(){
+    var user = Meteor.user();
+    var content = $('#postContent').val();
+    post = {
+        content: content,
+        userId: user._id,
+        author: user.profile.firstName + " " + user.profile.lastName,
+        authorImage: user.profile.image,
+        authorSchool: user.profile.school,
+        submitted: new Date(),
+        commentsCount: 0
+    };
+
+    post._id = Posts.insert(post);
+    console.log('image obj: ', image);
+    if(image.imageUrl){
         Posts.update(post._id, {
             $set: image
         });
-        var user = Meteor.user();
-        message = {
-            userId: user._id,
-            postId: post._id,
-            // author: user.profile.firstName + " " + user.profile.lastName,
-            // authorImage: user.profile.image,
-            // authorSchool: user.profile.school,
-            submitted: new Date(),
-            // msg: el.value,
-            // room: Session.get("roomname")
+    }
+    
+    var user = Meteor.user();
+    message = {
+        userId: user._id,
+        author: user.profile.firstName + " " + user.profile.lastName,
+        authorImage: user.profile.image,
+        authorSchool: user.profile.school,
+        submitted: new Date(),
+        // msg: el.value,
+        // room: Session.get("roomname")
 
-            // username: Meteor.user().profile.name,
-            msg: $(e.target).find('[name=postContent]').val(),
-            // ts: new Date(),
-            room: Session.get("roomname")
-        };
-        messages._id = Messages.insert(message);
+        // username: Meteor.user().profile.name,
+        msg: content,
+        // ts: new Date(),
+        room: Session.get("roomname")
+    };
+    messages._id = Messages.insert(message);
+    if(image.imageUrl){
         Messages.update(messages._id, {
             $set: image
         });
-        $('[name=postContent]').val("");
-        $('[name=postContent]').css("height","52px");
-        $('#messages').scrollTo('max',80);
+    }
+    $('[name=postContent]').val("")
+        .css("height","52px");
+    $('#messages').scrollTo('max',80);
+    
+}
 
-        // postImages.remove({_id:fileObj._id});
+// Meteor.startup(function () {
+
+Template.postSubmit.events({
+
+    'click #img-upload': function(e) {
+        $('#img-uploader').trigger('change');
     },
-
-    // settings: function() {
-    //     return {
-    //         position: "top",
-    //         limit: 5,
-    //         rules: [{
-    //             token: '@',
-    //             collection: Meteor.users,
-    //             field: "username",
-    //             template: Template.userPill
-    //         }, {
-    //             token: '#',
-    //             collection: Rooms,
-    //             field: "_id",
-    //             options: '',
-    //             matchAll: true,
-    //             filter: {
-    //                 type: "autocomplete"
-    //             },
-    //             template: Template.dataPiece
-    //         }]
-    //     };
-    // }
-
+    'change #img-uploader': function(e){
+        if(!submit){
+            _readURL(document.getElementById('img-uploader'));     
+        }else{
+            console.log('inside else');
+            _insertFile(e, this);
+        }
+    },
+    'click form button.close': function(){
+        // _removeIma;
+        _resetImageUploader();
+        _clearPreview();
+        _toggleClosePreviw('hide');
+    },
+    'submit form': function(e) {
+        e.preventDefault();
+        if(_isFormEmpty(e)){
+            _showFormerror(e);
+            return false;
+        }else if(!$('#img-uploader').val()){
+            image = {};
+            _postMessage();
+        }else{
+            submit=true;
+            $('#img-uploader').trigger('change');
+        }
+        _resetSubmitForm();
+        // postImages.remove({_id:fileObj._id});
+    }
 });
+
+
+// });

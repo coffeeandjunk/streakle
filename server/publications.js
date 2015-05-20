@@ -22,3 +22,7 @@ Meteor.publish('rooms', function() {
 Meteor.publish("users", function() {
     return Meteor.users.find();
 });
+
+Meteor.publish("postImages", function() {
+    return Meteor.users.find();
+});

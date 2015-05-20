@@ -3,7 +3,10 @@
         <div class="post-content">
             <h4>{{authorSchool}}</h4>
             <a href="{{pathFor 'postPage'}}">
-                <img src="{{imageUrl}}" alt="uploaded image" id="post-image" class="img-responsive post-image">
+            {{#if imageUrl}}
+                <img src="{{imageUrl}}" alt="uploaded image" id="post-image" class="img-responsive  post-image">
+                <!-- <img src="{{imageUrl}}" alt="uploaded image" class="img-responsive"> -->
+            {{/if}}
             </a>
             <p class="content">{{#autolink}}{{content}}{{/autolink}}</p>
             <hr>

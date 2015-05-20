@@ -1,7 +1,7 @@
 <template name="post">
     <div class="post">
         <div class="post-content">
-                <img src="{{imageUrl}}" alt="uploaded image" id="post-image" class="img-responsive annotatable">
+            <img src="{{imageUrl}}" alt="uploaded image" id="post-image" class="img-responsive annotatable">
             <p class="content">{{#autolink}}{{content}}{{/autolink}}</p>
             <hr>
             <div class="row">
@@ -11,6 +11,9 @@
                 <div class="col-xs-10 post-user-info">
                     <strong><a href="{{authorProfile}}">{{author}}</a></strong>
                     <p>{{authorSchool}}</p>
+                    {{#if currentUser}}
+                    <p><button class="btn btn-danger btn-xs pull-right" id="del-post">Delete Post</button></p>
+                    {{/if}}
                     <p><i class="fa fa-comments text-muted"></i> {{commentsCount}}</p>
                 </div>
             </div>
