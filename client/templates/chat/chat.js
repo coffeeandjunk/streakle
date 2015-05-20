@@ -12,6 +12,10 @@ Template.messages.helpers({
     }
 });
 
+Template.messages.rendered = function() {
+    $('#messages').scrollTo('max',80);
+};
+
 Template.room.helpers({
     roomstyle: function() {
         return Session.equals("roomname", this.roomname) ? "font-weight: bold" : "";
@@ -41,12 +45,7 @@ Template.input.events({
     'keyup #msg': function(e) {
         if (e.type == "keyup" && e.which == 13) {
             _sendMessage();
-            var chatHeight = document.getElementById(".chat-body");
-            chatHeight.scrollTop = chatHeight.scrollHeight;
-            // $('.chat-body').slideToggle();
-        //     $('html, body').animate({
-        //         scrollBottom: 100000
-        //     }, 2000);
+            $('#messages').scrollTo('max',80);
         }
     }
 });

@@ -101,6 +101,9 @@ Template.postSubmit.events({
             $set: image
         });
         $('[name=postContent]').val("");
+        $('[name=postContent]').css("height","52px");
+        $('#messages').scrollTo('max',80);
+
         // postImages.remove({_id:fileObj._id});
     },
 
