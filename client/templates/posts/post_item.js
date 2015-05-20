@@ -1,6 +1,9 @@
 Template.postItem.helpers({
     authorProfile: function() {
         return "/profile/" + this.userId;
+    },
+    FSimages: function() {
+        return postImages.find();
     }
 
 });

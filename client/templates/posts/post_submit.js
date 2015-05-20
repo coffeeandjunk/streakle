@@ -108,7 +108,8 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
             imageId: fileObj._id;
             if (fileObj._id) {
                 image = {
-                    imageUrl: "/cfs/files/images/" + fileObj._id
+                    imageUrl: "/cfs/files/images/" + fileObj._id,
+                    imageId: fileObj._id
                 };
             _postMessage();
                 // _toggleClosePreviw('show');

@@ -5,7 +5,7 @@ Template.post.onRendered(function () {
     // this.ondragstart = function() { return false; };
     // $(img).on('dragstart', function(event) { event.preventDefault(); });
     console.log('post rendered');
-    anno.makeAnnotatable(img);
+    // anno.makeAnnotatable(img);
     // $('.annotorious-annotationlayer').on('dragstart', function(event) { event.preventDefault(); });
   }
 });
@@ -16,8 +16,22 @@ Template.post.events({
   //   event.preventDefault();
   //   return false;
   // }
+  'click #del-post': function(){
+    console.log('deleting post');
+    Posts.remove(this._id);
+    Router.go('/');
+  }
+
 });
 
+Template.post.helpers({
+    FSimages: function() {
+        return postImages.find();
+    },
+    imageId: function(){
+      return this.imageId;
+    }
+});
 
   Template.post.onDestroyed(function () {
     console.log('destroyed called');
