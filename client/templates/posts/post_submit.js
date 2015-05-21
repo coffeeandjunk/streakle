@@ -42,7 +42,7 @@ _toggleClosePreviw = function(className) {
 }
 
 _toggleUploadIcon = function(className) {
-        if (className === 'hide') {
+    if (className === 'hide') {
         $('form').find('div#post-img-upload').addClass('hide');
     } else {
         $('form').find('div#post-img-upload').removeClass('hide');
@@ -141,6 +141,7 @@ var _post = function() {
         submitted: new Date(),
         msg: content,
         room: Session.get("roomname")
+            // room: category
     };
     messages._id = Messages.insert(message);
     if (image.imageUrl) {
@@ -155,16 +156,13 @@ var _post = function() {
     _resetImageUploader();
     _clearPreview();
     _toggleClosePreviw('hide');
+    _toggleUploadIcon('show');
     _resetSubmitForm();
 }
 
 // Meteor.startup(function () {
 
 Template.postSubmit.events({
-
-    // 'click #post-img-upload': function(e) {
-    //     $('#post-img-upload').trigger('change');
-    // },
     'change #post-img-upload': function(e) {
         console.log('change triggered');
         // if (!submit) {
@@ -183,20 +181,37 @@ Template.postSubmit.events({
         postImages.remove(fileObject._id);
         _toggleUploadIcon('show');
     },
+
     'submit form': function(e) {
         e.preventDefault();
         if (_isFormEmpty(e)) {
             _showFormError(e);
             return false;
         } else {
-            // $('#post-file-upload').trigger('change');
-            _post();
-            submit = true;
-            _clearFormError(e);
+            var words = $('#postContent').val().split(/\s+/);
+            var keywords = [
+                '#Typography',
+                '#Animation',
+                '#Illustration',
+                '#GraphicDesign',
+                '#ConceptArt',
+                '#UIDesign',
+                '#IndustrialDesign',
+                '#CharacterDesign'
+            ];
+            var category = $.grep(keywords, function(keyword, index) {
+                return $.inArray(keyword, words) > -1;
+            });
+            if (category.length === 0) {
+                console.log("No category specified");
+            } else if (category.length > 1) {
+                console.log("More than one category");
+            } else {
+                Session.set("roomname", category[0]);
+                _post();
+                submit = true;
+                _clearFormError(e);
+            }
         }
-        // postImages.remove({_id:fileObj._id});
     }
 });
-
-
-// });

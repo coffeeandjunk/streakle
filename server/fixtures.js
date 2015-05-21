@@ -17,7 +17,8 @@
           "#ConceptArt",
           "#UIDesign",
           "#IndustrialDesign",
-          "#CharacterDesign"
+          "#CharacterDesign",
+          '#Streakle'
       ].forEach(function(r) {
           Rooms.insert({
               roomname: r
