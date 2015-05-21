@@ -29,9 +29,6 @@ _sendMessage = function() {
     var user = Meteor.user();
     Messages.insert({
         userId: user._id,
-        author: user.profile.firstName + " " + user.profile.lastName,
-        authorImage: user.profile.image,
-        authorSchool: user.profile.school,
         submitted: new Date(),
         msg: el.value,
         room: Session.get("roomname")

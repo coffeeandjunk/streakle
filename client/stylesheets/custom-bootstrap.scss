@@ -61,18 +61,6 @@ textarea {
     margin-top: 70px;
 }
 
-#post-img-upload {
-    position: absolute;
-    right: 10px;
-    top: 14px;
-    color: $link-color;
-    cursor: pointer;
-    &:hover, &:active, &:focus {
-        text-decoration: none;
-        color: lighten($link-color, 10%);
-    }
-}
-
 .img-rounded {
     border-radius: 3px;
 }
@@ -280,7 +268,9 @@ textarea {
 .comments li,
 .comment-form {
     @include box-shadow(0 1px 1px 0 rgba(0, 0, 0, 0.2));
-    label {color: #666;}
+    label {
+        color: #666;
+    }
 }
 
 #main {
@@ -389,7 +379,7 @@ textarea {
     display: none;
 }
 
-#post-file-upload{
+#post-file-upload {
     display: block !important;
     bottom: 0px;
     cursor: inherit;
@@ -403,6 +393,21 @@ textarea {
     right: 0px;
 }
 
+#post-img-upload {
+    // position: relative;
+    // color:#B71F25;
+    // cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    color: $link-color;
+    cursor: pointer;
+    &:hover, &:active, &:focus {
+        text-decoration: none;
+        color: lighten($link-color, 10%);
+    }
+}
+
 .comments {
     list-style-type: none;
     margin: 0;
@@ -410,7 +415,9 @@ textarea {
 
 .comments h5 {
     margin: 0;
-    a {color: #333;}
+    a {
+        color: #333;
+    }
 }
 
 .comments li p:last-child {
@@ -500,9 +507,28 @@ textarea {
     animation: fadeOut 2700ms ease-in 0s 1 forwards;
     -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
     -moz-animation: fadeOut 2700ms ease-in 0s 1 forwards;
-    width: 250px;
-    float: right;
+    width: auto; //250px;
+    // float: right;
     clear: both;
     margin-bottom: 5px;
     pointer-events: auto;
 }
+
+// #preview-container {
+    // position: relative;
+    // float: left;
+    .upload-preview {
+        max-width: 250px;
+        border: none;
+        padding: 0;
+        margin-bottom: 5px;
+    }
+    // button.close {
+    //     position: absolute;
+    //     left: 255px;
+    //     font-size: 26px;
+    // }
+// }
+
+
+.progress {width: 250px;}

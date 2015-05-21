@@ -1,25 +1,27 @@
 <template name="postSubmit">
     {{#if currentUser}}
     <div class="well">
-            <!--             <div class="col-xs-1">
+        <!--             <div class="col-xs-1">
                 <img src="{{[profilePic]}}" alt="profile pic" class="img-responsive img-rounded pull-left user-pic">
             </div> -->
-         <div class="post-form-container">
+        <div class="post-form-container">
             <form class="main form">
-                <!-- {{> imagePreview}} -->
                 <div class="form-group">
+                    <div id="preview-container" class="">
+                        <button class="close hide">&times;</button>
+                    </div>
+<!--                     {{#unless this.isUploaded}}
+                        {{> FS.UploadProgressBar bootstrap=true class='progress-bar-primary progress-bar active' showPercent=false}}
+                    {{/unless}} -->
                     <div class="controls post-submit">
                         <div id="post-img-upload" class="fa fa-cloud-upload fa-2x">
-                           <input type="file" id="post-file-upload" />
+                            <input type="file" id="post-file-upload" />
                         </div>
                         <textarea name="postContent" id="postContent" placeholder="What are you working on today?" type="text" class="form-control" style="padding-right: 50px;"></textarea>
                         <!--                         {{#textareaAutocomplete name="postContent" id="postContent" placeholder="What are you working on?" type="text" class="form-control"}} {{myStartingText}} {{/textareaAutocomplete}} -->
                     </div>
                 </div>
-                <input type="submit" value="Streak it" class="btn btn-primary btn-post pull-right" />
-                <div id="preview-container" class="">
-                    <button class="close hide">&times;</button>
-                </div>                
+                <input type="submit" value="Post" class="btn btn-primary btn-post pull-right" />
                 <div class="clearfix"></div>
             </form>
         </div>
