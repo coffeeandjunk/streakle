@@ -26,3 +26,7 @@ Meteor.publish("users", function() {
 Meteor.publish("postImages", function() {
     return Meteor.users.find();
 });
+
+Meteor.publish("tags", function() {
+    return Meteor.users.find();
+});

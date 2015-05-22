@@ -5725,7 +5725,7 @@ textarea {
 .chat {
   padding: 1px !important;
   position: fixed;
-  width: 325px;
+  width: 309px;
   -webkit-box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.5); }
   .chat a {
@@ -5824,7 +5824,8 @@ textarea {
   margin-top: -40px; }
 
 .container {
-  width: 976px !important; }
+  width: 976px !important;
+  overflow: hidden; }
 
 .grid-block,
 .well,
@@ -5868,6 +5869,9 @@ textarea {
 /* line 32, ../sass/style.scss */
 .navbar .navbar-inner {
   border-radius: 0px 0px 3px 3px; }
+
+.navbar-right {
+  margin-right: 0 !important; }
 
 #spinner {
   height: 300px; }

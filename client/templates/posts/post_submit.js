@@ -4,12 +4,26 @@
 //     },
 // });
 
-// Template.postSubmit.helpers({
-//     profilePic: function() {
-//         var userProfile = Meteor.user().profile;
-//         return userProfile.image;
-//     }
-// });
+Template.postSubmit.helpers({
+    // profilePic: function() {
+    //     var userProfile = Meteor.user().profile;
+    //     return userProfile.image;
+    // }
+
+    settings: function() {
+        return {
+            position: "bottom",
+            limit: 5,
+            rules: [{
+                token: '#',
+                collection: Tags,
+                field: "tagName",
+                // filter: { userId: Meteor.user()._id },
+                template: Template.dataPiece
+            }]
+        };
+    }
+});
 
 Template.postSubmit.rendered = function() {
     $('textarea').autosize();
@@ -92,15 +106,15 @@ _clearFormError = function(form) {
 var _insertFile = FS.EventHandlers.insertFiles(postImages, {
     metadata: function(fileObj) {
         fileObject = fileObj;
-        console.log('change is trigggered, fileobj: ', fileObj)
+        // console.log('change is trigggered, fileobj: ', fileObj)
         return {
             owner: Meteor.userId(),
             submitted: new Date()
         };
     },
     after: function(error, fileObj) {
-        console.log('after is called');
-        console.log("Inserted", fileObj.name);
+        // console.log('after is called');
+        // console.log("Inserted", fileObj.name);
         imageId: fileObj._id;
         if (fileObj._id) {
             image = {

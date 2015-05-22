@@ -28,3 +28,4 @@ service-configuration
 copleykj:jquery-autosize
 johnantoni:meteor-scrollto
 momentjs:moment
+okgrow:iron-router-autoscroll

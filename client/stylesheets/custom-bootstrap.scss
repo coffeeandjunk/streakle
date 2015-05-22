@@ -117,7 +117,7 @@ textarea {
 .chat {
     padding: 1px !important;
     position: fixed;
-    width: 325px; //373px;
+    width: 309px; //373px;
     @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
     a {
         color: #666;
@@ -244,6 +244,7 @@ textarea {
 //Alredy defined CSS
 .container {
     width: 976px !important;
+    overflow: hidden;
 }
 
 .grid-block,
@@ -291,6 +292,8 @@ textarea {
 .navbar .navbar-inner {
     border-radius: 0px 0px 3px 3px;
 }
+
+.navbar-right {margin-right: 0 !important;}
 
 #spinner {
     height: 300px;
