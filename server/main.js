@@ -29,7 +29,8 @@ var getFbPicture = function(accessToken) {
 
 
 Accounts.onCreateUser(function(options, user) {
-    // Router.go('/signupForm');
+    Router.go('//Profile-Info');
+    // console.log('onCreateUser called');
      if (options.profile) {
         options.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
         user.profile = options.profile;
@@ -39,8 +40,8 @@ Accounts.onCreateUser(function(options, user) {
 
 
 Accounts.onLogin(function(options, user) {
-    // Router.go('/signupForm');
-    // console.log('onlogin called');
+    // Router.go('/');
+    // console.log('onLogin called');
     if (options.profile) {
         options.profile.picture = getFbPicture(user.services.facebook.accessToken);
         user.profile = options.profile;

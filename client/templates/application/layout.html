@@ -1,32 +1,37 @@
 <template name="layout">
-    {{> header}}
-    <div class="container">
-        <div class="content-wrapper row">
-            {{> yield}}
-        </div>
-    </div>
+  {{> yield}}
 </template>
 
 <template name="homePage">
-    <div class="col-xs-2">
+  {{> header}}
+  <div class="container">
+    <div class="content-wrapper row">
+      <div class="col-xs-2">
         {{> sidebar}}
-    </div>
-    <div class="col-xs-6">
+      </div>
+      <div class="col-xs-6">
         {{> postsList}}
-    </div>
-    <div class="col-xs-4">
+      </div>
+      <div class="col-xs-4">
         {{> chat}}
+      </div>
     </div>
+  </div>
 </template>
 
 <template name="profileView">
-    <div class="col-xs-2">
+  {{> header}}
+  <div class="container">
+    <div class="content-wrapper row">
+      <div class="col-xs-2">
         {{> profileSidebar}}
-    </div>
-    <div class="col-xs-6">
+      </div>
+      <div class="col-xs-6">
         {{> profilePosts}}
-    </div>
-    <div class="col-xs-4">
+      </div>
+      <div class="col-xs-4">
         {{> chat}}
+      </div>
     </div>
+  </div>
 </template>

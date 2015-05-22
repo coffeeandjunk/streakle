@@ -14,6 +14,49 @@ textarea {
     margin-top: -7px;
 }
 
+.identity-main {
+    display: block;
+    width: 250px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.login-container {
+    margin-top: 100px;
+    border-radius: 3px;
+    background: #333;
+    padding: 20px;
+    min-width: 420px;
+    min-height: 420px;
+    background-image: url("images/login.jpg");
+    @include box-shadow(0 -5px 8px rgba(0, 0, 0, 0.3));
+    h3 {
+        margin-top: 30px;
+    }
+    h3,
+    h4 {
+        font-weight: bold;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.58);
+        color: #FFF;
+        text-align: center;
+    }
+    button {
+        margin: auto;
+        display: block;
+        border-radius: 3px;
+        margin-top: 60px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.38), 0 1px 3px rgba(0, 0, 0, 0.32);
+    }
+}
+
+.banner {
+    background-image: url(/images/login-bg.jpg);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 .btn-primary {
     background-image: linear-gradient($btn-primary-bg1, $btn-primary-bg2);
     @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
@@ -48,7 +91,7 @@ textarea {
     height: 55px;
     background-color: $navbar-default-bg;
     color: $navbar-default-color;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
     border: none;
 }
 
@@ -146,6 +189,7 @@ textarea {
         min-height: 400px;
         max-height: 440px;
         overflow-y: scroll;
+        overflow-x: hidden;
     }
 }
 
@@ -293,7 +337,9 @@ textarea {
     border-radius: 0px 0px 3px 3px;
 }
 
-.navbar-right {margin-right: 0 !important;}
+.navbar-right {
+    margin-right: 0 !important;
+}
 
 #spinner {
     height: 300px;
@@ -518,20 +564,21 @@ textarea {
 }
 
 // #preview-container {
-    // position: relative;
-    // float: left;
-    .upload-preview {
-        max-width: 250px;
-        border: none;
-        padding: 0;
-        margin-bottom: 5px;
-    }
-    // button.close {
-    //     position: absolute;
-    //     left: 255px;
-    //     font-size: 26px;
-    // }
+// position: relative;
+// float: left;
+.upload-preview {
+    max-width: 250px;
+    border: none;
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+// button.close {
+//     position: absolute;
+//     left: 255px;
+//     font-size: 26px;
 // }
-
-
-.progress {width: 250px;}
+// }
+.progress {
+    width: 250px;
+}
