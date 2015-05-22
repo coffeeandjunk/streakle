@@ -46,6 +46,9 @@ textarea {
         border-radius: 3px;
         margin-top: 60px;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.38), 0 1px 3px rgba(0, 0, 0, 0.32);
+        &:hover {
+            color: #FFF;
+        }
     }
 }
 
@@ -60,7 +63,7 @@ textarea {
 .btn-primary {
     background-image: linear-gradient($btn-primary-bg1, $btn-primary-bg2);
     @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
-    border-color: #AB1B20;
+    border-color: $btn-primary-border;
     &:hover {
         background-image: linear-gradient($btn-primary-hover-bg1, $btn-primary-hover-bg2);
     }
@@ -89,15 +92,34 @@ textarea {
 //==Navbar
 .navbar {
     height: 55px;
-    background-color: $navbar-default-bg;
-    color: $navbar-default-color;
+    background-color: $navbar-bg;
+    color: $navbar-color;
     @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
     border: none;
 }
 
+.navbar-right {
+    .dropdown-menu {
+        right: auto;
+    }
+    a {
+        line-height: 52px;
+        background-color: transparent !important;
+        color: #FFF;
+        text-decoration: none;
+        &:hover {
+            color: #CCC;
+        }
+        &:focus,
+        &:active {
+            background-color: transparent !important;
+        }
+    }
+}
+
 .navbar-user-pic {
-    max-height: 19px;
-    margin-right: 10px;
+    max-height: 32px;
+    margin-right: 8px;
 }
 
 .content-wrapper {
@@ -150,6 +172,7 @@ textarea {
     }
     .content {
         margin-top: 10px;
+        word-wrap: break-word;
         a {
             color: $link-color;
             text-decoration: underline;
@@ -222,7 +245,9 @@ textarea {
         font-size: 13px;
     }
     a {
+        color: $link-color;
         text-decoration: underline;
+        word-wrap: break-word;
     }
     img {
         border-radius: 3px 3px 0 0;
@@ -395,6 +420,11 @@ textarea {
 .post .post-content {
     float: left;
     width: 100%;
+}
+
+.post-content img {
+    margin: auto;
+    max-height: 550px;
 }
 
 .post .post-content h3 {

@@ -1,16 +1,26 @@
 <template name="navbarButtons">
-    <div class="collapse navbar-collapse" id="navigation">
-        <ul class="nav navbar-nav navbar-right">
-            <div class="btn-group navbar-right">
-                <a href="{{profilePage}}" role="button" class="btn navbar-btn btn-default"><img src="{{profilePic}}" class="img-circle pull-left navbar-user-pic img-responsive">{{firstName}}</a>
-                <button type="button" class="btn navbar-btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="/profile-info">Edit Profile</a></li>
-                    <li><a href="/sign-in">Signout</a></li>
-                </ul>
-            </div>
-        </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <div class="navbar-right">
+      <a href="{{profilePage}}" role="button" class="navbar-btn dropdown-toggle" data-toggle="dropdown"><img src="{{profilePic}}" class="img-circle navbar-btn pull-left navbar-user-pic img-responsive">{{firstName}} <i class="fa fa-chevron-down"></i></a>
+<!--       <button type="button" class="navbar-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <span class="caret"></span>
+      </button> -->
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="/profile-info">Edit Profile</a></li>
+        <li><a href="/sign-in">Signout</a></li>
+      </ul>
     </div>
+  </ul>
 </template>
+
+
+<!-- <div class="dropdown">
+    <a href="{{profilePage}}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+    <img src="{{profilePic}}" class="img-circle pull-left navbar-user-pic img-responsive">
+        <h4>{{firstName}} <i class="fa fa-chevron-down"></i></h4>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+<li><a href="/profile-info">Edit Profile</a></li>
+<li><a href="/sign-in">Signout</a></li>
+    </ul>
+</div> -->

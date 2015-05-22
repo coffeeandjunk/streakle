@@ -14,23 +14,23 @@ $grid-gutter-width:         15px;
 
 //== Colors
 
-$brand-primary:         		#FF5A5F;
+$brand-primary:         		#0079FF; //#FF5A5F;
 $brand-secondary:				#267B8C;
 $btn-tag-bg:					#FFFFFF;
 $light-gray:					#999;
 $body-bg: 						#E9E9E9;
 //** Global textual link color.
-$link-color:            		#FF5A5F; //#3395FF;
+$link-color:            		#0079FF; //#FF5A5F; #3395FF;
 $sidebar-link-color:			#354458;
 //== Buttons
 
 $btn-primary-color:             #FFF;
-$btn-primary-bg:                #C11A22;
-$btn-primary-bg1:				#E63D45;
-$btn-primary-bg2:				#C11A22;
+$btn-primary-bg:                #0079FF;
+$btn-primary-bg1:				#0096FF;
+$btn-primary-bg2:				#005DFF;
 $btn-primary-hover-bg1:			lighten($btn-primary-bg1, 5%);
 $btn-primary-hover-bg2:			lighten($btn-primary-bg2, 5%);
-$btn-primary-border:            #920C12;
+$btn-primary-border:            #0071E0;
 
 $btn-default-color:           	#666;
 $btn-default-bg:              	#FFF;
@@ -57,8 +57,9 @@ $screen-xs-max:					0;
 
 $navbar-height:                 55px;
 $navbar-default-color:          #333;
+$navbar-color:          		#FFF;
 $navbar-default-bg:             #FFF;
-$navbar-bg:                		#FFF;
+$navbar-bg:                		#131418;
 $navbar-default-border:         lighten(#000, 55%);
 
 // Navbar links
