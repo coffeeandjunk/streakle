@@ -1,11 +1,4 @@
 Template.profileSidebar.helpers({
-    username: function() {
-        if (isUserFacebookAunthenticated()) {
-            return Meteor.user().services.facebook.name;
-        }
-        return this.username;
-    },
-
     firstName: function() {
         if (isUserFacebookAunthenticated()) {
             return Meteor.user().services.facebook.first_name;

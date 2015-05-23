@@ -1,23 +1,26 @@
 <template name="profileInfo">
-  <div class="col-xs-6 col-xs-offset-3">
+  {{> header}}
+  <div class="col-xs-4 col-xs-offset-4">
     <div class="signup-form">
+      <img src="{{profilePic}}" alt="{{firstName}}" class="profile-pic img-responsive">
+      <h4>{{firstName lastName}}</h4>
       <form id="profile-data">
-        <div class="form-group">
-          <input type="text" class="form-control" id="firstName" placeholder="First name">
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control" id="lastName" placeholder="Last name">
-        </div>
-        <div class="form-group">
-          <input type="email" class="form-control" id="email" placeholder="Primary email address">
-        </div>
+        <!--         <div class="form-group">
+          <input type="text" class="form-control" id="handle" placeholder="username">
+        </div> -->
+<!--         <div class="form-group">
+          <input name="email" type="email" class="form-control" id="email" placeholder="Primary email address">
+        </div> -->
         <!--             <div class="form-group">
                 <input type="email" class="form-control" id="schoolEmail" placeholder="Institute email address">
             </div> -->
         <div class="form-group">
-          <input type="text" class="form-control" id="school" placeholder="Institute">
+          <input name="school" type="text" class="form-control" id="school" placeholder="Current or previous institute (if you are an alumnus)">
         </div>
-        <button type="submit" id="update-profile" lass="btn btn-default">Let's get started</button>
+        <div class="form-group">
+          <textarea name="about" id="about" placeholder="Something that defines you" type="text" class="form-control" style="padding-right: 50px;"></textarea>
+        </div>
+        <button type="submit" id="update-profile" class="btn btn-default">Let's get started</button>
       </form>
     </div>
   </div>

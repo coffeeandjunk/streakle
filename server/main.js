@@ -29,19 +29,12 @@ Accounts.onCreateUser(function(options, user) {
     // console.log('onCreateUser called');
     if (options.profile) {
         options.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
-        user.profile = options.profile;
-    }
-    Router.go('/Profile-Info');
-    return user;
-});
-
-
-Accounts.onLogin(function(options, user) {
-    // Router.go('/');
-    // console.log('onLogin called');
-    if (options.profile) {
-        options.profile.picture = getFbPicture(user.services.facebook.accessToken);
+        options.profile.email = user.services.facebook.email;
+        options.profile.firstName = user.services.facebook.first_name;
+        options.profile.lastName = user.services.facebook.last_name;
+        options.profile.gender = user.services.facebook.gender;
         user.profile = options.profile;
     }
     return user;
+    this.render('profileInfo');
 });

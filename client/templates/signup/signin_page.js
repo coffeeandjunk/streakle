@@ -1,14 +1,23 @@
-Template.signupForm.events({
+Template.signinPage.events({
     'click .btn-facebook': function() {
         return Meteor.loginWithFacebook(function(error) {
             if (error) {
                 return console.log(error.reason);
             }
+            if (!Meteor.user().profile.returning) {
+                Meteor.users.update(Meteor.userId(), {
+                    $set: {
+                        "profile.returning": true
+                    }
+                });
+                Router.go('profileInfo');
+            } 
+
         });
     }
 });
 
-Template.signupForm.rendered = function() {
+Template.signinPage.rendered = function() {
     var x = 0;
     var y = 0;
     //cache a reference to the banner
