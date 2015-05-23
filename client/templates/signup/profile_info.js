@@ -7,9 +7,12 @@ Template.profileInfo.events({
         school = $("#school").val();
         about = $("#about").val();
         Meteor.users.update(Meteor.userId(), {
-            $set: {"profile.school": school, "profile.about": about}
+            $set: {
+                "profile.school": school,
+                "profile.about": about
+            }
         });
-        Router.go ("homePage");
+        Router.go("homePage");
     }
 });
 
@@ -18,13 +21,12 @@ Template.profileInfo.rendered = function() {
 };
 
 Template.profileInfo.helpers({
-    firstName: function() {
-        // ...
-    },
-    lastName: function() {
-
+    name: function() {
+        var userProfile = Meteor.user().profile;
+        return userProfile.name;
     },
     profilePic: function() {
-
+        var userProfile = Meteor.user().profile;
+        return userProfile.picture;
     }
 });

@@ -1,27 +1,28 @@
 <template name="profileInfo">
-  {{> header}}
-  <div class="col-xs-4 col-xs-offset-4">
-    <div class="signup-form">
-      <img src="{{profilePic}}" alt="{{firstName}}" class="profile-pic img-responsive">
-      <h4>{{firstName lastName}}</h4>
-      <form id="profile-data">
-        <!--         <div class="form-group">
+  <div class="banner">
+    <div class="col-xs-4 col-xs-offset-4">
+      <img class="identity-main" src="/images/streakle-white.png" alt="Streakle">
+      <div class="signup-form">
+        <img src="{{profilePic}}" alt="{{name}}" class="profile-pic img-responsive">
+        <h3>{{name}}</h3>
+        <hr>
+        <h4>Update a few detials</h4>
+        <form id="profile-data">
+          <!--         <div class="form-group">
           <input type="text" class="form-control" id="handle" placeholder="username">
         </div> -->
-<!--         <div class="form-group">
-          <input name="email" type="email" class="form-control" id="email" placeholder="Primary email address">
-        </div> -->
-        <!--             <div class="form-group">
+          <!--             <div class="form-group">
                 <input type="email" class="form-control" id="schoolEmail" placeholder="Institute email address">
             </div> -->
-        <div class="form-group">
-          <input name="school" type="text" class="form-control" id="school" placeholder="Current or previous institute (if you are an alumnus)">
-        </div>
-        <div class="form-group">
-          <textarea name="about" id="about" placeholder="Something that defines you" type="text" class="form-control" style="padding-right: 50px;"></textarea>
-        </div>
-        <button type="submit" id="update-profile" class="btn btn-default">Let's get started</button>
-      </form>
+          <div class="form-group">
+            <input name="school" type="text" class="form-control" id="school" placeholder="Institute">
+          </div>
+          <div class="form-group">
+            <textarea name="about" id="about" placeholder="Few lines about you" type="text" class="form-control" style="padding-right: 50px;"></textarea>
+          </div>
+          <button type="submit" id="update-profile" class="btn btn-primary">Let's get started</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
