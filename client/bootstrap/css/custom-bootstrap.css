@@ -5720,6 +5720,8 @@ textarea {
 
 .navbar-right .dropdown-menu {
   right: auto; }
+.navbar-right li a:hover {
+  text-decoration: underline; }
 .navbar-right a {
   line-height: 52px;
   background-color: transparent !important;
@@ -5829,6 +5831,7 @@ textarea {
     color: #666;
     font-size: 13px; }
   .message a {
+    color: #0079FF;
     text-decoration: underline;
     word-wrap: break-word; }
   .message img {

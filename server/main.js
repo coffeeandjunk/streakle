@@ -12,9 +12,6 @@ var getFbPicture = function(accessToken) {
     return result.data.picture.data.url;
 };
 
-
-
-// // bonus: get some additional profile info from facebook and cache on the user document
 // Accounts.onCreateUser(function(options,user) {
 //   check(options, Object);
 //   check(user, Object);
@@ -29,12 +26,12 @@ var getFbPicture = function(accessToken) {
 
 
 Accounts.onCreateUser(function(options, user) {
-    Router.go('//Profile-Info');
     // console.log('onCreateUser called');
-     if (options.profile) {
+    if (options.profile) {
         options.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
         user.profile = options.profile;
     }
+    Router.go('/Profile-Info');
     return user;
 });
 
@@ -48,11 +45,3 @@ Accounts.onLogin(function(options, user) {
     }
     return user;
 });
-
-// Accounts.onCreateUser(function(options, user) {
-//     if (options.profile) {
-//         options.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
-//         user.profile = options.profile;
-//     }
-//     return user;
-// });

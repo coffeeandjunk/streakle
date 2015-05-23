@@ -102,6 +102,9 @@ textarea {
     .dropdown-menu {
         right: auto;
     }
+    li a:hover {
+            text-decoration: underline;
+    }
     a {
         line-height: 52px;
         background-color: transparent !important;

@@ -152,6 +152,7 @@ var _post = function() {
     var user = Meteor.user();
     message = {
         userId: user._id,
+        postId: post._id,
         submitted: new Date(),
         msg: content,
         room: Session.get("roomname")
