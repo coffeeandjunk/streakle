@@ -129,6 +129,7 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
 });
 
 
+
 var submit = false;
 
 var _post = function() {
@@ -172,6 +173,7 @@ var _post = function() {
     _toggleClosePreviw('hide');
     _toggleUploadIcon('show');
     _resetSubmitForm();
+    return post._id;
 }
 
 // Meteor.startup(function () {
@@ -202,7 +204,10 @@ Template.postSubmit.events({
             _showFormError(e);
             return false;
         } else {
-            var words = $('#postContent').val().split(/\s+/);
+            //split the sentence into words and remove trailing comma
+            var words = _.map($('#postContent').val().split(/\s+/), function(word){
+                return word.replace(',', '');
+            })
             var keywords = [
                 '#Typography',
                 '#Animation',
@@ -222,7 +227,8 @@ Template.postSubmit.events({
                 console.log("More than one category");
             } else {
                 Session.set("roomname", category[0]);
-                _post();
+                var postId = _post();
+                Meteor.call('insertTagEntry', category[0], postId);
                 submit = true;
                 _clearFormError(e);
             }
