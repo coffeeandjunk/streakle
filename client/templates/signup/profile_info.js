@@ -4,14 +4,19 @@ Template.profileInfo.events({
         // var form = $('#profile-data');
         // var formdata = form.serializeArray();
         // console.log(formdata);
+        // handle = $("#handle").val();
         school = $("#school").val();
         about = $("#about").val();
-        Meteor.users.update(Meteor.userId(), {
-            $set: {
-                "profile.school": school,
-                "profile.about": about
-            }
-        });
+        if (!school || !about) console.log('blank form');
+        else {
+            Meteor.users.update(Meteor.userId(), {
+                $set: {
+                    // "profile.handle": handle,
+                    "profile.school": school,
+                    "profile.about": about
+                }
+            });
+        }
         Router.go("homePage");
     }
 });

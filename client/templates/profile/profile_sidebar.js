@@ -1,16 +1,9 @@
 Template.profileSidebar.helpers({
-    firstName: function() {
-        if (isUserFacebookAunthenticated()) {
-            return Meteor.user().services.facebook.first_name;
-        }
-        return this.profile.firstName;
+    handle: function() {
+        return this.profile.handle;
     },
-
-    lastName: function() {
-        if (isUserFacebookAunthenticated()) {
-            return Meteor.user().services.facebook.last_name;
-        }
-        return this.profile.lastName;
+    name: function() {
+        return this.profile.name;
     },
 
     about: function() {

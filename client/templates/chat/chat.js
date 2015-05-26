@@ -3,6 +3,10 @@ Session.setDefault("roomname", "#General");
 Template.messages.events({
     'click li': function(e) {
         Session.set("roomname", e.target.innerText);
+        $("#messages").animate({
+            scrollTop: $(document).height() - $(window).height()
+        });
+
     }
 });
 
@@ -13,8 +17,8 @@ Template.messages.helpers({
 });
 
 Template.messages.rendered = function() {
-    $('#messages').scrollTop($('#messages').prop("scrollHeight"));
-    // $('#messages').scrollTo('max',80);
+    var chat = document.getElementById('messages');
+    chat.scrollTop = chat.scrollHeight;
     AnimatedEach.attachHooks(this.find(".message-block"));
 };
 
@@ -26,17 +30,23 @@ Template.room.helpers({
 
 _sendMessage = function() {
     var el = document.getElementById("msg");
-    var user = Meteor.user();
-    Messages.insert({
-        userId: user._id,
-        submitted: new Date(),
-        msg: el.value,
-        room: Session.get("roomname")
-    });
-    el.value = "";
-    el.focus();
-};
+    if (el.value.length < 2) {
+        el.value = "";
+        el.focus();
+        console.log('blank message');
+    } else {
+        var user = Meteor.user();
+        Messages.insert({
+            userId: user._id,
+            submitted: new Date(),
+            msg: el.value,
+            room: Session.get("roomname")
+        });
+        el.value = "";
+        el.focus();
+    }
 
+};
 Template.input.events({
     'click .sendMsg': function(e) {
         _sendMessage();
@@ -44,7 +54,10 @@ Template.input.events({
     'keyup #msg': function(e) {
         if (e.type == "keyup" && e.which == 13) {
             _sendMessage();
-            $('#messages').scrollTo('max', 80);
+            // $('#messages').scrollTo('max', 80);
+            $("#messages").animate({
+                scrollTop: $(document).height() - $(window).height()
+            });
         }
     }
 });

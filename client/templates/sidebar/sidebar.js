@@ -3,18 +3,8 @@ Template.sidebar.helpers({
         return "/profile/" + Meteor.user()._id;
     },
 
-    firstName: function() {
-        if (isUserFacebookAunthenticated()) {
-            return Meteor.user().services.facebook.first_name;
-        }
-        return Meteor.user().profile.firstName;
-    },
-
-    lastName: function() {
-        if (isUserFacebookAunthenticated()) {
-            return Meteor.user().services.facebook.last_name;
-        }
-        return Meteor.user().profile.lastName;
+    name: function() {
+        return Meteor.user().profile.name;
     },
 
     // posts: function() {

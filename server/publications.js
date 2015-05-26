@@ -19,14 +19,10 @@ Meteor.publish('rooms', function() {
     return Rooms.find();
 });
 
-Meteor.publish("users", function() {
-    return Meteor.users.find();
-});
-
-Meteor.publish("postImages", function() {
-    return Meteor.users.find();
-});
-
 Meteor.publish("tags", function() {
+    return Tags.find();
+});
+
+Meteor.publish("users", function() {
     return Meteor.users.find();
 });

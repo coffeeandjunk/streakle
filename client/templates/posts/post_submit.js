@@ -1,9 +1,3 @@
-// Template.imagePreview.helpers({
-//     previewImages: function() {
-//         return postImages.find();
-//     },
-// });
-
 Template.postSubmit.helpers({
     // profilePic: function() {
     //     var userProfile = Meteor.user().profile;
@@ -13,13 +7,13 @@ Template.postSubmit.helpers({
     settings: function() {
         return {
             position: "bottom",
-            limit: 5,
+            limit: 8,
             rules: [{
                 token: '#',
                 collection: Tags,
                 field: "tagName",
                 // filter: { userId: Meteor.user()._id },
-                template: Template.dataPiece
+                template: Template.userPill
             }]
         };
     }
@@ -169,8 +163,10 @@ var _post = function() {
     }
     $('[name=postContent]').val("")
         .css("height", "52px");
-    $('#messages').scrollTo('max', 80);
-    // $('#messages').scrollTop($('#messages').prop("scrollHeight"));
+    // $('#messages').scrollTo('max', 80);
+     $("#messages").animate({
+            scrollTop: $(document).height() - $(window).height()
+        });
     _resetImageUploader();
     _clearPreview();
     _toggleClosePreviw('hide');
