@@ -30,11 +30,7 @@ Template.room.helpers({
 
 _sendMessage = function() {
     var el = document.getElementById("msg");
-    if (el.value.length < 2) {
-        el.value = "";
-        el.focus();
-        console.log('blank message');
-    } else {
+    if (/\S/.test(el.value)) {
         var user = Meteor.user();
         Messages.insert({
             userId: user._id,
@@ -44,9 +40,14 @@ _sendMessage = function() {
         });
         el.value = "";
         el.focus();
+    } else {
+        el.value = "";
+        el.focus();
+        console.log('blank message');
     }
 
 };
+
 Template.input.events({
     'click .sendMsg': function(e) {
         _sendMessage();
