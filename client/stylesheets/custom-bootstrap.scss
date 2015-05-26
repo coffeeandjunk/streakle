@@ -108,8 +108,9 @@ textarea {
 }
 
 .btn-post {
+    cursor: pointer;
     width: 88px;
-    height: 38px;
+    // height: 38px;
 }
 
 .btn-default {
@@ -493,16 +494,15 @@ textarea {
 }
 
 #profile-file-upload {
-    display: none;
+    // display: none;
 }
 
 #post-file-upload {
     display: block !important;
     bottom: 0px;
-    cursor: inherit;
-    font-size: 1000px !important;
-    height: 100%;
-    width: 100%;
+    cursor: pointer;
+    font-size: 1px !important;
+    line-height: 26px;
     margin: 0px;
     opacity: 0;
     padding: 0px;
@@ -517,13 +517,15 @@ textarea {
     position: absolute;
     right: 10px;
     top: 14px;
-    color: $link-color;
+    color: #999;
     cursor: pointer;
     &:hover, &:active, &:focus {
+        cursor: pointer;
         text-decoration: none;
         color: lighten($link-color, 10%);
     }
 }
+.alert {animation: none !important;}
 
 .comments {
     list-style-type: none;

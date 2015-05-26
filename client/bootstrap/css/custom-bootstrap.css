@@ -5686,12 +5686,6 @@ textarea {
   height: 100%;
   overflow-x: hidden; }
 
-.login-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #333; }
-
 .signup-form {
   border-radius: 3px;
   margin-top: 30px;
@@ -5735,8 +5729,8 @@ textarea {
     border-color: #AB1B20; }
 
 .btn-post {
-  width: 88px;
-  height: 38px; }
+  cursor: pointer;
+  width: 88px; }
 
 .btn-default {
   background-image: linear-gradient(#fff, #f0f0f0);
@@ -6039,16 +6033,12 @@ textarea {
   float: right;
   margin-top: 7px; }
 
-#profile-file-upload {
-  display: none; }
-
 #post-file-upload {
   display: block !important;
   bottom: 0px;
-  cursor: inherit;
-  font-size: 1000px !important;
-  height: 100%;
-  width: 100%;
+  cursor: pointer;
+  font-size: 1px !important;
+  line-height: 26px;
   margin: 0px;
   opacity: 0;
   padding: 0px;
@@ -6059,11 +6049,15 @@ textarea {
   position: absolute;
   right: 10px;
   top: 14px;
-  color: #0079FF;
+  color: #999;
   cursor: pointer; }
   #post-img-upload:hover, #post-img-upload:active, #post-img-upload:focus {
+    cursor: pointer;
     text-decoration: none;
     color: #3394ff; }
+
+.alert {
+  animation: none !important; }
 
 .comments {
   list-style-type: none;

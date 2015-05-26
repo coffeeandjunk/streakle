@@ -69,7 +69,8 @@ Template.profilePic.helpers({
         try {
             if (isUserFacebookAunthenticated()) {
                 // this is the line of interest
-                return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
+                // return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
+                return this.profile.picture;
             } else {
                 console.log('inside else')
                 return this.profile.image;

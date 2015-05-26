@@ -12,19 +12,21 @@ Template.postItem.helpers({
         user = Meteor.users.findOne({
             _id: this.userId
         });
-        return user.profile.firstName + " " + user.profile.lastName;
+        return user.profile.name;
     },
     authorImage: function() {
         user = Meteor.users.findOne({
             _id: this.userId
         });
-        return user.profile.image;
+        if (!user.services.facebook) {
+            return user.profile.image;
+        } else return user.profile.picture;
     },
-    absoluteImageUrl: function () {
+    absoluteImageUrl: function() {
         var post = Posts.findOne({
             userId: this.userId
         });
-        console.log('post.imageUrl::',post)
+        // console.log('post.imageUrl::', post)
         return window.location.host + post.imageUrl;
     }
 });
@@ -32,7 +34,6 @@ Template.postItem.helpers({
 
 Template.postItem.onRendered(function() {
     var img = document.getElementById('post-image');
-    console.log('postitem rendered', Template.instance().imageUrl);
+    // console.log('postitem rendered', Template.instance().imageUrl);
     // anno.makeAnnotatable(img);
 });
-

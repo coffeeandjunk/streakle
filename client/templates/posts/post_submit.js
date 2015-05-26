@@ -27,6 +27,8 @@ Template.postSubmit.helpers({
 
 Template.postSubmit.rendered = function() {
     $('textarea').autosize();
+    $('[data-toggle="tooltip"]').tooltip();
+    $('.progress').hide();
 };
 
 var image = {};
@@ -95,6 +97,7 @@ _isFormEmpty = function(form) {
 }
 
 _showFormError = function(form) {
+    $("#no-content").show();
     $(form.target).parent('.post-form-container').addClass('has-error');
 }
 
@@ -179,13 +182,15 @@ var _post = function() {
 
 Template.postSubmit.events({
     'change #post-img-upload': function(e) {
-        console.log('change triggered');
+        // $("#post-file-upload").click();
+        // console.log('change triggered');
         // if (!submit) {
         _readURL(document.getElementById('post-file-upload'));
         _toggleUploadIcon('hide');
         // } else if (submit) {
         // console.log('inside else');
         _insertFile(e, this);
+        $(".progress").show();
         // }
     },
     'click form button.close': function(e) {
@@ -195,6 +200,8 @@ Template.postSubmit.events({
         _toggleClosePreviw('hide');
         postImages.remove(fileObject._id);
         _toggleUploadIcon('show');
+        $("#no-content").hide();
+        $(".progress").hide();
     },
 
     'submit form': function(e) {
@@ -218,14 +225,17 @@ Template.postSubmit.events({
                 return $.inArray(keyword, words) > -1;
             });
             if (category.length === 0) {
+                $("#no-category").show();
                 console.log("No category specified");
             } else if (category.length > 1) {
+                $("#more-category").show();
                 console.log("More than one category");
             } else {
                 Session.set("roomname", category[0]);
                 _post();
                 submit = true;
                 _clearFormError(e);
+                $(".progress").hide();
             }
         }
     }
