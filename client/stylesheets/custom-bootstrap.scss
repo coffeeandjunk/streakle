@@ -121,6 +121,11 @@ textarea {
     // line-height: 12px;
 }
 
+.btn-close {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
 .btn-default {
     background-image: linear-gradient($btn-default-bg1, $btn-default-bg2);
     @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
