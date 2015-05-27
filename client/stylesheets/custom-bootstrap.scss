@@ -235,12 +235,17 @@ textarea {
             text-decoration: underline;
         }
     }
-    .btn-heart {
+    button {
         position: absolute;
+        &:hover {
+            color: $link-color;
+            background-image: linear-gradient($btn-default-bg1, $btn-default-bg2);
+        }
+    }
+    .btn-heart {
         right: 85px;
     }
     .btn-say {
-        position: absolute;
         font-weight: bold;
         right: 10px;
     }

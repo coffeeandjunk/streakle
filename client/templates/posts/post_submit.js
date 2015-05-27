@@ -60,7 +60,7 @@ _toggleUploadIcon = function(className) {
 }
 
 _readURL = function(input) {
-    console.log('readurl called');
+    // console.log('readurl called');
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -135,11 +135,12 @@ var _post = function() {
         content: content,
         userId: user._id,
         submitted: new Date(),
-        commentsCount: 0
+        commentsCount: 0,
+        likes: []
     };
 
     post._id = Posts.insert(post);
-    console.log('image obj: ', image);
+    // console.log('image obj: ', image);
     if (image.imageUrl) {
         Posts.update(post._id, {
             $set: image
@@ -232,6 +233,7 @@ Template.postSubmit.events({
                 submit = true;
                 _clearFormError(e);
                 $(".progress").hide();
+                $('.btn-post').blur();
             }
         }
     }

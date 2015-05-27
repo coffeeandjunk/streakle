@@ -4,7 +4,7 @@ Template.post.onRendered(function() {
         //prevent the image from being draggable from annoting
         // this.ondragstart = function() { return false; };
         // $(img).on('dragstart', function(event) { event.preventDefault(); });
-        console.log('post rendered');
+        // console.log('post rendered');
         // anno.makeAnnotatable(img);
         // $('.annotorious-annotationlayer').on('dragstart', function(event) { event.preventDefault(); });
     }
@@ -20,5 +20,5 @@ Template.post.helpers({
 });
 
 Template.post.onDestroyed(function() {
-    console.log('destroyed called');
+    // console.log('destroyed called');
 });
