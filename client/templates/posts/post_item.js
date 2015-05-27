@@ -1,4 +1,7 @@
 Template.postItem.helpers({
+    ownPost: function() {
+        return this.userId == Meteor.userId();
+    },
     authorProfile: function() {
         return "/profile/" + this.userId;
     },
@@ -37,3 +40,38 @@ Template.postItem.onRendered(function() {
     // console.log('postitem rendered', Template.instance().imageUrl);
     // anno.makeAnnotatable(img);
 });
+
+Template.postItem.events({
+    'click .btn-say': function() {
+        var user = Meteor.users.findOne({
+            _id: this.userId
+        });
+        var author = user.profile.firstName;
+        console.log(author);
+        Session.set("roomname", author);
+        _post();
+    },
+
+    'click .del-post': function() {
+        // console.log('deleting post');
+        Posts.remove(this._id);
+    }
+});
+
+var _post = function() {
+    post = Posts.findOne({
+        _id: this._id
+    });
+    message = {
+        userId: post.userId,
+        postId: post._id,
+        submitted: new Date(),
+        msg: post.content,
+        room: Session.get("roomname"),
+        imagrUrl: post.imagrUrl,
+        imageId: post.imageId
+    };
+    messages._id = Messages.insert(message);
+
+
+}

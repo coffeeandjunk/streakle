@@ -16,9 +16,9 @@ textarea {
 
 .identity-main {
     display: block;
-    width: 250px;
+    width: 450px;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .login-container {
@@ -36,16 +36,18 @@ textarea {
     }
     h3,
     h4 {
-        font-weight: bold;
         text-shadow: 0 2px 6px rgba(0, 0, 0, 0.58);
         color: #FFF;
         text-align: center;
+    }
+    h3 {
+        font-weight: bold;
     }
     button {
         margin: auto;
         display: block;
         border-radius: 3px;
-        margin-top: 60px;
+        margin-top: 40px;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.38), 0 1px 3px rgba(0, 0, 0, 0.32);
         &:hover {
             color: #FFF;
@@ -113,10 +115,10 @@ textarea {
 
 .btn-post {
     cursor: pointer;
-    font-size: 12px;
-    width: 66px;
+    // font-size: 12px;
+    width: 72px;
     margin-top: -8px;
-    line-height: 12px;
+    // line-height: 12px;
 }
 
 .btn-default {
@@ -192,6 +194,7 @@ textarea {
     margin-left: 5px;
     a {
         color: #666;
+        cursor: pointer;
     }
     p,
     i {
@@ -213,6 +216,7 @@ textarea {
     }
     h4 {
         margin-top: 0;
+        line-height: 32px;
     }
     h5 {
         margin-bottom: 0;
@@ -225,6 +229,15 @@ textarea {
             color: $link-color;
             text-decoration: underline;
         }
+    }
+    .btn-heart {
+        position: absolute;
+        right: 85px;
+    }
+    .btn-say {
+        position: absolute;
+        font-weight: bold;
+        right: 10px;
     }
 }
 
