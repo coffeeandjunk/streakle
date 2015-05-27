@@ -48,15 +48,6 @@ Accounts.onLogin(function(options, user) {
     return user;
 });
 
-Meteor.methods({
-    insertTagEntry: function(tag, postId){
-        tag = tag.replace('#','');
-        var insertCode = Tags.update({tagName: tag },{$addToSet: {postIds: postId}});
-        return insertCode;
-    }
-})
-
-
 // Accounts.onCreateUser(function(options, user) {
 //     if (options.profile) {
 //         options.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";

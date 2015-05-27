@@ -15,7 +15,9 @@ cfs:standard-packages
 cfs:filesystem
 cfs:gridfs
 cfs:ui
+accounts-facebook
 mizzao:bootboxjs
+joshowens:accounts-entry
 konecty:autolinker
 percolate:momentum
 fourseven:scss
@@ -27,6 +29,3 @@ copleykj:jquery-autosize
 johnantoni:meteor-scrollto
 momentjs:moment
 okgrow:iron-router-autoscroll
-aldeed:autoform
-accounts-facebook
-tanis:bootstrap-social

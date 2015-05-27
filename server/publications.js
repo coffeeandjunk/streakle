@@ -28,5 +28,5 @@ Meteor.publish("postImages", function() {
 });
 
 Meteor.publish("tags", function() {
-    return Tags.find();
+    return Meteor.users.find();
 });
