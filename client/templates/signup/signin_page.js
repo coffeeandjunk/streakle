@@ -9,7 +9,8 @@ Template.signinPage.events({
                     $set: {
                         "profile.returning": true,
                         "profile.likes": [],
-                        "profile.streak": ''
+                        "profile.streak": '',
+                        "profile.chatUsers": ''
                     }
                 });
                 Router.go('profileInfo');

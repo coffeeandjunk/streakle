@@ -1,11 +1,14 @@
-Session.setDefault("roomname", "#General");
+Session.setDefault("roomname", "#Streakle");
 
 Template.messages.events({
     'click li': function(e) {
-        Session.set("roomname", e.target.innerText);
+        Session.setPersistent("roomname", e.target.innerText);
+        // $('#messages').scrollTo('max', 80);
+        // var chat = document.getElementById('messages');
+        // chat.scrollTop = chat.scrollHeight;
         $("#messages").animate({
-            scrollTop: $(document).height() - $(window).height()
-        });
+            scrollTop: $("#messages").height()
+        },'fast');
 
     }
 });
@@ -49,16 +52,17 @@ _sendMessage = function() {
 };
 
 Template.input.events({
-    'click .sendMsg': function(e) {
+    'submit #msg': function(e) {
         _sendMessage();
+        $('#messages').scrollTo('max', 80);
     },
     'keyup #msg': function(e) {
         if (e.type == "keyup" && e.which == 13) {
             _sendMessage();
-            // $('#messages').scrollTo('max', 80);
-            $("#messages").animate({
-                scrollTop: $(document).height() - $(window).height()
-            });
+            $('#messages').scrollTo('max', 80);
+            //     $("#messages").animate({
+            //         scrollTop: $(document).height() - $(window).height()
+            //     });
         }
     }
 });

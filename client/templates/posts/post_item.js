@@ -52,13 +52,24 @@ Template.postItem.onRendered(function() {
 
 Template.postItem.events({
     'click .btn-say': function() {
-        var user = Meteor.users.findOne({
-            _id: this.userId
-        });
-        var author = user.profile.firstName;
-        console.log(author);
-        Session.set("roomname", author);
-        // _post();
+        if (Meteor.userId() != this.userId) {
+            Session.setPersistent("roomname", "#DirectMessage");
+            $('#messages').scrollTo('max', 80);
+            _post(this._id);
+            var chatUser = Meteor.users.findOne({
+                _id: Meteor.userId(),
+                'profile.chatUsers': this.userId
+            });
+            if (!chatUser && Meteor.userId() != this.userId) {
+                console.log("Inside If")
+                Meteor.users.update(Meteor.userId(), {
+                    $push: {
+                        'profile.chatUsers': this.userId
+                    }
+                });
+            }
+        } else console.log("Can't chat with yourself");
+
     },
     'click .btn-heart': function() {
         var like = Posts.findOne({
@@ -95,10 +106,41 @@ Template.postItem.events({
         $('.btn-heart').blur();
     },
     'click .del-post': function() {
-        // console.log('deleting post');
-        Posts.remove(this._id);
+        // var userLikes = Posts.find(this._id, {
+        //     likes: 1,
+        //     _id: 0
+        // });
         messages.remove(this.postId);
+        // Meteor.users.update({
+        //     _id: {
+        //         $in: userLikes
+        //     }
+        // }, {
+        //     $pull: {
+        //         'profile.likes': this._id
+        //     }
+        // });
+        Posts.remove(this._id);
+
     }
 });
 
-
+var _post = function(postId) {
+    post = Posts.findOne({
+        _id: postId
+    });
+    message = {
+        userId: Meteor.userId(),
+        postId: post._id,
+        submitted: new Date(),
+        msg: post.content,
+        room: "#DirectMessage",
+        imageUrl: post.imageUrl,
+        imageId: post.imageId,
+        postUserId: post.userId,
+        usersAccress: [Meteor.userId(), post.userId]
+    };
+    messages._id = Messages.insert(message);
+    $('#messages').scrollTo('max', 80);
+    $('#msg').focus();
+}

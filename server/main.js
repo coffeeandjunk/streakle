@@ -12,19 +12,6 @@ var getFbPicture = function(accessToken) {
     return result.data.picture.data.url;
 };
 
-// Accounts.onCreateUser(function(options,user) {
-//   check(options, Object);
-//   check(user, Object);
-
-//   options.profile.email = user.services.facebook.email;
-//   options.profile.facebookId = user.services.facebook.id;
-
-//   user.profile = options.profile;
-
-//   return user;
-// });
-
-
 Accounts.onCreateUser(function(options, user) {
     // console.log('onCreateUser called');
     if (options.profile) {
