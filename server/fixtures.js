@@ -14,7 +14,7 @@
           "#Animation",
           "#Illustration",
           "#GraphicDesign",
-          "#ConceptArt",
+          "#DigitalArt",
           "#UIDesign",
           "#IndustrialDesign",
           "#CharacterDesign",

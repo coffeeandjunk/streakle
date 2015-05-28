@@ -8,7 +8,8 @@ Template.signinPage.events({
                 Meteor.users.update(Meteor.userId(), {
                     $set: {
                         "profile.returning": true,
-                        "profile.likes": []
+                        "profile.likes": [],
+                        "profile.streak": ''
                     }
                 });
                 Router.go('profileInfo');

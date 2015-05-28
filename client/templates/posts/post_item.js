@@ -78,7 +78,6 @@ Template.postItem.events({
                     'profile.likes': this._id
                 }
             });
-            console.log("like adding");
         } else {
             Posts.update({
                 _id: this._id
@@ -92,7 +91,6 @@ Template.postItem.events({
                     'profile.likes': this._id
                 }
             });
-            console.log("like deleting")
         }
         $('.btn-heart').blur();
     },
@@ -103,19 +101,4 @@ Template.postItem.events({
     }
 });
 
-// var _post = function() {
-//     post = Posts.findOne({
-//         _id: this._id
-//     });
-//     message = {
-//         userId: post.userId,
-//         postId: post._id,
-//         submitted: new Date(),
-//         msg: post.content,
-//         room: Session.get("roomname"),
-//         imagrUrl: post.imagrUrl,
-//         imageId: post.imageId
-//     };
-//     messages._id = Messages.insert(message);
 
-// }

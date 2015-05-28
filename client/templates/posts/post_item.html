@@ -1,4 +1,5 @@
 <template name="postItem">
+<!-- {{> popupFeedback}} -->
   <div class="post">
     <div class="post-content">
       <button role="button" class="btn-heart btn btn-default" style="{{liked}}"><i class="fa fa-heart"></i></button>
@@ -35,3 +36,17 @@
     </div>
   </div>
 </template>
+
+<!-- <template name="popupFeedback">
+  <div class="well" id="popup-feedback" style="display:none">
+    <div class="post-form-container">
+      <form class="main form">
+        <div class="form-group">
+          <div class="controls post-submit">
+            <textarea name="postContent" id="postContent" placeholder="What are you working on today?" type="text" class="form-control" style="padding-right: 50px;"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template> -->
