@@ -118,15 +118,6 @@ Template.messages.helpers({
             }
         });
         return selectedRoom.messages
-
-
-        // return Messages.find({
-        //     room: Session.get("roomName")
-        // }, {
-        //     sort: {
-        //         ts: 1
-        //     }
-        // });
     },
     roomName: function() {
         return Session.get("roomName");

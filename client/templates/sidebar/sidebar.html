@@ -1,16 +1,16 @@
 <template name="sidebar">
-    {{#if currentUser}}
-    {{> myProfilePic}}
-    <div class="user-profile-info">
-        <h4><a href="{{userProfile}}">{{name}}</a></h4>
-        <h5>{{postsCount}} Posts</h5>
-    </div>
-    <!-- <div type="button" class="btn btn-default btn-block btn-lg">Message {{firstname}}</div> -->
-    {{/if}}
+  {{> myProfilePic}}
+  <div class="user-profile-info">
+    <h4><a href="{{userProfile}}">{{name}}</a></h4>
+    <h5>{{postsCount}} Posts</h5>
+  </div>
+  <hr>
+  <h6 class="text-muted text-uppercase">RECENT MESSAGES</h6>
+  {{#each chatUsers}} <h5 class="chat-user">{{chatUser}}</h5> {{/each}}
 </template>
 
 <template name="myProfilePic">
-    <div class="profile-pic-container">
-        <a href="{{userProfile}}"><img src="{{profilePic}}" alt="{{username}}" class="profile-pic img-responsive"></a>
-    </div>
+  <div class="profile-pic-container">
+    <a href="{{userProfile}}"><img src="{{profilePic}}" alt="{{username}}" class="profile-pic img-responsive"></a>
+  </div>
 </template>

@@ -7,20 +7,41 @@ Template.sidebar.helpers({
         return Meteor.user().profile.name;
     },
 
-    // posts: function() {
-    //     return Posts.find({
-    //         userId: this._id
-    //     }, {
-    //         sort: {
-    //             submitted: -1
-    //         }
-    //     });
-    // },
-
     postsCount: function() {
         return Posts.find({
-            userId: Meteor.user()._id
+            userId: Meteor.userId()
         }).count();
+    },
+
+    chatUsers: function() {
+        var user = Meteor.users.findOne({
+            _id: Meteor.userId()
+        });
+        var chatUsers = user.profile.chatUsers;
+        return Meteor.users.find({
+            _id: {
+                $in: chatUsers
+            }
+        });
+    },
+
+    chatUser: function() {
+        return this.profile.name;
+    }
+});
+
+Template.sidebar.events({
+    'click .chat-user': function() {
+        Session.set("roomName", "Message");
+        var userId = this._id;
+        console.log(this._id);
+        var chatRoom = Rooms.findOne({
+            userAccess: {
+                $all: [this._id, Meteor.userId()]
+            }
+        });
+        Session.set("roomId", chatRoom._id);
+        $("#msg").focus();
     }
 });
 

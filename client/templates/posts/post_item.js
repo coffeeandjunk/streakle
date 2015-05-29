@@ -60,19 +60,18 @@ Template.postItem.events({
             });
             if (!roomCheck) {
                 var newRoom = Rooms.insert({
-                    userAccess: [this._id, Meteor.userId()],
+                    userAccess: [this.userId, Meteor.userId()],
                     messages: []
                 });
                 // Session.set('roomName', 'Direct Message');
                 Session.set('roomId', newRoom);
-            }
-            else {
+            } else {
                 // Session.set("roomName", 'Direct Message');
                 Session.set("roomId", roomCheck._id);
             }
 
             Session.set("roomName", "Message");
-            
+
             $('#messages').scrollTo('max', 80);
             _post(this._id);
             var chatUser = Meteor.users.findOne({
@@ -148,17 +147,22 @@ var _post = function(postId) {
     post = Posts.findOne({
         _id: postId
     });
-    message = {
-        userId: Meteor.userId(),
-        postId: post._id,
-        submitted: new Date(),
-        msg: post.content,
-        imageUrl: post.imageUrl,
-        imageId: post.imageId,
-        postUserId: post.userId,
-        usersAccess: [Meteor.userId(), post.userId]
-    };
-    messages._id = Messages.insert(message);
+
+    var messagePush = Rooms.update({
+        _id: Session.get("roomId")
+    }, {
+        $push: {
+            messages: {
+                userId: Meteor.userId(),
+                postId: post._id,
+                submitted: new Date(),
+                msg: post.content,
+                imageUrl: post.imageUrl,
+                imageId: post.imageId,
+                postUserId: post.userId,
+            }
+        }
+    });
     $('#messages').scrollTo('max', 80);
     $('#msg').focus();
 }

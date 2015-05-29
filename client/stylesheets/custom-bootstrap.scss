@@ -395,6 +395,11 @@ textarea {
     }
 }
 
+.chat-user {
+    cursor: pointer;
+    &:hover {text-decoration: underline;}
+}
+
 .post-details {
     margin-top: -40px;
 }

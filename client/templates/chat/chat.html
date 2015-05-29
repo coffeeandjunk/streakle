@@ -1,11 +1,10 @@
 <template name="chat">
     <div data-spy="affix">
         <div class="chat panel">
-            {{> messages}} {{#if currentUser}}
+            {{> messages}}
             <div class="panel-footer">
                 {{> input}}
             </div>
-            {{/if}}
         </div>
     </div>
 </template>
@@ -16,7 +15,7 @@
             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                 <h4>{{roomName}} <i class="fa fa-chevron-down"></i></h4>
             </a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <ul class="dropdown-menu" role="menu">
                 {{#each rooms}} {{> room}} {{/each}}
             </ul>
         </div>
