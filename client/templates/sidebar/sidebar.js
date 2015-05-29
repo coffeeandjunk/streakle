@@ -32,7 +32,10 @@ Template.sidebar.helpers({
 
 Template.sidebar.events({
     'click .chat-user': function() {
-        Session.set("roomName", "Message");
+        chatUser = Meteor.users.findOne({
+            _id: this._id
+        })
+        Session.set("roomName", chatUser.profile.firstName);
         var userId = this._id;
         console.log(this._id);
         var chatRoom = Rooms.findOne({

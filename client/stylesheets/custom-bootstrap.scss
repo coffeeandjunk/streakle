@@ -207,7 +207,7 @@ textarea {
 
 .post-page-user-pic {
     font-size: 18px;
-    p,i {
+    p, i {
         margin-bottom: 0;
         color: #999;
         font-weight: bold;
@@ -294,7 +294,7 @@ textarea {
     width: 309px; //373px;
     @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
     a {
-        color: #666;
+        color: #333;
         cursor: pointer;
     }
     ul {
@@ -408,10 +408,25 @@ textarea {
 }
 
 .user-profile-info {
-    color: #111;
+    color: #FFF;
     a {
-        color: #111;
+        color: #FFF;
         cursor: pointer;
+    }
+}
+
+.profile-header {
+    padding-top: 15px;
+    min-height: 70px;
+    border-radius: 6px;
+    background-color: #F1F1F1;
+    background-image: linear-gradient(#FFF, #F1F1F1);
+    margin-bottom: 20px;
+    @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
+    h3, h5 {
+        color: #333;    
+        font-weight: bold;
+        margin: 0 0 0 40px;
     }
 }
 

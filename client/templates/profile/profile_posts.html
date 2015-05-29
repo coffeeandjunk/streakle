@@ -1,4 +1,8 @@
 <template name="profilePosts">
+<div class="profile-header">
+	<h5>POSTS</h5>
+	<h3>{{postsCount}}</h3>
+</div>
     <div class="posts">
         {{#each posts}}
         	{{> postItem}}

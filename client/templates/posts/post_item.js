@@ -145,20 +145,20 @@ Template.postItem.events({
         $('.btn-heart').blur();
     },
     'click .del-post': function() {
-        // var userLikes = Posts.find(this._id, {
-        //     likes: 1,
-        //     _id: 0
+        // var user = Meteor.users.find({
+        //     likes: this._id
         // });
-        messages.remove(this.postId);
+        // console.log(user._id);
         // Meteor.users.update({
         //     _id: {
-        //         $in: userLikes
+        //         $in: user._id
         //     }
         // }, {
         //     $pull: {
         //         'profile.likes': this._id
         //     }
         // });
+        Messages.remove(this.postId);
         Posts.remove(this._id);
 
     }
