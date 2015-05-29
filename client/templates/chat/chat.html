@@ -14,7 +14,7 @@
     <div class="panel-title">
         <div class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                <h4>{{roomname}} <i class="fa fa-chevron-down"></i></h4>
+                <h4>{{roomName}} <i class="fa fa-chevron-down"></i></h4>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 {{#each rooms}} {{> room}} {{/each}}
@@ -27,7 +27,7 @@
 </template>
 
 <template name="room">
-    <li style="{{roomstyle}}">{{roomname}}</li>
+    <li style="{{roomstyle}}">{{roomName}}</li>
 </template>
 
 <template name="message">

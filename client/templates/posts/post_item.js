@@ -53,7 +53,22 @@ Template.postItem.onRendered(function() {
 Template.postItem.events({
     'click .btn-say': function() {
         if (Meteor.userId() != this.userId) {
-            Session.setPersistent("roomname", "#DirectMessage");
+            var roomCheck = Rooms.findOne({
+                userAccess: {
+                    $all: [this.userId, Meteor.userId()]
+                }
+            });
+            if (!roomCheck) {
+                var newRoom = Rooms.insert({
+                    userAccess: [this._id, Meteor.userId()],
+                    messages: []
+                });
+                Session.set('roomId', newRoom);
+            }
+            else {
+                Session.set("roomId", roomCheck._id);
+            }
+            Session.setPersistent("roomname", "Message");
             $('#messages').scrollTo('max', 80);
             _post(this._id);
             var chatUser = Meteor.users.findOne({
@@ -134,11 +149,11 @@ var _post = function(postId) {
         postId: post._id,
         submitted: new Date(),
         msg: post.content,
-        room: "#DirectMessage",
+        room: "Message",
         imageUrl: post.imageUrl,
         imageId: post.imageId,
         postUserId: post.userId,
-        usersAccress: [Meteor.userId(), post.userId]
+        usersAccess: [Meteor.userId(), post.userId]
     };
     messages._id = Messages.insert(message);
     $('#messages').scrollTo('max', 80);
