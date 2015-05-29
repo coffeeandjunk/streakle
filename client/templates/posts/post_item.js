@@ -73,16 +73,37 @@ Template.postItem.events({
             Session.set("roomName", "Message");
 
             $('#messages').scrollTo('max', 80);
+
             _post(this._id);
+
+
+            // var chatUser = Meteor.users.findOne({
+            //     _id: Meteor.userId(),
+            //     'profile.chatUsers': this.userId
+            // });
+            //Below is the replacement of the above
             var chatUser = Meteor.users.findOne({
-                _id: Meteor.userId(),
+                _id: {
+                    $in: [this.userId, Meteor.userId()]
+                },
                 'profile.chatUsers': this.userId
             });
+
             if (!chatUser && Meteor.userId() != this.userId) {
-                console.log("Inside If")
-                Meteor.users.update(Meteor.userId(), {
+                console.log(Meteor.userId());
+                Meteor.users.update({
+                    _id: this.userId
+                }, {
                     $push: {
-                        'profile.chatUsers': this.userId
+                        "profile.chatUsers": Meteor.userId()
+                    }
+                });
+
+                Meteor.users.update({
+                    _id: Meteor.userId()
+                }, {
+                    $push: {
+                        "profile.chatUsers": this.userId
                     }
                 });
             }

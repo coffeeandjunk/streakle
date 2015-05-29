@@ -2,11 +2,11 @@ Session.setDefault("roomName", "#Streakle");
 
 Template.messages.events({
     'click li': function(e) {
-        Session.set("roomName", e.target.innerText);
+        Session.setPersistent("roomName", e.target.innerText);
         var currSession = Rooms.findOne({
             roomName: e.target.innerText
         })
-        Session.set("roomId", currSession._id);
+        Session.setPersistent("roomId", currSession._id);
         // console.log(Session.get("roomId"));
         $("#messages").animate({
             scrollTop: $("#messages").height()
@@ -42,14 +42,17 @@ Template.messages.helpers({
 Template.messages.rendered = function() {
     if (!this.rendered) {
         var currSession = Rooms.findOne({
-            roomName: Session.get("roomName")
-        })
-        // console.log(Session.get("roomName"));
+                roomName: Session.get("roomName")
+            })
+            // console.log(Session.get("roomName"));
         Session.setDefault("roomId", currSession._id);
         // console.log(Session.get("roomId"));
         this.rendered = true;
     }
-
+    $("#messages").animate({
+        scrollTop: $(document).height()
+    }, "fast");
+    return false;
     var chat = document.getElementById('messages');
     chat.scrollTop = chat.scrollHeight;
     AnimatedEach.attachHooks(this.find(".message-block"));
@@ -101,9 +104,9 @@ Template.input.events({
         if (e.type == "keyup" && e.which == 13) {
             _sendMessage();
             // $('#messages').scrollTo('max', 80);
-                $("#messages").animate({
-                    scrollTop: $(document).height() - $(window).height()
-                });
+            $("#messages").animate({
+                scrollTop: $(document).height() - $(window).height()
+            });
         }
     }
 });
