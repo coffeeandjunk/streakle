@@ -2,11 +2,11 @@ Session.setDefault("roomName", "#Streakle");
 
 Template.messages.events({
     'click li': function(e) {
-        Session.setPersistent("roomName", e.target.innerText);
+        Session.set("roomName", e.target.innerText);
         var currSession = Rooms.findOne({
             roomName: e.target.innerText
         })
-        Session.setPersistent("roomId", currSession._id);
+        Session.set("roomId", currSession._id);
         // console.log(Session.get("roomId"));
         $("#messages").animate({
             scrollTop: $("#messages").height()
@@ -95,15 +95,15 @@ _sendMessage = function() {
 Template.input.events({
     'submit #msg': function(e) {
         _sendMessage();
-        $('#messages').scrollTo('max', 80);
+        // $('#messages').scrollTo('max', 80);
     },
     'keyup #msg': function(e) {
         if (e.type == "keyup" && e.which == 13) {
             _sendMessage();
-            $('#messages').scrollTo('max', 80);
-            //     $("#messages").animate({
-            //         scrollTop: $(document).height() - $(window).height()
-            //     });
+            // $('#messages').scrollTo('max', 80);
+                $("#messages").animate({
+                    scrollTop: $(document).height() - $(window).height()
+                });
         }
     }
 });
@@ -112,6 +112,10 @@ Template.messages.helpers({
     messages: function() {
         var selectedRoom = Rooms.findOne({
             _id: Session.get('roomId')
+        }, {
+            sort: {
+                ts: 1
+            }
         });
         return selectedRoom.messages
 

@@ -63,12 +63,16 @@ Template.postItem.events({
                     userAccess: [this._id, Meteor.userId()],
                     messages: []
                 });
+                // Session.set('roomName', 'Direct Message');
                 Session.set('roomId', newRoom);
             }
             else {
+                // Session.set("roomName", 'Direct Message');
                 Session.set("roomId", roomCheck._id);
             }
-            Session.setPersistent("roomname", "Message");
+
+            Session.set("roomName", "Message");
+            
             $('#messages').scrollTo('max', 80);
             _post(this._id);
             var chatUser = Meteor.users.findOne({
@@ -149,7 +153,6 @@ var _post = function(postId) {
         postId: post._id,
         submitted: new Date(),
         msg: post.content,
-        room: "Message",
         imageUrl: post.imageUrl,
         imageId: post.imageId,
         postUserId: post.userId,

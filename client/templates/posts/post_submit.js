@@ -148,26 +148,28 @@ var _post = function() {
     }
 
     var user = Meteor.user();
-    message = {
-        userId: user._id,
-        postId: post._id,
-        submitted: new Date(),
-        msg: content,
-        room: Session.get("roomname")
-            // room: category
-    };
-    messages._id = Messages.insert(message);
-    if (image.imageUrl) {
-        Messages.update(messages._id, {
-            $set: image
-        });
-    }
+    var imageUrl = image.imageUrl;
+    var imageId = image.imageId;
+    var messagePush = Rooms.update({
+        _id: Session.get("roomId")
+    }, {
+        $push: {
+            messages: {
+                userId: user._id,
+                postId: post._id,
+                submitted: new Date(),
+                msg: content,
+                imageUrl: imageUrl,
+                imageId: imageId
+            }
+        }
+    });
     $('[name=postContent]').val("")
         .css("height", "52px");
     // $('#messages').scrollTo('max', 80);
-     $("#messages").animate({
-            scrollTop: $(document).height() - $(window).height()
-        });
+    $("#messages").animate({
+        scrollTop: $(document).height() - $(window).height()
+    });
     _resetImageUploader();
     _clearPreview();
     _toggleClosePreviw('hide');
@@ -208,15 +210,19 @@ Template.postSubmit.events({
             return false;
         } else {
             var words = $('#postContent').val().split(/\s+/);
+            // console.log(words[0]);
             var keywords = [
-                '#Typography',
-                '#Animation',
-                '#Illustration',
-                '#GraphicDesign',
-                '#ConceptArt',
-                '#UIDesign',
-                '#IndustrialDesign',
-                '#CharacterDesign'
+                "#Typography",
+                "#Calligraphy",
+                "#Cartoon",
+                "#Illustration",
+                "#GraphicDesign",
+                "#DigitalArt",
+                "#UIDesign",
+                "#InteractionDesign",
+                "#Painting",
+                "#IndustrialDesign",
+                "#CharacterDesign"
             ];
             var category = $.grep(keywords, function(keyword, index) {
                 return $.inArray(keyword, words) > -1;
@@ -228,7 +234,15 @@ Template.postSubmit.events({
                 $("#more-category").show();
                 console.log("More than one category");
             } else {
-                Session.set("roomname", category[0]);
+                // console.log(category[0]);
+                Session.set("roomName", category[0]);
+                var currSession = Rooms.findOne({
+                    roomName: Session.get("roomName")
+                })
+                console.log(Session.get("roomName"));
+                Session.set("roomId", currSession._id);
+                console.log(Session.get("roomId"));
+
                 _post();
                 submit = true;
                 _clearFormError(e);
