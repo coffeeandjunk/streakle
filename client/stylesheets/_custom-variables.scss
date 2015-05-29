@@ -25,12 +25,12 @@ $sidebar-link-color:			#354458;
 //== Buttons
 
 $btn-primary-color:             #FFF;
-$btn-primary-bg:                #0079FF;
-$btn-primary-bg1:				#0096FF;
-$btn-primary-bg2:				#005DFF;
+$btn-primary-bg:                #57132E; //#0079FF;
+$btn-primary-bg1:				lighten($btn-primary-bg, 10%); //#0096FF;
+$btn-primary-bg2:				#57132E; //#005DFF;
 $btn-primary-hover-bg1:			lighten($btn-primary-bg1, 5%);
 $btn-primary-hover-bg2:			lighten($btn-primary-bg2, 5%);
-$btn-primary-border:            #0071E0;
+$btn-primary-border:            darken($btn-primary-bg, 10%); //#0071E0;
 
 $btn-default-color:           	#666;
 $btn-default-bg:              	#FFF;

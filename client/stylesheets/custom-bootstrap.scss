@@ -5,6 +5,12 @@ hr {
     border-color: #ccc;
 }
 
+body {
+    background-image: url(/images/bg.jpg);
+    background-position: top;
+    background-attachment: fixed;
+}
+
 textarea {
     resize: none;
 }
@@ -195,6 +201,19 @@ textarea {
     max-width: 36px;
 }
 
+.post-page-user-pic {
+    max-width: 62px;
+}
+
+.post-page-user-pic {
+    font-size: 18px;
+    p,i {
+        margin-bottom: 0;
+        color: #999;
+        font-weight: bold;
+    }
+}
+
 .post-user-info {
     margin-left: 5px;
     a {
@@ -203,8 +222,8 @@ textarea {
     }
     p,
     i {
-        // margin: 0;
-        color: #CCC;
+        margin-bottom: 0;
+        color: #AAA;
     }
 }
 
@@ -297,11 +316,12 @@ textarea {
     .panel-body {
         border-top: 1px solid #ccc;
         box-shadow: inset -5px 1px 10px 0px rgba(0, 0, 0, 0.2);
-        background-color: #F0F0F0;
+        background-color: #F2FFCD;
         min-height: 400px;
         max-height: 440px;
         overflow-y: scroll;
         overflow-x: hidden;
+        padding: 10px;
     }
 }
 
@@ -319,16 +339,16 @@ textarea {
         margin-left: 20px;
     }
     a {
-        color: #999;
+        color: #54363E;
     }
 }
 
 .message {
     margin-bottom: 10px;
-    border-bottom: 1px solid #DDD;
+    border: 1px solid #DDD;
     background: $default-bg;
     border-radius: $default-border-radius;
-    // @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    @include box-shadow(0 1px 1px 0 rgba(0, 0, 0, 0.2));
     p {
         color: #666;
         font-size: 13px;
@@ -367,7 +387,7 @@ textarea {
     position: relative;
     border-radius: 2px;
     border: 1px solid #fff;
-    background-color: #999;
+    background-color: #333;
     z-index: 1;
     min-height: 50px;
     min-width: 50px;
@@ -388,16 +408,30 @@ textarea {
 }
 
 .user-profile-info {
-    color: #666;
+    color: #111;
     a {
-        color: #666;
+        color: #111;
         cursor: pointer;
     }
 }
 
+.chat-user-header {
+    font-weight: bold;
+    color: #333;
+    font-size: 12px;
+}
+
 .chat-user {
     cursor: pointer;
-    &:hover {text-decoration: underline;}
+    background-color: #4F2C3A;
+    padding: 7px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    color: #fff;
+    @include box-shadow(0 1px 1px 0 rgba(0, 0, 0, 0.2));
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .post-details {
@@ -431,7 +465,7 @@ textarea {
 .post,
 .comments li,
 .comment-form {
-    @include box-shadow(0 1px 1px 0 rgba(0, 0, 0, 0.2));
+    @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
     label {
         color: #666;
     }

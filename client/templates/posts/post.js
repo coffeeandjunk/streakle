@@ -16,6 +16,29 @@ Template.post.helpers({
     },
     imageId: function() {
         return this.imageId;
+    },
+    authorProfile: function() {
+        return "/profile/" + this.userId;
+    },
+    authorSchool: function() {
+        user = Meteor.users.findOne({
+            _id: this.userId
+        });
+        return user.profile.school;
+    },
+    author: function() {
+        user = Meteor.users.findOne({
+            _id: this.userId
+        });
+        return user.profile.name;
+    },
+    authorImage: function() {
+        user = Meteor.users.findOne({
+            _id: this.userId
+        });
+        if (!user.services.facebook) {
+            return user.profile.image;
+        } else return user.profile.picture;
     }
 });
 
