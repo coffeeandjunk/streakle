@@ -10,21 +10,8 @@ Template.messages.events({
         // console.log(Session.get("roomId"));
         $('#messages').scrollTo('9999px', 10);
     },
-    'mousewheel #messages': function() {
-        // $('#messages').bind('mousewheel DOMMouseScroll', function(e) {
-        //     var scrollTo = null;
-
-        //     if (e.type == 'mousewheel') {
-        //         scrollTo = (e.originalEvent.wheelDelta * -1);
-        //     } else if (e.type == 'DOMMouseScroll') {
-        //         scrollTo = 40 * e.originalEvent.detail;
-        //     }
-
-        //     if (scrollTo) {
-        //         e.preventDefault();
-        //         $(this).scrollTop(scrollTo + $(this).scrollTop());
-        //         }
-        // });
+    'mouseover #messages': function() {
+        $('#messages').scrollLock();
     }
 });
 
@@ -65,6 +52,7 @@ Template.messages.rendered = function() {
     }
     return false;
     AnimatedEach.attachHooks(this.find(".message-block"));
+    $('#messages').scrollLock();
 };
 
 Template.room.helpers({
@@ -176,4 +164,3 @@ Tracker.autorun(function() {
         }
     });
 })
-

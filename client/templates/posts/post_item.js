@@ -141,23 +141,26 @@ Template.postItem.events({
         $('.btn-heart').blur();
     },
     'click .del-post': function() {
-        // var user = Meteor.users.find({
-        //     likes: this._id
+        // var users = Meteor.users.findOne({
+        //     "profile.likes": this._id
         // });
-        // console.log(user._id);
-        // Meteor.users.update({
-        //     _id: {
-        //         $in: user._id
-        //     }
-        // }, {
-        //     $pull: {
-        //         'profile.likes': this._id
-        //     }
-        // });
+        // console.log(this._id);
+        // // $.each(users, function(key, value) {
+        //     // console.log(value._id);
+        //     Meteor.users.update({
+        //         _id: users._id
+        //     }, {
+        //         $pull: {
+        //             'profile.likes': this._id
+        //         }
+        //     });
+        // // });
+
+
+        Posts.remove(this._id);
         var room = Rooms.findOne({
             roomName: this.category
         });
-        Posts.remove(this._id);
         Rooms.update({
             _id: room._id
         }, {
@@ -167,6 +170,7 @@ Template.postItem.events({
                 }
             }
         });
+        postImages.remove(this.imageId);
     }
 });
 

@@ -119,9 +119,7 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
                 imageUrl: "/cfs/files/images/" + fileObj._id,
                 imageId: fileObj._id
             };
-        $(".btn-post").show();
         };
-
     }
 });
 
@@ -191,7 +189,10 @@ Template.postSubmit.events({
         // console.log('inside else');
         _insertFile(e, this);
         $(".progress").show();
-        // }
+        Tracker.autorun(function() {
+            if (this.isUploaded) $('.btn-post').show();
+            })
+            // }
     },
     'click form button.close': function(e) {
         // _removeIma;
@@ -200,6 +201,7 @@ Template.postSubmit.events({
         _toggleClosePreviw('hide');
         postImages.remove(fileObject._id);
         _toggleUploadIcon('show');
+        $(".btn-post").hide();
         $(".progress").hide();
     },
 
@@ -237,9 +239,9 @@ Template.postSubmit.events({
                 // console.log(category[0]);
                 Session.set("roomName", category[0]);
                 var currSession = Rooms.findOne({
-                    roomName: Session.get("roomName")
-                })
-                // console.log(Session.get("roomName"));
+                        roomName: Session.get("roomName")
+                    })
+                    // console.log(Session.get("roomName"));
                 Session.set("roomId", currSession._id);
                 // console.log(Session.get("roomId"));
 
