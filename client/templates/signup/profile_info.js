@@ -1,5 +1,5 @@
 Template.profileInfo.events({
-    'submit form': function() {
+    'submit form': function(event) {
         event.preventDefault();
         // var form = $('#profile-data');
         // var formdata = form.serializeArray();

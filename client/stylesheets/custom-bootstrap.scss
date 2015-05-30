@@ -9,6 +9,15 @@ body {
     background-image: url(/images/bg.jpg);
     background-position: top;
     background-attachment: fixed;
+    * {
+        text-rendering: auto !important;
+        text-rendering: optimizeSpeed !important;
+        text-rendering: optimizeLegibility !important;
+        text-rendering: geometricPrecision !important;
+        text-rendering: inherit !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 }
 
 textarea {
