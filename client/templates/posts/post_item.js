@@ -5,7 +5,7 @@ Template.postItem.helpers({
             likes: Meteor.userId()
         });
         if (like) {
-            return "color: #0079FF;";
+            return "color: #57132E;";
         }
     },
     ownPost: function() {
@@ -69,13 +69,9 @@ Template.postItem.events({
                 // Session.set("roomName", 'Direct Message');
                 Session.set("roomId", roomCheck._id);
             }
-
             Session.set("roomName", "Message");
-
             $('#messages').scrollTo('max', 80);
-
             _post(this._id);
-
 
             // var chatUser = Meteor.users.findOne({
             //     _id: Meteor.userId(),

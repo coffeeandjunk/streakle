@@ -37,13 +37,16 @@ Template.sidebar.events({
         })
         Session.set("roomName", chatUser.profile.firstName);
         var userId = this._id;
-        console.log(this._id);
+        // console.log(this._id);
         var chatRoom = Rooms.findOne({
             userAccess: {
                 $all: [this._id, Meteor.userId()]
             }
         });
         Session.set("roomId", chatRoom._id);
+        // var d = $('#messages');
+        // d.scrollTop(d.prop("scrollHeight"));
+        $('#messages').scrollTo('9999px', 10);
         $("#msg").focus();
     }
 });

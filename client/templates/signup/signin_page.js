@@ -13,6 +13,7 @@ Template.signinPage.events({
                         "profile.chatUsers": ''
                     }
                 });
+                $('.btn-facebook').blur();
                 Router.go('profileInfo');
             } 
 

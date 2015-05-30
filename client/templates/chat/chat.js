@@ -8,10 +8,23 @@ Template.messages.events({
         })
         Session.setPersistent("roomId", currSession._id);
         // console.log(Session.get("roomId"));
-        $("#messages").animate({
-            scrollTop: $("#messages").height()
-        }, 'fast');
+        $('#messages').scrollTo('9999px', 10);
+    },
+    'mousewheel #messages': function() {
+        // $('#messages').bind('mousewheel DOMMouseScroll', function(e) {
+        //     var scrollTo = null;
 
+        //     if (e.type == 'mousewheel') {
+        //         scrollTo = (e.originalEvent.wheelDelta * -1);
+        //     } else if (e.type == 'DOMMouseScroll') {
+        //         scrollTo = 40 * e.originalEvent.detail;
+        //     }
+
+        //     if (scrollTo) {
+        //         e.preventDefault();
+        //         $(this).scrollTop(scrollTo + $(this).scrollTop());
+        //         }
+        // });
     }
 });
 
@@ -47,14 +60,10 @@ Template.messages.rendered = function() {
             // console.log(Session.get("roomName"));
         Session.setDefault("roomId", currSession._id);
         // console.log(Session.get("roomId"));
+        $('#messages').scrollTo('99999px', 80);
         this.rendered = true;
     }
-    $("#messages").animate({
-        scrollTop: $(document).height()
-    }, "fast");
     return false;
-    var chat = document.getElementById('messages');
-    chat.scrollTop = chat.scrollHeight;
     AnimatedEach.attachHooks(this.find(".message-block"));
 };
 
@@ -98,15 +107,11 @@ _sendMessage = function() {
 Template.input.events({
     'submit #msg': function(e) {
         _sendMessage();
-        // $('#messages').scrollTo('max', 80);
+        $('#messages').scrollTo('max', 80);
     },
     'keyup #msg': function(e) {
-        if (e.type == "keyup" && e.which == 13) {
+        if (e.type == "keyup" && (e.which == 13 && !e.shiftKey)) {
             _sendMessage();
-            // $('#messages').scrollTo('max', 80);
-            $("#messages").animate({
-                scrollTop: $(document).height() - $(window).height()
-            });
         }
     }
 });
@@ -158,3 +163,40 @@ Template.chat.helpers({
         return Meteor.release;
     }
 });
+
+// var msgCount = 0;
+// var msgCountDep = new Tracker.Dependency;
+
+// var getMsgCount = function() {
+//     msgCountDep.depend();
+//     return msgCount;
+// };
+
+// var serMsgCount = function(roomId) {
+//     var room = Rooms.findOne({
+//         _id: roomId
+//     });
+//     msgCount = room.messages.length;
+//     msgCountDep.changed();
+// };
+
+// var handle = Tracker.autorun(function() {
+//     $('#messages').scrollTo('max', 80);
+//     console.log("msgCount:: " + getMsgCount());
+// });
+
+Tracker.autorun(function() {
+    Rooms.find({
+        _id: Session.get('roomId')
+    }).observe({
+        changed: function(newDocument, oldDocument) {
+            $('#messages').scrollTo('9999px', 80);
+            // $("#messages").animate({
+            //     scrollTop: $(document).height() - $(window).height()
+            // });
+        }
+    });
+})
+
+// getMsgCount();
+// serMsgCount(Session.get("roomId"););
