@@ -23,6 +23,7 @@ Template.postSubmit.rendered = function() {
     $('textarea').autosize();
     $('[data-toggle="tooltip"]').tooltip();
     $('.progress').hide();
+    $('[data-toggle="popover"]').popover();
 };
 
 var image = {};
@@ -118,8 +119,7 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
                 imageUrl: "/cfs/files/images/" + fileObj._id,
                 imageId: fileObj._id
             };
-            // _post();
-            // _toggleClosePreviw('show');
+        $(".btn-post").show();
         };
 
     }
@@ -136,6 +136,7 @@ var _post = function() {
         userId: user._id,
         submitted: new Date(),
         commentsCount: 0,
+        category: Session.get("roomName"),
         likes: []
     };
 
@@ -199,7 +200,6 @@ Template.postSubmit.events({
         _toggleClosePreviw('hide');
         postImages.remove(fileObject._id);
         _toggleUploadIcon('show');
-        $("#no-content").hide();
         $(".progress").hide();
     },
 
@@ -239,9 +239,9 @@ Template.postSubmit.events({
                 var currSession = Rooms.findOne({
                     roomName: Session.get("roomName")
                 })
-                console.log(Session.get("roomName"));
+                // console.log(Session.get("roomName"));
                 Session.set("roomId", currSession._id);
-                console.log(Session.get("roomId"));
+                // console.log(Session.get("roomId"));
 
                 _post();
                 submit = true;

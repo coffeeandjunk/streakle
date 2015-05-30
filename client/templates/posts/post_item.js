@@ -154,9 +154,19 @@ Template.postItem.events({
         //         'profile.likes': this._id
         //     }
         // });
-        Messages.remove(this.postId);
+        var room = Rooms.findOne({
+            roomName: this.category
+        });
         Posts.remove(this._id);
-
+        Rooms.update({
+            _id: room._id
+        }, {
+            $pull: {
+                messages: {
+                    postId: this._id
+                }
+            }
+        });
     }
 });
 

@@ -164,27 +164,6 @@ Template.chat.helpers({
     }
 });
 
-// var msgCount = 0;
-// var msgCountDep = new Tracker.Dependency;
-
-// var getMsgCount = function() {
-//     msgCountDep.depend();
-//     return msgCount;
-// };
-
-// var serMsgCount = function(roomId) {
-//     var room = Rooms.findOne({
-//         _id: roomId
-//     });
-//     msgCount = room.messages.length;
-//     msgCountDep.changed();
-// };
-
-// var handle = Tracker.autorun(function() {
-//     $('#messages').scrollTo('max', 80);
-//     console.log("msgCount:: " + getMsgCount());
-// });
-
 Tracker.autorun(function() {
     Rooms.find({
         _id: Session.get('roomId')
@@ -198,5 +177,3 @@ Tracker.autorun(function() {
     });
 })
 
-// getMsgCount();
-// serMsgCount(Session.get("roomId"););

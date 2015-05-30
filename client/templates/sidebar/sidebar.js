@@ -36,6 +36,7 @@ Template.sidebar.events({
             _id: this._id
         })
         Session.set("roomName", chatUser.profile.firstName);
+        Session.set("chatUser", chatUser.profile.name);
         var userId = this._id;
         // console.log(this._id);
         var chatRoom = Rooms.findOne({
