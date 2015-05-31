@@ -70,8 +70,8 @@ Template.postItem.events({
                 Session.set("roomId", roomCheck._id);
             }
             Session.set("roomName", "Message");
-            $('#messages').scrollTo('max', 80);
             _post(this._id);
+            $('#messages').scrollTo('9999px', 80);
 
             // var chatUser = Meteor.users.findOne({
             //     _id: Meteor.userId(),

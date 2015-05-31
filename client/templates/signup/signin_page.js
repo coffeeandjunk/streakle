@@ -8,6 +8,7 @@ Template.signinPage.events({
                 Meteor.users.update(Meteor.userId(), {
                     $set: {
                         "profile.likes": [],
+                        "profile.tags": [],
                         "profile.streak": '',
                         "profile.chatUsers": ''
                     }

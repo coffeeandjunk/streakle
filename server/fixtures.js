@@ -1,13 +1,13 @@
   if (Rooms.find().count() === 0) {
       [
-          "#Typography",
-          "#Calligraphy",
-          "#Cartoon",
+          "#InteractionDesign",
+          "#Cartooning",
           "#Illustration",
           "#GraphicDesign",
+          "#Sketching",
           "#DigitalArt",
           "#UIDesign",
-          "#InteractionDesign",
+          "#Typography",
           "#Painting",
           "#IndustrialDesign",
           "#CharacterDesign",
@@ -21,19 +21,43 @@
   }
 
 
-    if (Tags.find().count() === 0) {
+  if (Tags.find().count() === 0) {
       [
-          "Typography",
-          "Calligraphy",
-          "Cartoon",
+          "InteractionDesign",
+          "Cartooning",
           "Illustration",
           "GraphicDesign",
+          "Sketching",
           "DigitalArt",
           "UIDesign",
-          "InteractionDesign",
+          "Typography",
           "Painting",
           "IndustrialDesign",
-          "CharacterDesign"
+          "CharacterDesign",
+          "Advertising",
+          "Animation",
+          "Architecture",
+          "AutomotiveDesign",
+          "Branding",
+          "Calligraphy",
+          "Cinematography",
+          "CostumeDesign",
+          "Crafts",
+          "Fashion",
+          "GameDesign",
+          "Graffiti",
+          "IconDesign",
+          "MotionGraphics",
+          "Photography",
+          "PrintDesign",
+          "ProductDesign",
+          "Storyboarding",
+          "StreetArt",
+          "ToyDesign",
+          "Typesetting",
+          "VisualEffects",
+          "VFX",
+          "WebDesign"
       ].forEach(function(e) {
           Tags.insert({
               tagName: e

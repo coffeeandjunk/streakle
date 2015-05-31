@@ -135,9 +135,9 @@ var _post = function() {
         submitted: new Date(),
         commentsCount: 0,
         category: Session.get("roomName"),
-        likes: []
+        likes: [],
+        tags: tags
     };
-
     post._id = Posts.insert(post);
     // console.log('image obj: ', image);
     if (image.imageUrl) {
@@ -194,7 +194,7 @@ Template.postSubmit.events({
                 if (newImage.isUploaded()) {
                     uploaded.stop();
                     $('.btn-post').prop("disabled", false);
-                    console.log("Button shown");
+                    // console.log("Button shown");
                 }
             }
         });
@@ -221,41 +221,57 @@ Template.postSubmit.events({
             var words = $('#postContent').val().split(/\s+/);
             // console.log(words[0]);
             var keywords = [
-                "#Typography",
-                "#Calligraphy",
-                "#Cartoon",
+                "#InteractionDesign",
+                "#Cartooning",
                 "#Illustration",
                 "#GraphicDesign",
                 "#Sketching",
                 "#DigitalArt",
                 "#UIDesign",
-                "#InteractionDesign",
+                "#Typography",
                 "#Painting",
                 "#IndustrialDesign",
                 "#CharacterDesign"
             ];
-            var category = $.grep(keywords, function(keyword, index) {
+            tags = $.grep(keywords, function(keyword, index) {
                 return $.inArray(keyword, words) > -1;
             });
-            if (category.length === 0) {
+            if (tags.length === 0) {
                 $("#no-category").show();
                 console.log("No category specified");
-            } else if (category.length > 1) {
-                $("#more-category").show();
-                console.log("More than one category");
-            } else {
-                // console.log(category[0]);
-                Session.set("roomName", category[0]);
+            }
+            // else if (tags.length > 1) {
+            //     $("#more-category").show();
+            //     console.log("More than one category");
+            // } 
+            else {
+                // console.log(tags[0]);
+                lastTag = tags.length - 1;
+                Session.set("roomName", tags[lastTag]);
                 var currSession = Rooms.findOne({
                         roomName: Session.get("roomName")
                     })
                     // console.log(Session.get("roomName"));
                 Session.set("roomId", currSession._id);
                 // console.log(Session.get("roomId"));
-
+                _.each(tags, function(tagName) {
+                    // console.log(tagName);
+                    if (!Meteor.users.findOne({
+                            _id: Meteor.userId(),
+                            "profile.tags": tagName
+                        })) {
+                        Meteor.users.update(Meteor.userId(), {
+                            $push: {
+                                'profile.tags': tagName
+                            }
+                        });
+                    }
+                });
                 _post();
                 submit = true;
                 _clearFormError(e);
+                $("#no-category").hide();
+                $("#no-content").hide();
                 $(".progress").hide();
                 $('.btn-post').blur();
             }
