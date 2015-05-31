@@ -163,6 +163,27 @@ textarea {
     border: none;
 }
 
+.search-bar {
+    width: 550px;
+    margin-left: 20px;
+    margin-top: 10px;
+    #search {
+        border-radius: 8px;
+    }
+    .bootstrap-tagsinput {
+        width: 550px;
+        border-radius: 8px;
+        .label {
+            padding: 4px 6px;
+            font-size: 12px;
+            vertical-align: middle;
+            margin-left: 2px;
+            border-radius: 6px;
+            background-color: #4F2C3A;
+        }
+    }
+}
+
 .navbar-right {
     .dropdown-menu {
         right: auto;
