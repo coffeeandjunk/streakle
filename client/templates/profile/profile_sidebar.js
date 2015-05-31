@@ -65,7 +65,7 @@ Template.profilePic.helpers({
                 // return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
                 return this.profile.picture;
             } else {
-                console.log('inside else')
+                // console.log('inside else')
                 return this.profile.image;
             }
         } catch (err) {

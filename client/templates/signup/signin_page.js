@@ -7,9 +7,13 @@ Template.signinPage.events({
             if (!Meteor.user().profile.returning) {
                 Meteor.users.update(Meteor.userId(), {
                     $set: {
-                        "profile.returning": true
+                        "profile.returning": true,
+                        "profile.likes": [],
+                        "profile.streak": '',
+                        "profile.chatUsers": ''
                     }
                 });
+                $('.btn-facebook').blur();
                 Router.go('profileInfo');
             } 
 

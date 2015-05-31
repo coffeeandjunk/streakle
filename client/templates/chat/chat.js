@@ -1,79 +1,134 @@
-Session.setDefault("roomname", "#General");
+Session.setDefault("roomName", "#Streakle");
 
 Template.messages.events({
     'click li': function(e) {
-        Session.set("roomname", e.target.innerText);
-        $("#messages").animate({
-            scrollTop: $(document).height() - $(window).height()
-        });
+        Session.setPersistent("roomName", e.target.innerText);
+        var currSession = Rooms.findOne({
+            roomName: e.target.innerText
+        })
+        Session.setPersistent("roomId", currSession._id);
+        // console.log(Session.get("roomId"));
+        $('#messages').scrollTo('9999px', 10);
+    },
+    'mousewheel #messages': function() {
+        // $('#messages').bind('mousewheel DOMMouseScroll', function(e) {
+        //     var scrollTo = null;
 
+        //     if (e.type == 'mousewheel') {
+        //         scrollTo = (e.originalEvent.wheelDelta * -1);
+        //     } else if (e.type == 'DOMMouseScroll') {
+        //         scrollTo = 40 * e.originalEvent.detail;
+        //     }
+
+        //     if (scrollTo) {
+        //         e.preventDefault();
+        //         $(this).scrollTop(scrollTo + $(this).scrollTop());
+        //         }
+        // });
     }
 });
 
 Template.messages.helpers({
     rooms: function() {
-        return Rooms.find();
+        var category = [
+            '#Typography',
+            '#Calligraphy',
+            '#Cartoon',
+            '#Illustration',
+            '#GraphicDesign',
+            '#DigitalArt',
+            '#UIDesign',
+            '#InteractionDesign',
+            '#Painting',
+            '#IndustrialDesign',
+            '#CharacterDesign',
+            '#Streakle'
+        ];
+        return Rooms.find({
+            roomName: {
+                $in: category
+            }
+        });
     }
 });
 
 Template.messages.rendered = function() {
-    var chat = document.getElementById('messages');
-    chat.scrollTop = chat.scrollHeight;
+    if (!this.rendered) {
+        var currSession = Rooms.findOne({
+                roomName: Session.get("roomName")
+            })
+            // console.log(Session.get("roomName"));
+        Session.setDefault("roomId", currSession._id);
+        // console.log(Session.get("roomId"));
+        $('#messages').scrollTo('99999px', 80);
+        this.rendered = true;
+    }
+    return false;
     AnimatedEach.attachHooks(this.find(".message-block"));
 };
 
 Template.room.helpers({
     roomstyle: function() {
-        return Session.equals("roomname", this.roomname) ? "font-weight: bold" : "";
+        return Session.equals("roomName", this.roomName) ? "font-weight: bold" : "";
     }
 });
 
 _sendMessage = function() {
     var el = document.getElementById("msg");
-    if (el.value.length < 2) {
+    if (/\S/.test(el.value)) {
+        var user = Meteor.user();
+        var messagePush = Rooms.update({
+            _id: Session.get("roomId")
+        }, {
+            $push: {
+                messages: {
+                    userId: user._id,
+                    submitted: new Date(),
+                    msg: el.value,
+                }
+            }
+        });
+        // Messages.insert({
+        //     userId: user._id,
+        //     submitted: new Date(),
+        //     msg: el.value,
+        //     room: Session.get("roomName")
+        // });
+        el.value = "";
+        el.focus();
+    } else {
         el.value = "";
         el.focus();
         console.log('blank message');
-    } else {
-        var user = Meteor.user();
-        Messages.insert({
-            userId: user._id,
-            submitted: new Date(),
-            msg: el.value,
-            room: Session.get("roomname")
-        });
-        el.value = "";
-        el.focus();
     }
 
 };
+
 Template.input.events({
-    'click .sendMsg': function(e) {
+    'submit #msg': function(e) {
         _sendMessage();
+        $('#messages').scrollTo('max', 80);
     },
     'keyup #msg': function(e) {
-        if (e.type == "keyup" && e.which == 13) {
+        if (e.type == "keyup" && (e.which == 13 && !e.shiftKey)) {
             _sendMessage();
-            // $('#messages').scrollTo('max', 80);
-            $("#messages").animate({
-                scrollTop: $(document).height() - $(window).height()
-            });
         }
     }
 });
 
 Template.messages.helpers({
     messages: function() {
-        return Messages.find({
-            room: Session.get("roomname")
+        var selectedRoom = Rooms.findOne({
+            _id: Session.get('roomId')
         }, {
             sort: {
                 ts: 1
             }
         });
+        return selectedRoom.messages
     },
-    roomname: function() {
-        return Session.get("roomname");
+    roomName: function() {
+        return Session.get("roomName");
     }
 });
 
@@ -99,7 +154,7 @@ Template.message.helpers({
         user = Meteor.users.findOne({
             _id: this.userId
         });
-        return user.profile.firstName + " " + user.profile.lastName;
+        return user.profile.name;
     }
 });
 
@@ -108,3 +163,40 @@ Template.chat.helpers({
         return Meteor.release;
     }
 });
+
+// var msgCount = 0;
+// var msgCountDep = new Tracker.Dependency;
+
+// var getMsgCount = function() {
+//     msgCountDep.depend();
+//     return msgCount;
+// };
+
+// var serMsgCount = function(roomId) {
+//     var room = Rooms.findOne({
+//         _id: roomId
+//     });
+//     msgCount = room.messages.length;
+//     msgCountDep.changed();
+// };
+
+// var handle = Tracker.autorun(function() {
+//     $('#messages').scrollTo('max', 80);
+//     console.log("msgCount:: " + getMsgCount());
+// });
+
+Tracker.autorun(function() {
+    Rooms.find({
+        _id: Session.get('roomId')
+    }).observe({
+        changed: function(newDocument, oldDocument) {
+            $('#messages').scrollTo('9999px', 80);
+            // $("#messages").animate({
+            //     scrollTop: $(document).height() - $(window).height()
+            // });
+        }
+    });
+})
+
+// getMsgCount();
+// serMsgCount(Session.get("roomId"););

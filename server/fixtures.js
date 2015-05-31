@@ -1,27 +1,21 @@
-  // Meteor.startup(function() {
-  //     AccountsEntry.config({
-  //         signupCode: 's3cr3t', // only restricts username+password users, not OAuth
-  //         defaultProfile: someDefault: 'default'
-  //     });
-  // });
-
-  //     Messages.remove({});
-  //     Rooms.remove({});
   if (Rooms.find().count() === 0) {
       [
-          "#General",
           "#Typography",
-          "#Animation",
+          "#Calligraphy",
+          "#Cartoon",
           "#Illustration",
           "#GraphicDesign",
-          "#ConceptArt",
+          "#DigitalArt",
           "#UIDesign",
+          "#InteractionDesign",
+          "#Painting",
           "#IndustrialDesign",
           "#CharacterDesign",
-          '#Streakle'
+          "#Streakle"
       ].forEach(function(r) {
           Rooms.insert({
-              roomname: r
+              roomName: r,
+              messages: []
           });
       });
   }
@@ -30,11 +24,14 @@
     if (Tags.find().count() === 0) {
       [
           "Typography",
-          "Animation",
+          "Calligraphy",
+          "Cartoon",
           "Illustration",
           "GraphicDesign",
-          "ConceptArt",
+          "DigitalArt",
           "UIDesign",
+          "InteractionDesign",
+          "Painting",
           "IndustrialDesign",
           "CharacterDesign"
       ].forEach(function(e) {
