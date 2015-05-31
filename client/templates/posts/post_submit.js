@@ -7,7 +7,7 @@ Template.postSubmit.helpers({
     settings: function() {
         return {
             position: "bottom",
-            limit: 8,
+            limit: 5,
             rules: [{
                 token: '#',
                 collection: Tags,
@@ -119,7 +119,7 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
                 imageUrl: "/cfs/files/images/" + fileObj._id,
                 imageId: fileObj._id
             };
-        };
+        }
     }
 });
 
@@ -188,11 +188,18 @@ Template.postSubmit.events({
         // } else if (submit) {
         // console.log('inside else');
         _insertFile(e, this);
+        var cursor = postImages.find(fileObject._id);
+        var uploaded = cursor.observe({
+            changed: function(newImage, oldImage) {
+                if (newImage.isUploaded()) {
+                    uploaded.stop();
+                    $('.btn-post').prop("disabled", false);
+                    console.log("Button shown");
+                }
+            }
+        });
         $(".progress").show();
-        Tracker.autorun(function() {
-            if (this.isUploaded) $('.btn-post').show();
-            })
-            // }
+        $(".btn-post").show();
     },
     'click form button.close': function(e) {
         // _removeIma;
@@ -219,6 +226,7 @@ Template.postSubmit.events({
                 "#Cartoon",
                 "#Illustration",
                 "#GraphicDesign",
+                "#Sketching",
                 "#DigitalArt",
                 "#UIDesign",
                 "#InteractionDesign",
