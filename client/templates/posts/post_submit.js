@@ -136,7 +136,7 @@ var _post = function() {
         commentsCount: 0,
         category: Session.get("roomName"),
         likes: [],
-        tags: tags
+        tags: words
     };
     post._id = Posts.insert(post);
     // console.log('image obj: ', image);
@@ -165,10 +165,10 @@ var _post = function() {
     });
     $('[name=postContent]').val("")
         .css("height", "52px");
-    // $('#messages').scrollTo('max', 80);
-    $("#messages").animate({
-        scrollTop: $(document).height() - $(window).height()
-    });
+    $('#messages').scrollTo('9999px', 80);
+    // $("#messages").animate({
+    //     scrollTop: $(document).height() - $(window).height()
+    // });
     _resetImageUploader();
     _clearPreview();
     _toggleClosePreviw('hide');
@@ -218,20 +218,29 @@ Template.postSubmit.events({
             _showFormError(e);
             return false;
         } else {
-            var words = $('#postContent').val().split(/\s+/);
-            // console.log(words[0]);
+
+
+            var re = /(?:^|\W)#(\w+)(?!\w)/g;
+            words = [];
+            while (word = re.exec($('#postContent').val())) {
+                words.push(word[1]);
+            }
+            // var words = $('#postContent').val().split(/[\s#]+/);
+            _.each(words, function(word) {
+                console.log(word);
+            });
             var keywords = [
-                "#InteractionDesign",
-                "#Cartooning",
-                "#Illustration",
-                "#GraphicDesign",
-                "#Sketching",
-                "#DigitalArt",
-                "#UIDesign",
-                "#Typography",
-                "#Painting",
-                "#IndustrialDesign",
-                "#CharacterDesign"
+                "InteractionDesign",
+                "Cartooning",
+                "Illustration",
+                "GraphicDesign",
+                "Sketching",
+                "DigitalArt",
+                "UIDesign",
+                "Typography",
+                "Painting",
+                "IndustrialDesign",
+                "CharacterDesign"
             ];
             tags = $.grep(keywords, function(keyword, index) {
                 return $.inArray(keyword, words) > -1;
@@ -245,16 +254,17 @@ Template.postSubmit.events({
             //     console.log("More than one category");
             // } 
             else {
-                // console.log(tags[0]);
-                lastTag = tags.length - 1;
-                Session.set("roomName", tags[lastTag]);
+                console.log(tags[0]);
+                lastTag = '#' + tags[tags.length - 1];
+                Session.set("roomName", lastTag);
                 var currSession = Rooms.findOne({
                         roomName: Session.get("roomName")
                     })
                     // console.log(Session.get("roomName"));
                 Session.set("roomId", currSession._id);
+                $('#messages').scrollTo('999px', 80);
                 // console.log(Session.get("roomId"));
-                _.each(tags, function(tagName) {
+                _.each(words, function(tagName) {
                     // console.log(tagName);
                     if (!Meteor.users.findOne({
                             _id: Meteor.userId(),

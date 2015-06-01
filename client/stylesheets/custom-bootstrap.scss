@@ -170,18 +170,30 @@ textarea {
     #search {
         border-radius: 8px;
     }
-    .bootstrap-tagsinput {
-        width: 550px;
-        border-radius: 8px;
-        .label {
-            padding: 4px 6px;
-            font-size: 12px;
-            vertical-align: middle;
-            margin-left: 2px;
-            border-radius: 6px;
-            background-color: #4F2C3A;
-        }
+    .selectize-dropdown {display: none !important;}
+    .selectize-dropdown,
+    .selectize-input {
+        margin-top: -8px;
+        margin-left: -13px;
+        width: 550px !important;
+        border-radius: 5px !important;
+        z-index: 1;
     }
+    // .bootstrap-tagsinput {
+    //     width: 550px;
+    //     border-radius: 8px;
+    //     .label {
+    //         padding: 4px 6px;
+    //         font-size: 12px;
+    //         vertical-align: middle;
+    //         margin-left: 2px;
+    //         border-radius: 6px;
+    //         background-color: #4F2C3A;
+    //         input {
+    //             width: 100px !important;
+    //         }
+    //     }
+    // }
 }
 
 .navbar-right {

@@ -1,23 +1,33 @@
 Template.postsList.helpers({
     posts: function() {
-        Tracker.autorun(function() {
-            var searchTags = Session.get("searchTags");
-            if (searchTags === []) {
-                return Posts.find({}, {
+    	var result = Posts.find({}, {
                     sort: {
                         submitted: -1
                     }
                 });
-            } else {
-                return Posts.find({
-                	tags: searchTags
-                }, {
-                    sort: {
-                        submitted: -1
-                    }
-                });
-            }
-        });
+        // Tracker.autorun(function() {
+        //     var searchTags = Session.get("searchTags");
+        //     if (typeof searchTags === "undefined") {
+        //         console.log("inside if");
+        //         var result = Posts.find({}, {
+        //             sort: {
+        //                 submitted: -1
+        //             }
+        //         });
+        //     } else {
+        //         console.log("inside else");
+        //         var result = Posts.find({
+        //             tags: {
+        //                 $in: searchTags
+        //             }
+        //         }, {
+        //             sort: {
+        //                 submitted: -1
+        //             }
+        //         });
+        //     }
+        // });
+        return result;
     }
 });
 
