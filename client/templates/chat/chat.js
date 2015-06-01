@@ -39,19 +39,22 @@ Template.messages.helpers({
     }
 });
 
-Template.messages.onCreated (function() {
+Template.messages.onCreated(function() {
     var currSession = Rooms.findOne({
             roomName: Session.get("roomName")
         })
         // console.log(Session.get("roomName"));
     Session.setDefault("roomId", currSession._id);
     // console.log(Session.get("roomId"));
-    $('#messages').scrollTo('99999px', 80);
 });
 
 Template.messages.rendered = function() {
-    AnimatedEach.attachHooks(this.find(".message-block"));
-    $('#messages').scrollLock();
+    $('#messages').scrollTo('9999px', 80);
+    // $("#messages").animate({
+    //     scrollTop: $(document).height() - $(window).height()
+    // });
+AnimatedEach.attachHooks(this.find(".message-block"));
+$('#messages').scrollLock();
 };
 
 Template.room.helpers({
@@ -99,6 +102,7 @@ Template.input.events({
     'keyup #msg': function(e) {
         if (e.type == "keyup" && (e.which == 13 && !e.shiftKey)) {
             _sendMessage();
+            $('#messages').scrollTo('max', 80);
         }
     }
 });
