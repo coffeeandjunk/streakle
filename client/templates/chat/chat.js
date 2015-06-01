@@ -39,18 +39,17 @@ Template.messages.helpers({
     }
 });
 
+Template.messages.onCreated (function() {
+    var currSession = Rooms.findOne({
+            roomName: Session.get("roomName")
+        })
+        // console.log(Session.get("roomName"));
+    Session.setDefault("roomId", currSession._id);
+    // console.log(Session.get("roomId"));
+    $('#messages').scrollTo('99999px', 80);
+});
+
 Template.messages.rendered = function() {
-    if (!this.rendered) {
-        var currSession = Rooms.findOne({
-                roomName: Session.get("roomName")
-            })
-            // console.log(Session.get("roomName"));
-        Session.setDefault("roomId", currSession._id);
-        // console.log(Session.get("roomId"));
-        $('#messages').scrollTo('99999px', 80);
-        this.rendered = true;
-    }
-    return false;
     AnimatedEach.attachHooks(this.find(".message-block"));
     $('#messages').scrollLock();
 };
