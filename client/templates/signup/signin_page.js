@@ -10,7 +10,7 @@ Template.signinPage.events({
                         "profile.likes": [],
                         "profile.tags": [],
                         "profile.streak": '',
-                        "profile.chatUsers": ''
+                        "profile.chatUsers": []
                     }
                 });
                 $('.btn-facebook').blur();

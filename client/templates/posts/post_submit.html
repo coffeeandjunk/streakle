@@ -8,21 +8,21 @@
       <form class="main form">
         <div class="form-group">
           <div id="preview-container">
-            <button class="close hide">&times;</button>
+            <button type="button" class="close close-preview hide">&times;</button>
           </div>
           {{#unless this.isUploaded}}
             {{> FS.UploadProgressBar bootstrap=true class='progress-bar-primary progress-bar active' showPercent=false}}
           {{/unless}}
           <div class="controls post-submit">
-            <div id="post-img-upload" class="fa fa-camera fa-2x" data-toggle="tooltip" data-placement="left" title="Post a screenshot, write something and some #tags">
+            <div id="post-img-upload" class="fa fa-camera fa-2x" data-toggle="tooltip" data-placement="left" title="Post a screenshot, write something with some #tags">
               <input type="file" id="post-file-upload" />
             </div>
             <!-- <textarea name="postContent" id="postContent" placeholder="What are you working on today?" type="text" class="form-control" style="padding-right: 50px;"></textarea> -->
-            {{#textareaAutocomplete name="postContent" id="postContent" settings=settings placeholder="What are you working on?" type="text" class="form-control" style="padding-right: 50px;" }}{{/textareaAutocomplete}}
+            {{#textareaAutocomplete name="postContent" id="postContent" settings=settings placeholder="What are you working on?" type="text" class="form-control" style="padding-right: 50px; height: 52px;" }}{{/textareaAutocomplete}}
           </div>
         </div>
         <div class="btn-group pull-right">
-          <button type="button" class="btn btn-primary btn-post pull-right dropdown-toggle" data-toggle="dropdown" disabled style="display: none">Push  <span class="caret"></span></button>
+          <button type="button" class="btn btn-primary btn-post pull-right dropdown-toggle" data-toggle="dropdown" disabled style="display: none">Push <span class="caret"></span></button>
           <ul class="room-dropdown dropdown-menu" role="menu">
             <li><a href="" class="room-selection">Interaction Design</a></li>
             <li><a href="" class="room-selection">Illustration</a></li>

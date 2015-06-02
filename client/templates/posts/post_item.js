@@ -69,8 +69,8 @@ Template.postItem.events({
                 // Session.set("roomName", 'Direct Message');
                 Session.set("roomId", roomCheck._id);
             }
-            userProfile = Meteor.users.findOne({_id: this.userId});
-            userName = userProfile.profile.firstName;
+            toUser = Meteor.users.findOne({_id: this.userId});
+            userName = toUser.profile.firstName;
             Session.set("roomName", userName);
             _post(this._id);
             $('#messages').scrollTo('9999px', 80);
@@ -88,7 +88,7 @@ Template.postItem.events({
             });
 
             if (!chatUser && Meteor.userId() != this.userId) {
-                console.log(Meteor.userId());
+                // console.log(Meteor.userId());
                 Meteor.users.update({
                     _id: this.userId
                 }, {

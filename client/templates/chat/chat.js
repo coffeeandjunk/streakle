@@ -2,9 +2,10 @@ Session.setDefault("roomName", "#Streakle");
 
 Template.messages.events({
     'click li': function(e) {
-        Session.setPersistent("roomName", e.target.innerText);
+        sessionName = e.target.innerText || e.target.textContent;
+        Session.setPersistent("roomName", sessionName);
         var currSession = Rooms.findOne({
-            roomName: e.target.innerText
+            roomName: sessionName
         })
         Session.setPersistent("roomId", currSession._id);
         // console.log(Session.get("roomId"));

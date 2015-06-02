@@ -163,7 +163,7 @@ var _post = function() {
             }
         }
     });
-    $('[name=postContent]').val("")
+    $('#postContent').val("")
         .css("height", "52px");
     $('#messages').scrollTo('9999px', 80);
     // $("#messages").animate({
@@ -201,8 +201,8 @@ Template.postSubmit.events({
         $(".progress").show();
         $(".btn-post").show();
     },
-    'click form button.close': function(e) {
-        // _removeIma;
+    'click form button.close-preview': function(e) {
+        e.preventDefault();
         _resetImageUploader();
         _clearPreview();
         _toggleClosePreviw('hide');
@@ -213,6 +213,7 @@ Template.postSubmit.events({
     },
 
     'click .room-selection': function(e) {
+        e.preventDefault();
         if (_isFormEmpty(e)) {
             _showFormError(e);
             return false;
@@ -222,7 +223,8 @@ Template.postSubmit.events({
             while (word = re.exec($('#postContent').val())) {
                 words.push(word[1]);
             }
-            var roomName = "#" + e.target.innerText.replace(/ /g, '');
+            var roomName = e.target.innerText || e.target.textContent;
+            roomName = "#" + roomName.replace(/ /g, '');
             console.log(roomName);
             Session.setPersistent("roomName", roomName);
             var currSession = Rooms.findOne({
