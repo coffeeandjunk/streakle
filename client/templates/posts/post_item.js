@@ -38,8 +38,12 @@ Template.postItem.helpers({
         var post = Posts.findOne({
             userId: this.userId
         });
-        // console.log('post.imageUrl::', post)
-        return window.location.host + post.imageUrl;
+        console.log('post.largeImage::', post.largeImage)
+        if(post.largeImage){
+            return post.largeImage;
+        }else{
+            return post.largeImage;
+        }
     }
 });
 

@@ -30,6 +30,13 @@ okgrow:iron-router-autoscroll
 aldeed:autoform
 accounts-facebook
 tanis:bootstrap-social
-u2622:persistent-session
+u2622:persistent-session  
 chrismbeckett:toastr
 rexzh0u:introjs
+luisalmeida:unveil
+jeremy:selectize
+ajduke:bootstrap-tagsinput@=0.5.0
+mrt:bootstrap3-typeahead
+reactive-var
+cfs:graphicsmagick
+

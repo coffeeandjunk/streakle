@@ -11,6 +11,10 @@ Meteor.publish('images', function() {
     return postImages.find();
 });
 
+Meteor.publish('largeImages', function() {
+    return largeImages.find();
+});
+
 Meteor.publish('messages', function() {
     return Messages.find();
 });

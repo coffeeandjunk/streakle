@@ -33,6 +33,7 @@ _resetSubmitForm = function() {
     _clearPreview();
     _toggleClosePreviw('hide');
     submit = false;
+    image={};
 };
 
 _clearPreview = function() {
@@ -110,16 +111,31 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
         };
     },
     after: function(error, fileObj) {
-        // console.log('after is called');
-        // console.log("Inserted", fileObj.name);
         imageId: fileObj._id;
         if (fileObj._id) {
             image = {
                 imageUrl: "/cfs/files/images/" + fileObj._id,
-                imageId: fileObj._id
+                imageId: fileObj._id,
             };
-            // _post();
-            // _toggleClosePreviw('show');
+        };
+
+    }
+});
+
+
+var insertResizedImage = FS.EventHandlers.insertFiles(largeImages, {
+    metadata: function(fileObj) {
+        fileObject = fileObj;
+        // console.log('change is trigggered, fileobj: ', fileObj)
+        return {
+            owner: Meteor.userId(),
+            submitted: new Date()
+        };
+    },
+    after: function(error, fileObj) {
+        if (fileObj._id) {
+            image.largeImage = "/cfs/files/largeImages/" + fileObj._id;
+            console.log('largeImage:: '+ image.largeImage);
         };
 
     }
@@ -140,7 +156,7 @@ var _post = function() {
     };
 
     post._id = Posts.insert(post);
-    // console.log('image obj: ', image);
+    console.log('image obj: ', image);
     if (image.imageUrl) {
         Posts.update(post._id, {
             $set: image
@@ -189,6 +205,7 @@ Template.postSubmit.events({
         // } else if (submit) {
         // console.log('inside else');
         _insertFile(e, this);
+        insertResizedImage(e, this);
         $(".progress").show();
         // }
     },
