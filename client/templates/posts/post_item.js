@@ -69,7 +69,9 @@ Template.postItem.events({
                 // Session.set("roomName", 'Direct Message');
                 Session.set("roomId", roomCheck._id);
             }
-            Session.set("roomName", "Message");
+            userProfile = Meteor.users.findOne({_id: this.userId});
+            userName = userProfile.profile.firstName;
+            Session.set("roomName", userName);
             _post(this._id);
             $('#messages').scrollTo('9999px', 80);
 

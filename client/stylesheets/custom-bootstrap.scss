@@ -136,6 +136,10 @@ textarea {
     // line-height: 12px;
 }
 
+.room-dropdown {
+    @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
+}
+
 .btn-close {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -245,7 +249,7 @@ textarea {
 }
 
 .post-page-user-pic {
-    max-width: 66px;
+    max-width: 66px !important;
 }
 
 .post-page-user-info {

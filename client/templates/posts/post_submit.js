@@ -212,79 +212,47 @@ Template.postSubmit.events({
         $(".progress").hide();
     },
 
-    'submit form': function(e) {
-        e.preventDefault();
+    'click .room-selection': function(e) {
         if (_isFormEmpty(e)) {
             _showFormError(e);
             return false;
         } else {
-
-
             var re = /(?:^|\W)#(\w+)(?!\w)/g;
             words = [];
             while (word = re.exec($('#postContent').val())) {
                 words.push(word[1]);
             }
-            // var words = $('#postContent').val().split(/[\s#]+/);
-            _.each(words, function(word) {
-                console.log(word);
-            });
-            var keywords = [
-                "InteractionDesign",
-                "Cartooning",
-                "Illustration",
-                "GraphicDesign",
-                "Sketching",
-                "DigitalArt",
-                "UIDesign",
-                "Typography",
-                "Painting",
-                "IndustrialDesign",
-                "CharacterDesign"
-            ];
-            tags = $.grep(keywords, function(keyword, index) {
-                return $.inArray(keyword, words) > -1;
-            });
-            if (tags.length === 0) {
-                $("#no-category").show();
-                console.log("No category specified");
-            }
-            // else if (tags.length > 1) {
-            //     $("#more-category").show();
-            //     console.log("More than one category");
-            // } 
-            else {
-                console.log(tags[0]);
-                lastTag = '#' + tags[tags.length - 1];
-                Session.set("roomName", lastTag);
-                var currSession = Rooms.findOne({
-                        roomName: Session.get("roomName")
-                    })
-                    // console.log(Session.get("roomName"));
-                Session.set("roomId", currSession._id);
-                $('#messages').scrollTo('999px', 80);
-                // console.log(Session.get("roomId"));
-                _.each(words, function(tagName) {
-                    // console.log(tagName);
-                    if (!Meteor.users.findOne({
-                            _id: Meteor.userId(),
-                            "profile.tags": tagName
-                        })) {
-                        Meteor.users.update(Meteor.userId(), {
-                            $push: {
-                                'profile.tags': tagName
-                            }
-                        });
-                    }
-                });
-                _post();
-                submit = true;
-                _clearFormError(e);
-                $("#no-category").hide();
-                $("#no-content").hide();
-                $(".progress").hide();
-                $('.btn-post').blur();
-            }
+            var roomName = "#" + e.target.innerText.replace(/ /g, '');
+            console.log(roomName);
+            Session.setPersistent("roomName", roomName);
+            var currSession = Rooms.findOne({
+                roomName: roomName
+            })
+            Session.setPersistent("roomId", currSession._id);
+            $('#messages').scrollTo('999px', 80);
+            _addTags(words);
+            _post();
+            _clearFormError(e);
+            $("#no-content").hide();
+            $(".progress").hide();
+            $('.btn-post').hide();
         }
     }
 });
+
+
+_addTags = function(words) {
+    _.each(words, function(tagName) {
+        // console.log(tagName);
+        if (!Meteor.users.findOne({
+                _id: Meteor.userId(),
+                "profile.tags": tagName
+            })) {
+            Meteor.users.update(Meteor.userId(), {
+                $push: {
+                    'profile.tags': tagName
+                }
+            });
+        }
+    });
+}

@@ -18,18 +18,15 @@ Template.messages.events({
 Template.messages.helpers({
     rooms: function() {
         var category = [
-            '#Typography',
-            '#Calligraphy',
-            '#Cartoon',
-            '#Illustration',
-            '#GraphicDesign',
-            '#DigitalArt',
-            '#UIDesign',
-            '#InteractionDesign',
-            '#Painting',
-            '#IndustrialDesign',
-            '#CharacterDesign',
-            '#Streakle'
+            "#InteractionDesign",
+            "#Illustration",
+            "#GraphicDesign",
+            "#DigitalArt",
+            "#Art/Craft",
+            "#Typography",
+            "#IndustrialDesign",
+            "#Photography",
+            "#Streakle"
         ];
         return Rooms.find({
             roomName: {
@@ -49,12 +46,12 @@ Template.messages.onCreated(function() {
 });
 
 Template.messages.rendered = function() {
-    $('#messages').scrollTo('9999px', 80);
+    $('#messages').scrollTo('max', 80);
     // $("#messages").animate({
     //     scrollTop: $(document).height() - $(window).height()
     // });
-AnimatedEach.attachHooks(this.find(".message-block"));
-$('#messages').scrollLock();
+    AnimatedEach.attachHooks(this.find(".message-block"));
+    $('#messages').scrollLock();
 };
 
 Template.room.helpers({
@@ -97,12 +94,12 @@ _sendMessage = function() {
 Template.input.events({
     'submit #msg': function(e) {
         _sendMessage();
-        $('#messages').scrollTo('max', 80);
+        // $('#messages').scrollTo('max', 80);
     },
     'keyup #msg': function(e) {
         if (e.type == "keyup" && (e.which == 13 && !e.shiftKey)) {
             _sendMessage();
-            $('#messages').scrollTo('max', 80);
+            // $('#messages').scrollTo('max', 80);
         }
     }
 });

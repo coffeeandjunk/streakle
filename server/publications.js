@@ -1,10 +1,23 @@
+// Meteor.publish('posts', function(searchTags) {
+//     // console.log(searchTags.length);
+//     if (typeof searchTags.length === "undefined") {
+//         return Posts.find();
+//     } else {
+//         return Posts.find({
+//             tags: searchTags
+//         });
+//     }
+// });
+
 Meteor.publish('posts', function() {
     return Posts.find();
 });
 
 Meteor.publish('comments', function(postId) {
-  check(postId, String);
-  return Comments.find({postId: postId});
+    check(postId, String);
+    return Comments.find({
+        postId: postId
+    });
 });
 
 Meteor.publish('images', function() {
