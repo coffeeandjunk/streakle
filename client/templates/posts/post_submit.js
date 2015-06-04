@@ -134,7 +134,7 @@ var _post = function() {
         userId: user._id,
         submitted: new Date(),
         commentsCount: 0,
-        category: Session.get("roomName"),
+        category: roomName,
         likes: [],
         tags: words
     };
@@ -223,12 +223,12 @@ Template.postSubmit.events({
             while (word = re.exec($('#postContent').val())) {
                 words.push(word[1]);
             }
-            var roomName = e.target.innerText || e.target.textContent;
-            roomName = "#" + roomName.replace(/ /g, '');
-            console.log(roomName);
-            Session.setPersistent("roomName", roomName);
+            roomName = e.target.innerText || e.target.textContent;
+            var sessionName = "#" + roomName.replace(/ /g, '');
+            // console.log(roomName);
+            Session.setPersistent("roomName", sessionName);
             var currSession = Rooms.findOne({
-                roomName: roomName
+                roomName: sessionName
             })
             Session.setPersistent("roomId", currSession._id);
             $('#messages').scrollTo('999px', 80);
