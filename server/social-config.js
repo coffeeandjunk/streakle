@@ -1,8 +1,8 @@
 // TODO change the appID and secret when deployed in some other env
 
-// ServiceConfiguration.configurations.remove({
-//     service: 'facebook'
-// });
+ServiceConfiguration.configurations.remove({
+    service: 'facebook'
+});
  
 // ServiceConfiguration.configurations.insert({
 //     service: 'facebook',
@@ -12,8 +12,8 @@
 
 //This is for Scranvas
 
-// ServiceConfiguration.configurations.insert({
-//     service: 'facebook',
-//     appId: '417530805091822',
-//     secret: '6ec7a7472933d5a25e4c7632f2c6c990'
-// });
+ServiceConfiguration.configurations.insert({
+    service: 'facebook',
+    appId: '417530805091822',
+    secret: '6ec7a7472933d5a25e4c7632f2c6c990'
+});

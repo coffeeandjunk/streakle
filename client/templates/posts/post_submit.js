@@ -60,8 +60,8 @@ _toggleUploadIcon = function(className) {
     }
 }
 
-_readURL = function(input) {
-    // console.log('readurl called');
+_readURL = function(input, callback) {
+    console.log('readurl called');
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -72,6 +72,7 @@ _readURL = function(input) {
             });
 
             img.attr('src', e.target.result);
+            //TODO decouple this part so as to abstract out the filereader
             var previewContainer = $('#preview-container');
             if (previewContainer.find('img').length < 1) {
                 img.appendTo(previewContainer);
@@ -79,7 +80,6 @@ _readURL = function(input) {
             }
 
         }
-
         reader.readAsDataURL(input.files[0]);
     }
 }
@@ -200,12 +200,14 @@ Template.postSubmit.events({
         // $("#post-file-upload").click();
         // console.log('change triggered');
         // if (!submit) {
+        var _self = this;
         _readURL(document.getElementById('post-file-upload'));
         _toggleUploadIcon('hide');
         // } else if (submit) {
         // console.log('inside else');
-        _insertFile(e, this);
-        insertResizedImage(e, this);
+        _insertFile(e, _self);
+        
+        insertResizedImage(e, _self);
         $(".progress").show();
         // }
     },

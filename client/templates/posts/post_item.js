@@ -33,17 +33,6 @@ Template.postItem.helpers({
         if (!user.services.facebook) {
             return user.profile.image;
         } else return user.profile.picture;
-    },
-    absoluteImageUrl: function() {
-        var post = Posts.findOne({
-            userId: this.userId
-        });
-        console.log('post.largeImage::', post.largeImage)
-        if(post.largeImage){
-            return post.largeImage;
-        }else{
-            return post.largeImage;
-        }
     }
 });
 
