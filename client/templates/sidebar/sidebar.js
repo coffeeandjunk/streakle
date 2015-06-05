@@ -8,9 +8,7 @@ Template.sidebar.helpers({
     },
 
     postsCount: function() {
-        return Posts.find({
-            userId: Meteor.userId()
-        }).count();
+        return Meteor.user().profile.postsCount;
     },
 
     chatUsers: function() {

@@ -163,6 +163,12 @@ var _post = function() {
             }
         }
     });
+
+    Meteor.users.update(Meteor.userId(), {
+        $inc: {
+            'profile.postsCount': 1
+        }
+    });
     $('#postContent').val("")
         .css("height", "52px");
     $('#messages').scrollTo('9999px', 80);

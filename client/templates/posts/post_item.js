@@ -160,8 +160,9 @@ Template.postItem.events({
 
 
         Posts.remove(this._id);
+        var roomName = "#" + this.category;
         var room = Rooms.findOne({
-            roomName: this.category
+            roomName: roomName
         });
         Rooms.update({
             _id: room._id
@@ -173,6 +174,11 @@ Template.postItem.events({
             }
         });
         postImages.remove(this.imageId);
+            Meteor.users.update(Meteor.userId(), {
+        $inc: {
+            'profile.postsCount': -1
+        }
+    });
     }
 });
 

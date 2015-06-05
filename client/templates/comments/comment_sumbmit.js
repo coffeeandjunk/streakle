@@ -35,7 +35,11 @@ Template.commentSubmit.events({
         }
 
         comment._id = Comments.insert(comment);
-        Posts.update(comment.postId, {$inc: {commentsCount: 1}});
+        Posts.update(comment.postId, {
+            $inc: {
+                commentsCount: 1
+            }
+        });
         $body.val('');
 
         // Meteor.call('commentInsert', comment, function(error, commentId) {

@@ -18,9 +18,18 @@ Meteor.publish('posts', function(options) {
     return Posts.find({}, options);
 });
 
+Meteor.publish('profilePosts', function(id, options) {
+    check(options, {
+        _id: String,
+        sort: Object,
+        limit: Number
+    });
+    return Posts.find(options);
+});
+
 Meteor.publish('singlePost', function(id) {
     check(id, String);
-    return Posts.find(id);
+   return Posts.find(id);
 });
 
 // Meteor.publish('posts', function(limit) {

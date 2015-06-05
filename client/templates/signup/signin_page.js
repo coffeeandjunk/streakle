@@ -9,13 +9,14 @@ Template.signinPage.events({
                     $set: {
                         "profile.likes": [],
                         "profile.tags": [],
-                        "profile.streak": '',
+                        "profile.postsCount": 0,
+                        "profile.streak": 0,
                         "profile.chatUsers": []
                     }
                 });
                 $('.btn-facebook').blur();
                 Router.go('profileInfo');
-            } 
+            }
 
         });
     }
