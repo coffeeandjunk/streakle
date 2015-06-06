@@ -21,6 +21,8 @@ Template.commentItem.helpers({
         user = Meteor.users.findOne({
             _id: this.userId
         });
-        return user.profile.image;
+        if (!user.services.facebook) {
+            return user.profile.image;
+        } else return user.profile.picture;
     }
 });

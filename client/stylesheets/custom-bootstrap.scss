@@ -166,6 +166,15 @@ textarea {
     color: $navbar-color;
     @include box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.25));
     border: none;
+    .dropdown-menu {
+        margin-left: -100px;
+    }
+    .badge-notification {
+        position: absolute;
+        right: -15px;
+        top: -5px;
+        background-color: #E63D45;
+    }
 }
 
 .search-bar {
@@ -509,9 +518,10 @@ textarea {
 }
 
 //Alredy defined CSS
-.container {
-    width: 976px !important;
-    overflow: hidden;
+@media (min-width: 1200px) {
+    .container {
+        width: 976px !important;
+    }
 }
 
 .grid-block,
@@ -521,7 +531,8 @@ textarea {
 .comments li,
 .comment-form {
     background: $default-bg;
-    border-radius: $default-border-radius;
+    // border-radius: $default-border-radius;
+    border-top: 1px solid #DDD;
     padding: 10px;
     margin-bottom: 15px;
 }
@@ -535,7 +546,7 @@ textarea {
 .post,
 .comments li,
 .comment-form {
-    @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
+    // @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
     label {
         color: #666;
     }
@@ -622,7 +633,8 @@ textarea {
 
 .post-page-content img {
     margin: auto;
-    max-width: 800px;
+    width: auto;
+    margin-bottom: 15px;
 }
 
 .post .post-content h3 {

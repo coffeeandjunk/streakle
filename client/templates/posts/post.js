@@ -11,6 +11,11 @@ Template.post.onRendered(function() {
 });
 
 Template.post.helpers({
+    comments: function() {
+        return Comments.find({
+            postId: this._id
+        });
+    },
     FSimages: function() {
         return postImages.find();
     },

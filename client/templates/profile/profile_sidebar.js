@@ -66,7 +66,7 @@ Template.profilePic.helpers({
                 return this.profile.picture;
             } else {
                 // console.log('inside else')
-                return this.profile.image;
+                return this.profile.picture;
             }
         } catch (err) {
             console.log(err);

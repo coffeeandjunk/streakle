@@ -1,24 +1,14 @@
 <template name="navbarButtons">
   <ul class="nav navbar-nav navbar-right">
     <div class="navbar-right">
-      <a href="{{profilePage}}" role="button" class="navbar-btn dropdown-toggle" data-toggle="dropdown"><img src="{{profilePic}}" class="img-circle navbar-btn pull-left navbar-user-pic img-responsive">{{firstName}} <i class="fa fa-chevron-down"></i></a>
-      <ul class="dropdown-menu" role="menu">
-        <!-- <li><a href="/profile-info">Edit Profile</a></li> -->
-        <!-- <li role="presentation" class="divider"></li> -->
-        <li><a href="" type="button" class="signout">Signout</a></li>
-      </ul>
+      <a href="{{profilePage}}" role="button" class="navbar-btn"><img src="{{profilePic}}" class="img-circle navbar-btn pull-left navbar-user-pic img-responsive">{{firstName}}</a>
+      {{> notifications}}
+      <div class="btn-group">
+      <a role="button" class="navbar-btn dropdown-toggle" data-toggle="dropdown" style="margin-left: 15px;"><span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="" type="button" class="signout">Signout</a></li>
+        </ul>
+      </div>
     </div>
   </ul>
 </template>
-
-
-<!-- <div class="dropdown">
-    <a href="{{profilePage}}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-    <img src="{{profilePic}}" class="img-circle pull-left navbar-user-pic img-responsive">
-        <h4>{{firstName}} <i class="fa fa-chevron-down"></i></h4>
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-<li><a href="/profile-info">Edit Profile</a></li>
-<li><a href="/sign-in">Signout</a></li>
-    </ul>
-</div> -->
