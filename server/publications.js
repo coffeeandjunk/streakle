@@ -11,6 +11,7 @@
 
 
 Meteor.publish('posts', function(options) {
+    console.log('from publish mehtod', options);
     check(options, {
         sort: Object,
         limit: Number
