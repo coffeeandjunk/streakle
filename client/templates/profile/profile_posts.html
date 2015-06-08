@@ -7,12 +7,12 @@
     {{#each posts}}
       {{> postItem}}
     {{/each}}
-    {{#if nextPath}}
-      <a class="load-more" href="{{nextPath}}">Load more</a>
-    {{else}}
+<!--     {{#if nextPath}} -->
+      <a class="load-more" href="{{nextPath}}"></a>
+<!--     {{else}}
       {{#unless ready}}
         {{> spinner}}
       {{/unless}}
-    {{/if}}
+    {{/if}} -->
   </div>
 </template>

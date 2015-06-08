@@ -15,7 +15,7 @@ showMoreVisible = function() {
     var threshold, target = $(".load-more");
     if (!target.length) return;
  
-    threshold = $(window).scrollTop() + $(window).height() - target.height();
+    threshold = $(window).scrollTop() + $(window).height() - target.height() + 250;
  
     if (target.offset().top < threshold) {
         if (!target.data("visible")) {
@@ -33,11 +33,6 @@ showMoreVisible = function() {
 }
 
 Tracker.autorun(function() {
-    Meteor.subscribe('posts', {
-      sort: {
-          submitted: -1
-      },
-      limit: Session.get('postsLimit')
-    });
+    Meteor.subscribe('posts')
     console.log('deps.autorun called:::: postsLimit::: ', Session.get('postsLimit'))
   });

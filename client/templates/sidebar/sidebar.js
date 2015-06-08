@@ -47,6 +47,9 @@ Template.sidebar.events({
         // d.scrollTop(d.prop("scrollHeight"));
         $('#messages').scrollTo('9999px', 10);
         $("#msg").focus();
+    },
+    'click .user-profile': function() {
+        Session.set("postsLimit", 5);
     }
 });
 
@@ -85,7 +88,7 @@ Template.myProfilePic.helpers({
                 return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
             } else {
                 // console.log('inside else')
-                return Meteor.user().profile.image;
+                return Meteor.user().profile.picture;
             }
         } catch (err) {
             console.log(err);
