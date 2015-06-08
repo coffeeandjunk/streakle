@@ -1,6 +1,6 @@
 Template.postsList.rendered = function() {
     AnimatedEach.attachHooks(this.find(".posts"));
-    console.log('postlist is rendered');
+    // console.log('postlist is rendered');
      Session.set("postsLimit", ITEMS_INCREMENT);
     $(window).scroll(showMoreVisible);
 };

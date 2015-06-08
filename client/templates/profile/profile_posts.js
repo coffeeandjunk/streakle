@@ -9,7 +9,7 @@
      moreResults: function() {
          // If, once the subscription is ready, we have less rows than we
          // asked for, we've got all the rows in the collection.
-         return !(Posts.find().count() < Session.get("postsLimit"));
+         return !(Posts.find().count() < Session.get("profilePostsLimit"));
      }
  });
 
@@ -17,7 +17,7 @@
  Template.profilePosts.rendered = function() {
      AnimatedEach.attachHooks(this.find(".posts"));
      // console.log('profilePosts is rendered');
-     Session.set("postsLimit", ITEMS_INCREMENT);
+     Session.set("profilePostsLimit", ITEMS_INCREMENT);
      $(window).scroll(showMoreVisible);
  };
 
@@ -35,8 +35,8 @@
          if (!target.data("visible")) {
              console.log("target became visible (inside viewable area)");
              target.data("visible", true);
-             Session.set("postsLimit",
-                 Session.get("postsLimit") + ITEMS_INCREMENT);
+             Session.set("profilePostsLimit",
+                 Session.get("profilePostsLimit") + ITEMS_INCREMENT);
          }
      } else {
          if (target.data("visible")) {
@@ -48,11 +48,11 @@
 
 
  Tracker.autorun(function() {
-     Meteor.subscribe('posts', {
+     Meteor.subscribe('profilePosts', {
          sort: {
              submitted: -1
          },
-         limit: Session.get('postsLimit')
+         limit: Session.get('profilePostsLimit')
      });
-     console.log('Tracker.autorun called:::: postsLimit::: ', Session.get('postsLimit'))
+     console.log('Tracker.autorun called:::: profilePostsLimit::: ', Session.get('profilePostsLimit'))
  });

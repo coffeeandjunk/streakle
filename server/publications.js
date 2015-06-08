@@ -17,14 +17,14 @@ Meteor.publish('posts', function(options) {
     return Posts.find({}, options);
 });
 
-Meteor.publish('profilePosts', function(id, options) {
-    check(id, String);
+Meteor.publish('profilePosts', function(userId, options) {
+    check(userId, String);
     check(options, {
         sort: Object,
         limit: Number
     });
     return Posts.find({
-        userId: id
+        userId: userId
     }, options);
 });
 
