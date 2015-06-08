@@ -21,6 +21,6 @@ Template.commentItem.helpers({
         user = Meteor.users.findOne({
             _id: this.userId
         });
-        return user.profile.image;
+        return user.profile.picture;
     }
 });

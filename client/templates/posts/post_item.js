@@ -27,10 +27,10 @@ Template.postItem.helpers({
         return user.profile.name;
     },
     authorImage: function() {
-        user = Meteor.user()
-        if (!user.services.facebook) {
-            return user.profile.image;
-        } else return user.profile.picture;
+        user = Meteor.users.findOne({
+            _id: this.userId
+        });
+        return user.profile.picture;
     },
     absoluteImageUrl: function() {
         var post = Posts.findOne({
@@ -67,7 +67,9 @@ Template.postItem.events({
                 // Session.set("roomName", 'Direct Message');
                 Session.set("roomId", roomCheck._id);
             }
-            toUser = Meteor.users.findOne({_id: this.userId});
+            toUser = Meteor.users.findOne({
+                _id: this.userId
+            });
             userName = toUser.profile.firstName;
             Session.set("roomName", userName);
             _post(this._id);
@@ -172,11 +174,11 @@ Template.postItem.events({
             }
         });
         postImages.remove(this.imageId);
-            Meteor.users.update(Meteor.userId(), {
-        $inc: {
-            'profile.postsCount': -1
-        }
-    });
+        Meteor.users.update(Meteor.userId(), {
+            $inc: {
+                'profile.postsCount': -1
+            }
+        });
     }
 });
 

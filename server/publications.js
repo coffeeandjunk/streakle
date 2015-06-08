@@ -9,7 +9,6 @@
 //     }
 // });
 
-
 Meteor.publish('posts', function(options) {
     check(options, {
         sort: Object,
@@ -19,25 +18,20 @@ Meteor.publish('posts', function(options) {
 });
 
 Meteor.publish('profilePosts', function(id, options) {
-    options = options || {
-        sort: { submitted: -1},
-        limit: 5
-    };
-    // check(options, {
-    //     sort: Object,
-    //     limit: Number
-    // });
-    return Posts.find({userId: this.userId}, options);
+    check(id, String);
+    check(options, {
+        sort: Object,
+        limit: Number
+    });
+    return Posts.find({
+        userId: id
+    }, options);
 });
 
 Meteor.publish('singlePost', function(id) {
     check(id, String);
-   return Posts.find(id);
+    return Posts.find(id);
 });
-
-// Meteor.publish('posts', function(limit) {
-//     return Posts.find({}, { limit: limit });
-// });
 
 Meteor.publish('comments', function(postId) {
     check(postId, String);

@@ -41,6 +41,8 @@ Template.commentSubmit.events({
             }
         });
         $body.val('');
+        $('body').scrollTo('max', 80);
+        $('.btn-comment').blur();
 
         // Meteor.call('commentInsert', comment, function(error, commentId) {
         //     if (error) {

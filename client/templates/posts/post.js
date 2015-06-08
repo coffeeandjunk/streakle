@@ -1,21 +1,26 @@
 Template.post.onRendered(function() {
-    var img = document.getElementById('post-image');
-    if (img) {
-        //prevent the image from being draggable from annoting
-        // this.ondragstart = function() { return false; };
-        // $(img).on('dragstart', function(event) { event.preventDefault(); });
-        // console.log('post rendered');
-        // anno.makeAnnotatable(img);
-        // $('.annotorious-annotationlayer').on('dragstart', function(event) { event.preventDefault(); });
-    }
+    // var img = document.getElementById('post-image');
+    // if (img) {
+    //     prevent the image from being draggable from annoting
+    //     this.ondragstart = function() { return false; };
+    //     $(img).on('dragstart', function(event) { event.preventDefault(); });
+    //     console.log('post rendered');
+    //     anno.makeAnnotatable(img);
+    //     $('.annotorious-annotationlayer').on('dragstart', function(event) { event.preventDefault(); });
+    // }
 });
 
 Template.post.helpers({
-    FSimages: function() {
-        return postImages.find();
-    },
-    imageId: function() {
-        return this.imageId;
+    // FSimages: function() {
+    //     return postImages.find();
+    // },
+    // imageId: function() {
+    //     return this.imageId;
+    // },
+    comments: function() {
+        return Comments.find({
+            postId: this._id
+        });
     },
     authorProfile: function() {
         return "/profile/" + this.userId;
@@ -37,7 +42,7 @@ Template.post.helpers({
             _id: this.userId
         });
         if (!user.services.facebook) {
-            return user.profile.image;
+            return user.profile.picture;
         } else return user.profile.picture;
     }
 });

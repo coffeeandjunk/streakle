@@ -1,18 +1,18 @@
 <template name="profilePosts">
-<div class="profile-header">
-	<h5>POSTS</h5>
-	<h3>{{postsCount}}</h3>
-</div>
-    <div class="profilePosts">
-      {{#each posts}}
-      	{{> postItem}}
-      {{/each}}
-      {{#if moreResults}}
-        <a class="load-more" href="{{nextPath}}">Load more</a>
-      {{else}}
-        {{#unless ready}}
-          {{> spinner}}
-        {{/unless}}
-      {{/if}}
-    </div>
+  <div class="profile-header">
+    <h5>POSTS</h5>
+    <h3>{{postsCount}}</h3>
+  </div>
+  <div class="profilePosts">
+    {{#each posts}}
+      {{> postItem}}
+    {{/each}}
+    {{#if nextPath}}
+      <a class="load-more" href="{{nextPath}}">Load more</a>
+    {{else}}
+      {{#unless ready}}
+        {{> spinner}}
+      {{/unless}}
+    {{/if}}
+  </div>
 </template>

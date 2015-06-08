@@ -528,6 +528,9 @@ textarea {
 
 .comments {
     padding: 0;
+    li {
+        border-bottom: 1px solid #DDD;
+    }
 }
 
 .grid-block,
@@ -535,7 +538,7 @@ textarea {
 .post,
 .comments li,
 .comment-form {
-    @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
+    // @include box-shadow(0 1px 10px 0 rgba(0, 0, 0, 0.5));
     label {
         color: #666;
     }
@@ -620,9 +623,13 @@ textarea {
     max-height: 550px;
 }
 
-.post-page-content img {
-    margin: auto;
-    max-width: 800px;
+.post-page-content {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EEE;
+    img {
+        margin: auto;
+        width: 100%;
+    }
 }
 
 .post .post-content h3 {

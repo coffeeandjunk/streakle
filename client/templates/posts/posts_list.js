@@ -1,5 +1,5 @@
 Template.postsList.rendered = function() {
-    // AnimatedEach.attachHooks(this.find(".posts"));
+    AnimatedEach.attachHooks(this.find(".posts"));
     console.log('postlist is rendered');
      Session.set("postsLimit", ITEMS_INCREMENT);
     $(window).scroll(showMoreVisible);
@@ -32,7 +32,7 @@ showMoreVisible = function() {
     }        
 }
 
-Deps.autorun(function() {
+Tracker.autorun(function() {
     Meteor.subscribe('posts', {
       sort: {
           submitted: -1
