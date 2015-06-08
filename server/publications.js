@@ -11,7 +11,6 @@
 
 
 Meteor.publish('posts', function(options) {
-    console.log('from publish mehtod', options);
     check(options, {
         sort: Object,
         limit: Number
@@ -20,12 +19,15 @@ Meteor.publish('posts', function(options) {
 });
 
 Meteor.publish('profilePosts', function(id, options) {
-    check(options, {
-        _id: String,
-        sort: Object,
-        limit: Number
-    });
-    return Posts.find(options);
+    options = options || {
+        sort: { submitted: -1},
+        limit: 5
+    };
+    // check(options, {
+    //     sort: Object,
+    //     limit: Number
+    // });
+    return Posts.find({userId: this.userId}, options);
 });
 
 Meteor.publish('singlePost', function(id) {

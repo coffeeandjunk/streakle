@@ -27,9 +27,7 @@ Template.postItem.helpers({
         return user.profile.name;
     },
     authorImage: function() {
-        user = Meteor.users.findOne({
-            _id: this.userId
-        });
+        user = Meteor.user()
         if (!user.services.facebook) {
             return user.profile.image;
         } else return user.profile.picture;
