@@ -1,10 +1,49 @@
-Meteor.publish('posts', function() {
-    return Posts.find();
+// Meteor.publish('posts', function(searchTags) {
+//     // console.log(searchTags.length);
+//     if (typeof searchTags.length === "undefined") {
+//         return Posts.find();
+//     } else {
+//         return Posts.find({
+//             tags: searchTags
+//         });
+//     }
+// });
+
+
+Meteor.publish('posts', function(options) {
+    check(options, {
+        sort: Object,
+        limit: Number
+    });
+    return Posts.find({}, options);
 });
 
+Meteor.publish('profilePosts', function(id, options) {
+    options = options || {
+        sort: { submitted: -1},
+        limit: 5
+    };
+    // check(options, {
+    //     sort: Object,
+    //     limit: Number
+    // });
+    return Posts.find({userId: this.userId}, options);
+});
+
+Meteor.publish('singlePost', function(id) {
+    check(id, String);
+   return Posts.find(id);
+});
+
+// Meteor.publish('posts', function(limit) {
+//     return Posts.find({}, { limit: limit });
+// });
+
 Meteor.publish('comments', function(postId) {
-  check(postId, String);
-  return Comments.find({postId: postId});
+    check(postId, String);
+    return Comments.find({
+        postId: postId
+    });
 });
 
 Meteor.publish('images', function() {

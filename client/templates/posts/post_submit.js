@@ -7,7 +7,7 @@ Template.postSubmit.helpers({
     settings: function() {
         return {
             position: "bottom",
-            limit: 8,
+            limit: 5,
             rules: [{
                 token: '#',
                 collection: Tags,
@@ -23,6 +23,7 @@ Template.postSubmit.rendered = function() {
     $('textarea').autosize();
     $('[data-toggle="tooltip"]').tooltip();
     $('.progress').hide();
+    $('[data-toggle="popover"]').popover();
 };
 
 var image = {};
@@ -118,10 +119,7 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
                 imageUrl: "/cfs/files/images/" + fileObj._id,
                 imageId: fileObj._id
             };
-            // _post();
-            // _toggleClosePreviw('show');
-        };
-
+        }
     }
 });
 
@@ -136,9 +134,10 @@ var _post = function() {
         userId: user._id,
         submitted: new Date(),
         commentsCount: 0,
-        likes: []
+        category: roomName,
+        likes: [],
+        tags: words
     };
-
     post._id = Posts.insert(post);
     // console.log('image obj: ', image);
     if (image.imageUrl) {
@@ -164,12 +163,18 @@ var _post = function() {
             }
         }
     });
-    $('[name=postContent]').val("")
-        .css("height", "52px");
-    // $('#messages').scrollTo('max', 80);
-    $("#messages").animate({
-        scrollTop: $(document).height() - $(window).height()
+
+    Meteor.users.update(Meteor.userId(), {
+        $inc: {
+            'profile.postsCount': 1
+        }
     });
+    $('#postContent').val("")
+        .css("height", "52px");
+    $('#messages').scrollTo('9999px', 80);
+    // $("#messages").animate({
+    //     scrollTop: $(document).height() - $(window).height()
+    // });
     _resetImageUploader();
     _clearPreview();
     _toggleClosePreviw('hide');
@@ -189,66 +194,73 @@ Template.postSubmit.events({
         // } else if (submit) {
         // console.log('inside else');
         _insertFile(e, this);
+        var cursor = postImages.find(fileObject._id);
+        var uploaded = cursor.observe({
+            changed: function(newImage, oldImage) {
+                if (newImage.isUploaded()) {
+                    uploaded.stop();
+                    $('.btn-post').prop("disabled", false);
+                    // console.log("Button shown");
+                }
+            }
+        });
         $(".progress").show();
-        // }
+        $(".btn-post").show();
     },
-    'click form button.close': function(e) {
-        // _removeIma;
+    'click form button.close-preview': function(e) {
+        e.preventDefault();
         _resetImageUploader();
         _clearPreview();
         _toggleClosePreviw('hide');
         postImages.remove(fileObject._id);
         _toggleUploadIcon('show');
-        $("#no-content").hide();
+        $(".btn-post").hide();
         $(".progress").hide();
     },
 
-    'submit form': function(e) {
+    'click .room-selection': function(e) {
         e.preventDefault();
         if (_isFormEmpty(e)) {
             _showFormError(e);
             return false;
         } else {
-            var words = $('#postContent').val().split(/\s+/);
-            // console.log(words[0]);
-            var keywords = [
-                "#Typography",
-                "#Calligraphy",
-                "#Cartoon",
-                "#Illustration",
-                "#GraphicDesign",
-                "#DigitalArt",
-                "#UIDesign",
-                "#InteractionDesign",
-                "#Painting",
-                "#IndustrialDesign",
-                "#CharacterDesign"
-            ];
-            var category = $.grep(keywords, function(keyword, index) {
-                return $.inArray(keyword, words) > -1;
-            });
-            if (category.length === 0) {
-                $("#no-category").show();
-                console.log("No category specified");
-            } else if (category.length > 1) {
-                $("#more-category").show();
-                console.log("More than one category");
-            } else {
-                // console.log(category[0]);
-                Session.set("roomName", category[0]);
-                var currSession = Rooms.findOne({
-                    roomName: Session.get("roomName")
-                })
-                console.log(Session.get("roomName"));
-                Session.set("roomId", currSession._id);
-                console.log(Session.get("roomId"));
-
-                _post();
-                submit = true;
-                _clearFormError(e);
-                $(".progress").hide();
-                $('.btn-post').blur();
+            var re = /(?:^|\W)#(\w+)(?!\w)/g;
+            words = [];
+            while (word = re.exec($('#postContent').val())) {
+                words.push(word[1]);
             }
+            roomName = e.target.innerText || e.target.textContent;
+            var sessionName = "#" + roomName.replace(/ /g, '');
+            // console.log(roomName);
+            Session.setPersistent("roomName", sessionName);
+            var currSession = Rooms.findOne({
+                roomName: sessionName
+            })
+            Session.setPersistent("roomId", currSession._id);
+            $('#messages').scrollTo('999px', 80);
+            _addTags(words);
+            _post();
+            _clearFormError(e);
+            $("#no-content").hide();
+            $(".progress").hide();
+            $('.btn-post').hide();
         }
     }
 });
+
+
+_addTags = function(words) {
+    _.each(words, function(tagName) {
+        // console.log(tagName);
+        if (!Meteor.users.findOne({
+                _id: Meteor.userId(),
+                "profile.tags": tagName
+            })) {
+            Meteor.users.update(Meteor.userId(), {
+                $push: {
+                    'profile.tags': tagName
+                }
+            });
+        }
+    });
+}

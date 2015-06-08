@@ -1,10 +1,13 @@
 <template name="header">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{pathFor 'homePage'}}"><img src="/images/streakle-white.png" alt="Streakle" class="img-responsive identity"></a>
-            </div>
-            {{> navbarButtons}}
-        </div>
-    </nav>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{pathFor 'homePage'}}"><img src="/images/streakle-white.png" alt="Streakle" class="img-responsive identity"></a>
+<!--         <div class="search-bar nav navbar-nav">
+          <input name="search-bar" type="text" class="form-control" id="search" placeholder="" data-role="tagsinput" select multiple>
+        </div> -->
+      </div>
+      {{> navbarButtons}}
+    </div>
+  </nav>
 </template>

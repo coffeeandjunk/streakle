@@ -17,10 +17,8 @@ Template.profileSidebar.helpers({
     },
 
     postsCount: function() {
-        return Posts.find({
-            userId: this._id
-        }).count();
-    }
+        return Meteor.user().profile.postsCount;
+    },
 });
 
 Template.profilePic.events({

@@ -1,16 +1,14 @@
   if (Rooms.find().count() === 0) {
       [
-          "#Typography",
-          "#Calligraphy",
-          "#Cartoon",
+          "#InteractionDesign",
           "#Illustration",
           "#GraphicDesign",
           "#DigitalArt",
-          "#UIDesign",
-          "#InteractionDesign",
-          "#Painting",
+          "#Art",
+          "#Craft",
+          "#Typography",
           "#IndustrialDesign",
-          "#CharacterDesign",
+          "#Photography",
           "#Streakle"
       ].forEach(function(r) {
           Rooms.insert({
@@ -21,19 +19,56 @@
   }
 
 
-    if (Tags.find().count() === 0) {
+  if (Tags.find().count() === 0) {
       [
-          "Typography",
-          "Calligraphy",
-          "Cartoon",
-          "Illustration",
-          "GraphicDesign",
-          "DigitalArt",
-          "UIDesign",
           "InteractionDesign",
-          "Painting",
+          "WebDesign",
+          "UI",
+          "UX",
+          "GameDesign",
+          "IconDesign",
+          "ToyDesign",
+          "Illustration",
+          "Storyboarding",
+          "Cartooning",
+          "CharacterDesign",
+          "StreetArt",
+          "Graffiti",
+          "GraphicDesign",
+          "VisualDesign",
+          "LogoDesign",
+          "Branding",
+          "Advertising",
+          "PrintDesign",
+          "Typography",
+          "Typesetting",
+          "TypefaceDesign",
+          "FontDesign",
+          "Calligraphy",
+          "Devanagari",
+          "Latin",
+          "Letterform",
           "IndustrialDesign",
-          "CharacterDesign"
+          "ProductDesign",
+          "AutomotiveDesign",
+          "Form",
+          "ProductSketching",
+          "DigitalArt",
+          "ConceptArt",
+          "VFX",
+          "VisualEffects",
+          "MotionGraphics",
+          "Art",
+          "Sketching",
+          "Painting",
+          "Craft",
+          "Photography",
+          "StreetPhotography",
+          "ProductPhotography",
+          "WeddingPhotography",
+          "FashionPhotography",
+          "PortraitPhotography"
+
       ].forEach(function(e) {
           Tags.insert({
               tagName: e

@@ -13,7 +13,9 @@ Template.profileInfo.events({
                 $set: {
                     // "profile.handle": handle,
                     "profile.school": school,
-                    "profile.about": about
+                    "profile.about": about,
+                    "profile.returning": true
+
                 }
             });
         }

@@ -27,9 +27,7 @@ Template.postItem.helpers({
         return user.profile.name;
     },
     authorImage: function() {
-        user = Meteor.users.findOne({
-            _id: this.userId
-        });
+        user = Meteor.user()
         if (!user.services.facebook) {
             return user.profile.image;
         } else return user.profile.picture;
@@ -69,9 +67,11 @@ Template.postItem.events({
                 // Session.set("roomName", 'Direct Message');
                 Session.set("roomId", roomCheck._id);
             }
-            Session.set("roomName", "Message");
-            $('#messages').scrollTo('max', 80);
+            toUser = Meteor.users.findOne({_id: this.userId});
+            userName = toUser.profile.firstName;
+            Session.set("roomName", userName);
             _post(this._id);
+            $('#messages').scrollTo('9999px', 80);
 
             // var chatUser = Meteor.users.findOne({
             //     _id: Meteor.userId(),
@@ -86,7 +86,7 @@ Template.postItem.events({
             });
 
             if (!chatUser && Meteor.userId() != this.userId) {
-                console.log(Meteor.userId());
+                // console.log(Meteor.userId());
                 Meteor.users.update({
                     _id: this.userId
                 }, {
@@ -141,22 +141,42 @@ Template.postItem.events({
         $('.btn-heart').blur();
     },
     'click .del-post': function() {
-        // var user = Meteor.users.find({
-        //     likes: this._id
+        // var users = Meteor.users.findOne({
+        //     "profile.likes": this._id
         // });
-        // console.log(user._id);
-        // Meteor.users.update({
-        //     _id: {
-        //         $in: user._id
-        //     }
-        // }, {
-        //     $pull: {
-        //         'profile.likes': this._id
-        //     }
-        // });
-        Messages.remove(this.postId);
-        Posts.remove(this._id);
+        // console.log(this._id);
+        // // $.each(users, function(key, value) {
+        //     // console.log(value._id);
+        //     Meteor.users.update({
+        //         _id: users._id
+        //     }, {
+        //         $pull: {
+        //             'profile.likes': this._id
+        //         }
+        //     });
+        // // });
 
+
+        Posts.remove(this._id);
+        var roomName = "#" + this.category;
+        var room = Rooms.findOne({
+            roomName: roomName
+        });
+        Rooms.update({
+            _id: room._id
+        }, {
+            $pull: {
+                messages: {
+                    postId: this._id
+                }
+            }
+        });
+        postImages.remove(this.imageId);
+            Meteor.users.update(Meteor.userId(), {
+        $inc: {
+            'profile.postsCount': -1
+        }
+    });
     }
 });
 

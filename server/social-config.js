@@ -6,14 +6,17 @@ ServiceConfiguration.configurations.remove({
  
 // ServiceConfiguration.configurations.insert({
 //     service: 'facebook',
-//     appId: '349486645244832',
-//     secret: '759a68d4ab6154c0a88e757d74a54258'
+//     appId: '417530805091822',
+//     secret: '6ec7a7472933d5a25e4c7632f2c6c990'
 // });
 
-//This is for Scranvas
+//This is for Deployed
 
 ServiceConfiguration.configurations.insert({
     service: 'facebook',
     appId: '406355799542656',
     secret: '83107f6b2f6e4d35bab3663215e4ec77'
 });
+
+
+

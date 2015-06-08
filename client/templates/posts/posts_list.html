@@ -1,9 +1,20 @@
 <template name="postsList">
   {{> postSubmit}}
-  <div class="posts">
+  <div class="posts" id="post-list">
     {{#each posts}}
       {{> postItem}}
     {{/each}}
+    {{#if nextPath}}
+      <a class="load-more" href="{{nextPath}}">Load more</a>
+    {{else}}
+      {{#unless ready}}
+        {{> spinner}}
+      {{/unless}}
+    {{/if}}
+    <!--     {{#if moreResults}}
+      <div id="showMoreResults" style="margin-left: 25px;">
+        <span class="loading">Loading...</span>
+      </div>
+    {{/if}} -->
   </div>
 </template>
-
