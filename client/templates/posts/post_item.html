@@ -6,8 +6,12 @@
       <button role="button" class="btn-say btn btn-default" data-toggle="tooltip" data-placement="top" title="Give personal feedback"><i class="fa fa-send"></i> Say</button>
       <h4>{{authorSchool}}</h4>
       <a href="{{pathFor 'postPage'}}">
-            {{#if imageUrl}}
+            {{#if imageLarge}}
+                <img src="{{imageLarge}}" alt="uploaded image" id="post-image" class="img-responsive post-image">
+            {{else}}
+              {{#if imageUrl}}
                 <img src="{{imageUrl}}" alt="uploaded image" id="post-image" class="img-responsive post-image">
+              {{/if}}
             {{/if}}
             </a>
       <p class="content">

@@ -44,6 +44,11 @@ Meteor.publish('images', function() {
     return postImages.find();
 });
 
+Meteor.publish('postImagesLarge', function() {
+    console.log('largeImages.find()::::', largeImages.find().count());
+    return largeImages.find();
+});
+
 Meteor.publish('messages', function() {
     return Messages.find();
 });
