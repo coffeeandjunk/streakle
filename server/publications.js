@@ -18,7 +18,7 @@ Meteor.publish('posts', function(options) {
 });
 
 Meteor.publish('profilePosts', function(userId, options) {
-    check(userId, String);
+    // check(userId, String);
     check(options, {
         sort: Object,
         limit: Number
@@ -29,7 +29,7 @@ Meteor.publish('profilePosts', function(userId, options) {
 });
 
 Meteor.publish('singlePost', function(id) {
-    check(id, String);
+    // check(id, String);
     return Posts.find(id);
 });
 

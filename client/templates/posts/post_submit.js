@@ -112,7 +112,7 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
     },
     after: function(error, fileObj) {
         // console.log('after is called');
-        console.log("Inserted", fileObj.name);
+        // console.log("Inserted", fileObj.name);
         imageId: fileObj._id;
         if (fileObj._id) {
             image = {
@@ -120,25 +120,6 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
                 imageId: fileObj._id
             };
         }
-    }
-});
-
-
-var _insertResizedFile = FS.EventHandlers.insertFiles(largeImages, {
-    metadata: function(fileObj) {
-        fileObject = fileObj;
-        console.log('change is trigggered, fileobj: ', fileObj)
-        return {
-            owner: Meteor.userId(),
-            submitted: new Date(),
-            resized: true
-        };
-    },
-    after: function(error, fileObj) {
-        if (fileObj._id) {
-            image.imageLarge = "/cfs/files/postImagesLarge/" + fileObj._id;
-        }
-        console.log('image obj:::::', image);
     }
 });
 
@@ -158,7 +139,7 @@ var _post = function() {
         tags: words
     };
     post._id = Posts.insert(post);
-    console.log('image obj: ', image);
+    // console.log('image obj: ', image);
     if (image.imageUrl) {
         Posts.update(post._id, {
             $set: image
@@ -180,12 +161,6 @@ var _post = function() {
                 imageUrl: imageUrl,
                 imageId: imageId
             }
-        }
-    });
-
-    Meteor.users.update(Meteor.userId(), {
-        $inc: {
-            'profile.postsCount': 1
         }
     });
     $('#postContent').val("")
@@ -213,7 +188,6 @@ Template.postSubmit.events({
         // } else if (submit) {
         // console.log('inside else');
         _insertFile(e, this);
-        _insertResizedFile(e, this);
         var cursor = postImages.find(fileObject._id);
         var uploaded = cursor.observe({
             changed: function(newImage, oldImage) {
@@ -224,18 +198,6 @@ Template.postSubmit.events({
                 }
             }
         });
-
-        // var cursor_b = imagesLarge.find(fileObject._id);
-        // var uploaded_b = cursor_b.observe({
-        //     changed: function(newImage, oldImage) {
-        //         if (newImage.isUploaded()) {
-        //             uploaded_b.stop();
-        //             $('.btn-post').prop("disabled", false);
-        //             // console.log("Button shown");
-        //         }
-        //     }
-        // });
-
         $(".progress").show();
         $(".btn-post").show();
     },
@@ -245,7 +207,6 @@ Template.postSubmit.events({
         _clearPreview();
         _toggleClosePreviw('hide');
         postImages.remove(fileObject._id);
-        largeImages.remove(fileObject._id)
         _toggleUploadIcon('show');
         $(".btn-post").hide();
         $(".progress").hide();
