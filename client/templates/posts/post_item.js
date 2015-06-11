@@ -32,12 +32,17 @@ Template.postItem.helpers({
         });
         return user.profile.picture;
     },
-    absoluteImageUrl: function() {
-        var post = Posts.findOne({
-            userId: this.userId
+    // absoluteImageUrl: function() {
+    //     var post = Posts.findOne({
+    //         userId: this.userId
+    //     });
+    //     // console.log('post.imageUrl::', post)
+    //     return window.location.host + post.imageUrl;
+    // },
+    images: function () {
+        return postImages.find({
+            _id: this.imageId
         });
-        // console.log('post.imageUrl::', post)
-        return window.location.host + post.imageUrl;
     }
 });
 
@@ -196,7 +201,6 @@ var _post = function(postId) {
                 postId: post._id,
                 submitted: new Date(),
                 msg: post.content,
-                imageUrl: post.imageUrl,
                 imageId: post.imageId,
                 postUserId: post.userId,
             }

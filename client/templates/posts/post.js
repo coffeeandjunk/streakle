@@ -44,6 +44,11 @@ Template.post.helpers({
         if (!user.services.facebook) {
             return user.profile.picture;
         } else return user.profile.picture;
+    },
+    images: function() {
+        return postImages.find({
+            _id: this.imageId
+        });
     }
 });
 

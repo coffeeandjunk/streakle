@@ -1,19 +1,15 @@
 <template name="postItem">
-<!-- {{> popupFeedback}} -->
+  <!-- {{> popupFeedback}} -->
   <div class="post">
     <div class="post-content">
       <button role="button" class="btn-heart btn btn-default" style="{{liked}}"><i class="fa fa-heart"></i></button>
       <button role="button" class="btn-say btn btn-default" data-toggle="tooltip" data-placement="top" title="Give personal feedback"><i class="fa fa-send"></i> Say</button>
       <h4>{{authorSchool}}</h4>
       <a href="{{pathFor 'postPage'}}">
-            {{#if imageLarge}}
-                <img src="{{imageLarge}}" alt="uploaded image" id="post-image" class="img-responsive post-image">
-            {{else}}
-              {{#if imageUrl}}
-                <img src="{{imageUrl}}" alt="uploaded image" id="post-image" class="img-responsive post-image">
-              {{/if}}
-            {{/if}}
-            </a>
+      {{#each images}}
+        <img src="{{this.url store='images'}}" alt="uploaded image" id="post-image" class="img-responsive post-image">
+      {{/each}}
+      </a>
       <p class="content">
         {{#autolink}}{{content}}{{/autolink}}
       </p>
@@ -40,7 +36,6 @@
     </div>
   </div>
 </template>
-
 <!-- <template name="popupFeedback">
   <div class="well" id="popup-feedback" style="display:none">
     <div class="post-form-container">

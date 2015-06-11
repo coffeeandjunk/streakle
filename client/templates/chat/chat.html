@@ -1,50 +1,50 @@
 <template name="chat">
-    <div data-spy="affix">
-        <div class="chat panel">
-            {{> messages}}
-            <div class="panel-footer">
-                {{> input}}
-            </div>
-        </div>
+  <div data-spy="affix">
+    <div class="chat panel">
+      {{> messages}}
+      <div class="panel-footer">
+        {{> input}}
+      </div>
     </div>
+  </div>
 </template>
-
 <template name="messages">
-    <div class="panel-title">
-        <div class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" >
-                <h4 data-toggle="tooltip" data-placement="left" title="Topics of discussion">{{roomName}} <i class="fa fa-chevron-down"></i></h4>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-                {{#each rooms}} {{> room}} {{/each}}
-            </ul>
-        </div>
+  <div class="panel-title">
+    <div class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <h4 data-toggle="tooltip" data-placement="left" title="Topics of discussion">{{roomName}} <i class="fa fa-chevron-down"></i></h4>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        {{#each rooms}} {{> room}} {{/each}}
+      </ul>
     </div>
-    <div class="chat-body panel-body" id="messages">
-        {{#each messages}} {{> message}} {{/each}}
-    </div>
+  </div>
+  <div class="chat-body panel-body" id="messages">
+    {{#each messages}} {{> message}} {{/each}}
+  </div>
 </template>
-
 <template name="room">
-    <li style="{{roomstyle}}">{{roomName}}</li>
+  <li style="{{roomstyle}}">{{roomName}}</li>
 </template>
-
 <template name="message">
-    <div class="message-block">
-        <div class="message-author">
-            <h6><a href="{{authorProfile}}">{{author}}</a><span class="text-muted">{{authorSchool}}</span></h6>
-        </div>
-        <div class="message">
-            <a href="{{postLink}}">
-                <img src="{{imageUrl}}" class="img-responsive"></a>
-            <div class="text-content">
-                <p>{{#autolink}}{{msg}}{{/autolink}}</p>
-                <span class="timestamp">{{timestamp}}</span>
-            </div>
-        </div>
+  <div class="message-block">
+    <div class="message-author">
+      <h6><a href="{{authorProfile}}">{{author}}</a><span class="text-muted">{{authorSchool}}</span></h6>
     </div>
+    <div class="message">
+      {{#each images}}
+        <a href="{{postLink}}">
+          <img src="{{this.url}}" class="img-responsive"></a>
+      {{/each}}
+      <div class="text-content">
+        <p>
+          {{#autolink}}{{msg}}{{/autolink}}
+        </p>
+        <span class="timestamp">{{timestamp}}</span>
+      </div>
+    </div>
+  </div>
 </template>
-
 <template name="input">
-    <textarea placeholder="Your message goes here..." id="msg" class="form-control" style="height: 48px;"></textarea>
+  <textarea placeholder="Your message goes here..." id="msg" class="form-control" style="height: 48px;"></textarea>
 </template>

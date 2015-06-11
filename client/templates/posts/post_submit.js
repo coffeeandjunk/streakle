@@ -116,7 +116,6 @@ var _insertFile = FS.EventHandlers.insertFiles(postImages, {
         imageId: fileObj._id;
         if (fileObj._id) {
             image = {
-                imageUrl: "/cfs/files/images/" + fileObj._id,
                 imageId: fileObj._id
             };
         }
@@ -140,14 +139,13 @@ var _post = function() {
     };
     post._id = Posts.insert(post);
     // console.log('image obj: ', image);
-    if (image.imageUrl) {
+    if (image.imageId) {
         Posts.update(post._id, {
             $set: image
         });
     }
 
     var user = Meteor.user();
-    var imageUrl = image.imageUrl;
     var imageId = image.imageId;
     var messagePush = Rooms.update({
         _id: Session.get("roomId")
@@ -158,7 +156,6 @@ var _post = function() {
                 postId: post._id,
                 submitted: new Date(),
                 msg: content,
-                imageUrl: imageUrl,
                 imageId: imageId
             }
         }

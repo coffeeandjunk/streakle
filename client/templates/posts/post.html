@@ -1,14 +1,9 @@
 <template name="post">
   <div class="post">
     <div class="post-page-content">
-      {{#if imageLarge}}
-          <img src="{{imageLarge}}" alt="uploaded image" id="post-image" class="img-responsive post-image">
-      {{else}}
-        {{#if imageUrl}}
-          <img src="{{imageUrl}}" alt="uploaded image" id="post-image" class="img-responsive post-image">
-        {{/if}}
-      {{/if}}  
-      <!-- <img src="{{imageUrl}}" alt="uploaded image" id="post-image" class="img-responsive annotatable"> -->
+      {{#each images}}
+        <img src="{{this.url store='midImages'}}" alt="uploaded image" id="post-image" class="img-responsive post-image">
+      {{/each}}
       <p class="content">
         {{#autolink}}{{content}}{{/autolink}}
       </p>

@@ -17,7 +17,8 @@ Template.profilePosts.helpers({
 Template.profilePosts.rendered = function() {
     AnimatedEach.attachHooks(this.find(".profilePosts"));
     // console.log('profilePosts is rendered');
-    Session.set("postsLimit", ITEMS_INCREMENT);
+    // Session.set("postsLimit",
+    //     Session.get("postsLimit") + ITEMS_INCREMENT);
     $(window).scroll(showMoreVisible);
 };
 
@@ -33,7 +34,7 @@ showMoreVisible = function() {
 
     if (target.offset().top < threshold) {
         if (!target.data("visible")) {
-            console.log("target became visible (inside viewable area)");
+            // console.log("target became visible (inside viewable area)");
             target.data("visible", true);
             Session.set("postsLimit",
                 Session.get("postsLimit") + ITEMS_INCREMENT);
@@ -45,8 +46,3 @@ showMoreVisible = function() {
         }
     }
 }
-
-Tracker.autorun(function() {
-    Meteor.subscribe('profilePosts');
-    console.log('deps.autorun called:::: postsLimit::: ', Session.get('postsLimit'));
-});

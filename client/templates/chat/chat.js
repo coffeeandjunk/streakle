@@ -145,6 +145,11 @@ Template.message.helpers({
             _id: this.userId
         });
         return user.profile.name;
+    },
+    images: function() {
+        return postImages.find({
+            _id: this.imageId
+        });
     }
 });
 

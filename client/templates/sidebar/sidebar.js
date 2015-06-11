@@ -49,7 +49,7 @@ Template.sidebar.events({
         $("#msg").focus();
     },
     'click .user-profile': function() {
-        Session.set("postsLimit", 5);
+        Session.setPersistent("postsLimit", 5);
     }
 });
 
