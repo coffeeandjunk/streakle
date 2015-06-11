@@ -39,7 +39,7 @@ Template.postItem.helpers({
     //     // console.log('post.imageUrl::', post)
     //     return window.location.host + post.imageUrl;
     // },
-    images: function () {
+    images: function() {
         return postImages.find({
             _id: this.imageId
         });
@@ -165,6 +165,11 @@ Template.postItem.events({
 
 
         Posts.remove(this._id);
+        Meteor.users.update(Meteor.userId(), {
+            $inc: {
+                'profile.postsCount': -1
+            }
+        });
         var roomName = "#" + this.category;
         var room = Rooms.findOne({
             roomName: roomName
@@ -179,11 +184,7 @@ Template.postItem.events({
             }
         });
         postImages.remove(this.imageId);
-        Meteor.users.update(Meteor.userId(), {
-            $inc: {
-                'profile.postsCount': -1
-            }
-        });
+
     }
 });
 

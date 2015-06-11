@@ -7,7 +7,7 @@ Template.navbarButtons.helpers({
                 // this is the line of interest
                 return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=small";
             } else {
-                return Meteor.user().profile.image;
+                return Meteor.user().profile.picture;
             }
         } catch (err) {
             console.log(err);

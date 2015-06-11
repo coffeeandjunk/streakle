@@ -133,7 +133,7 @@ var _post = function() {
         userId: user._id,
         submitted: new Date(),
         commentsCount: 0,
-        category: roomName,
+        category: roomName.replace(/ /g, ''),
         likes: [],
         tags: words
     };
@@ -158,6 +158,11 @@ var _post = function() {
                 msg: content,
                 imageId: imageId
             }
+        }
+    });
+    Meteor.users.update(Meteor.userId(), {
+        $inc: {
+            'profile.postsCount': 1
         }
     });
     $('#postContent').val("")
