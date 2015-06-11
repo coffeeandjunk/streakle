@@ -296,7 +296,7 @@ textarea {
 .post {
     color: #666;
     .post-image {
-        max-height: 500px;
+        // max-height: 500px;
         background-color: #eee;
     }
     h4 {
@@ -537,7 +537,10 @@ textarea {
     margin-bottom: 15px;
 }
 
-.comments li {margin-bottom: 0 !important;}
+.comments li {
+    margin-bottom: 0 !important;
+}
+
 .comments {
     padding: 0;
 }
@@ -749,11 +752,12 @@ textarea {
 
 .jumbotron {
     text-align: center;
-}
-
-.jumbotron h2 {
-    font-size: 60px;
-    font-weight: 100;
+    background: transparent !important;
+    p {font-weight: normal;}
+    h1 {
+        font-size: 60px;
+        font-weight: 100;
+    }
 }
 
 @-webkit-keyframes fadeOut {

@@ -7,7 +7,7 @@ Template.postsList.rendered = function() {
 };
 
 Template.postsList.destroyed = function() {
-    $(window).off('scroll');
+    // $(window).off('scroll');
 }
 
 showMoreVisible = function() {

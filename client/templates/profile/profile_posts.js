@@ -23,7 +23,7 @@ Template.profilePosts.rendered = function() {
 };
 
 Template.profilePosts.destroyed = function() {
-    $(window).off('scroll');
+    // $(window).off('scroll');
 }
 
 showMoreVisible = function() {

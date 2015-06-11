@@ -8,6 +8,10 @@ Template.postItem.helpers({
             return "color: #57132E;";
         }
     },
+    likes : function() {
+        if (this.likes.length != 0) return this.likes.length;
+            else return "";
+    },
     ownPost: function() {
         return this.userId == Meteor.userId();
     },

@@ -32,10 +32,11 @@
       <h6><a href="{{authorProfile}}">{{author}}</a><span class="text-muted">{{authorSchool}}</span></h6>
     </div>
     <div class="message">
+      <a href="{{postLink}}">
       {{#each images}}
-        <a href="{{postLink}}">
-          <img src="{{this.url}}" class="img-responsive"></a>
+          <img src="{{this.url}}" class="img-responsive">
       {{/each}}
+      </a>
       <div class="text-content">
         <p>
           {{#autolink}}{{msg}}{{/autolink}}
